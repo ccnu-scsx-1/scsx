@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<decorators defaultdir="/">
+ 
+    <excludes>
+        <pattern>login.html</pattern>
+    </excludes>
+
+    <decorator name="frame" page="/WEB-INF/jsp/frame.jsp">
+        <pattern>*.html</pattern>
+        <pattern>*.jsp</pattern>
+    </decorator>
+    
+</decorators>

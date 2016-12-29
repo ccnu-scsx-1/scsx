@@ -1,0 +1,88 @@
+<!-- Modal Wallpaper上传 -->
+
+<div id="wallpaperUpload_inner" class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h5 class="modal-title" id="wallpaper-upload-modify-title">
+        <i class="glyphicon glyphicon-upload"></i>单张墙纸上传
+      </h5>
+    </div>
+    <form id="upload-modify" method="POST">
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-condensed text-left " valgin="middle" id="wallpaper-upload-table">
+            <tbody>
+              <tr>
+                <td colspan="2" style="text-align: left;"><strong><img src="../static/images/tip.gif">提示:&nbsp;&nbsp;</strong>
+                  	<small>标注为&nbsp;<span style="color: red;">*</span>&nbsp;必填项</small></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align: left;"><span style="color: red;">*</span>&nbsp;名称</td>
+                <td><input type="text" name="name" class="form-control input-sm" maxlength="20"></td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align: left;"><span style="color: red;">*</span>&nbsp;珠宝单价</td>
+                <td><input type="text" name="price" class="form-control input-sm" maxlength="20"></td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align: left;"><span style="color: red;">*</span>&nbsp;描述</td>
+                <td><input type="text" name="description" class="form-control input-sm" maxlength="20"></td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align: left;">&nbsp;&nbsp;备注</td>
+                <td colspan="3"><textarea type="text" name="description" class="form-control input-sm"></textarea></td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align: left;"><span class="hid" style="color: red;">*</span>&nbsp;珠宝图片</td>
+                <td colspan="3" style="position: relative">
+                	<input type="file" name="file" id="file">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <input type="hidden" id="option" value="upload">
+        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" id="upload-modify-reset">取消</button>
+        <button type="submit" class="btn btn-primary btn-sm" id="upload-submit">提交<img class="hidden" src="../static/images/submit_load.gif">
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+
+	$('#upload-submit').click(
+		function() {
+			if (!$('#wallpaperUpload_inner input[name=name]').val()) {
+				bootbox.alert("请输入名称！！！！！.");
+				return false;
+			}
+			if (!$('#wallpaperUpload_inner input[name=price]').val()) {
+				bootbox.alert("请输入单价.");
+				return false;
+			}
+			var name = $('#wallpaperUpload_inner input[name=name]').val();
+			var price = $('#wallpaperUpload_inner input[name=price]').val();
+			$.ajaxFileUpload({
+				url : "../wallpaper/singleUpload",
+				secureuri : false,
+				fileElementId : file,
+				name : name,
+				price : price,
+				dataType : 'json',
+				success : function(){
+					
+		       },
+		       error: function(){
+					
+		       }
+			});
+		});
+
+</script>

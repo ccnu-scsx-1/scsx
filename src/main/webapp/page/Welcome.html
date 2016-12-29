@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+<script src="../static/js/ajaxfileupload.js" type="text/javascript"></script>
+<script src="../static/js/multiSelect.js" type="text/javascript"></script>
+<script>
+	$(function() {
+// 		$("#wallpaper-upload").load('module/wallpaperUpload.htm');
+		/* $("#wallpaper-preview").load('module/wallpaperPreview.htm');
+		$("#wallpaper-detail").load('module/wallpaperModify.htm');
+		$("#wallpaper-status").load('module/wallpaperChangeStatus.htm');
+		$("#wallpaper-festival-rcmd").load('module/wallpaperRcmdByFestival.htm');
+		$("#wallpaper-info-type-add").load('module/wallpaperInfoTypeAdd.htm'); */
+	});
+</script>
+</head>
+<body>
+	<div class="wrap j-padding-top j-padding-bottom  bg-color-1">
+		<div class="row">
+			<div class="col-sm-11 col-md-9 col-lg-9">
+				<div class="row">
+					<div class="col-xs-3 col-sm-1 col-md-1">
+						<a class="btn btn-success btn-sm" id="wallpaper-upload-btn">Upload Message</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="float-left">
+		<div class="table-responsive">
+			<table id="main-datagrid" class="preview"></table>
+		</div>
+	</div>
+	<div class="modal fade" id="wallpaper-upload" tabindex="10"
+		role="dialog" data-backdrop="static" aria-labelledby="myModalLabel"
+		aria-hidden="true" style="display: none;">
+	<!-- 我的模态框 -->	
+		<!-- Modal Wallpaper上传 -->
+
+<div id="wallpaperUpload_inner" class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      <h5 class="modal-title" id="wallpaper-upload-modify-title">
+        <i class="glyphicon glyphicon-upload"></i>Upload Picture
+      </h5>
+    </div>
+    <form id="upload-modify" method="POST" enctype="multipart/form-data">
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-condensed text-left " valgin="middle" id="wallpaper-upload-table">
+            <tbody>
+              <tr>
+                <td colspan="2" style="text-align: left;"><strong><img src="../static/images/tip.gif">tips:&nbsp;&nbsp;</strong>
+                  	<small>Marked&nbsp;<span style="color: red;">*</span>&nbsp; are mandatory</small></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align: left;"><span style="color: red;">*</span>&nbsp;name</td>
+                <td><input type="text" name="name" class="form-control input-sm" maxlength="20"></td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align: left;"><span style="color: red;">*</span>&nbsp;price</td>
+                <td><input type="text" name="price" class="form-control input-sm" maxlength="20"></td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align: left;"><span style="color: red;">*</span>&nbsp;description</td>
+                <td><input type="text" name="description" class="form-control input-sm" maxlength="20"></td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align: left;">&nbsp;&nbsp;remark</td>
+                <td colspan="3"><textarea type="text" name="remark" class="form-control input-sm"></textarea></td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align: left;"><span class="hid" style="color: red;">*</span>&nbsp;Jewelry picture</td>
+                <td colspan="3" style="position: relative">
+                	<input type="file" name="file" id="file">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <input type="hidden" id="option" value="upload">
+        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" id="upload-modify-reset">cancel</button>
+        <button type="submit" class="btn btn-primary btn-sm" id="upload-submit">submit<img class="hidden" src="../static/images/submit_load.gif">
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+
+	$('#upload-submit').click(
+		function() {
+			if (!$('#wallpaperUpload_inner input[name=name]').val()) {
+				bootbox.alert("name！！！！！.");
+				return false;
+			}
+			if (!$('#wallpaperUpload_inner input[name=price]').val()) {
+				bootbox.alert("input price please.");
+				return false;
+			}
+			var name = $('#wallpaperUpload_inner input[name=name]').val();
+			var price = $('#wallpaperUpload_inner input[name=price]').val();
+			$.ajax({
+			    url: '../wallpaper/singleUpload',
+			    type: 'POST',
+			    cache: false,
+			    data: new FormData($('#upload-modify')[0]),
+			    processData: false,
+			    contentType: false
+			}).done(function(res) {
+			}).fail(function(res) {});
+		});
+
+		</script>
+	</div>
+	<script type="text/javascript">
+		var mainDatagrid = $('#main-datagrid');
+		mainDatagrid.datagrid({//会自带前端分页功能
+			url : "../wallpaper/queryByPage",
+			columns : [ [ {
+				checkbox : true
+			}, 
+			{
+				field : "id",
+				title : "ID",
+				width : "150px",
+				align : "center"
+			},
+			{
+				field : "img",
+				title : "Jewelry preview",
+				width : "500px",
+				align : "center",
+				formatter : function(value, row, index) {
+					return '<img src="'
+							+ value
+							+ '" width="121px" height="108px">';
+
+				}
+			},
+			{
+				field : "name",
+				title : "name",
+				width : "150px",
+				align : "center"
+			},
+			{
+				field : "remark",
+				title : "remark",
+				align : "center",
+				width : "220px"
+			}, 
+			{
+				field : "description",
+				title : "description",
+				width : "200px",
+				align : "center"
+			}, 
+			{
+				field : "price",
+				title : "price",
+				width : "150px",
+				align : "center"
+			}, 
+			{
+				field : "create_time",
+				title : "create_time",
+				width : "250px",
+				align : "center",
+				formatter : function(value, row, index) {
+					if (value) {
+						return timeFormatter(value);
+					}
+				}
+			},
+			{
+				field : "last_modify",
+				title : "create_time",
+				width : "250px",
+				align : "center",
+				formatter : function(value, row, index) {
+					if (value) {
+						return timeFormatter(value);
+					}
+				}
+			}
+			] ]
+
+		});
+		
+		$('#wallpaper-upload-btn')
+		.click(
+				function() {
+					$("#wallpaper-upload").modal("show");
+				});
+		
+		function timeFormatter(time) {
+			var d = new Date(time);
+			return (1900 + d.getYear()) + '-' + toFixed2(d.getMonth() + 1)
+					+ '-' + toFixed2(d.getDate()) + ' '
+					+ toFixed2(d.getHours()) + ':' + toFixed2(d.getMinutes())
+					+ ':' + toFixed2(d.getSeconds())
+		}
+		
+		function toFixed2(num) {
+			return num < 10 ? ('0' + num) : num;
+		}
+	</script>
+</body>
+</html>
