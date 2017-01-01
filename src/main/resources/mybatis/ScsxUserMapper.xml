@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ccnu.scsx.mapper.ScsxUserMapper" >
+  <resultMap id="BaseResultMap" type="com.ccnu.scsx.model.ScsxUser" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="BIT" />
+    <result column="age" property="age" jdbcType="TINYINT" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="TINYINT" />
+    <result column="role" property="role" jdbcType="BIT" />
+    <result column="resume_id" property="resumeId" jdbcType="VARCHAR" />
+    <result column="info_id" property="infoId" jdbcType="VARCHAR" />
+    <result column="year_work" property="yearWork" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, gender, age, number, position, role, resume_id, info_id, year_work
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from scsx_user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from scsx_user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ccnu.scsx.model.ScsxUser" >
+    insert into scsx_user (id, name, gender, 
+      age, number, position, 
+      role, resume_id, info_id, 
+      year_work)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, 
+      #{age,jdbcType=TINYINT}, #{number,jdbcType=VARCHAR}, #{position,jdbcType=TINYINT}, 
+      #{role,jdbcType=BIT}, #{resumeId,jdbcType=VARCHAR}, #{infoId,jdbcType=VARCHAR}, 
+      #{yearWork,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ccnu.scsx.model.ScsxUser" >
+    insert into scsx_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="resumeId != null" >
+        resume_id,
+      </if>
+      <if test="infoId != null" >
+        info_id,
+      </if>
+      <if test="yearWork != null" >
+        year_work,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=BIT},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=TINYINT},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=TINYINT},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=BIT},
+      </if>
+      <if test="resumeId != null" >
+        #{resumeId,jdbcType=VARCHAR},
+      </if>
+      <if test="infoId != null" >
+        #{infoId,jdbcType=VARCHAR},
+      </if>
+      <if test="yearWork != null" >
+        #{yearWork,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ccnu.scsx.model.ScsxUser" >
+    update scsx_user
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=BIT},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=TINYINT},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=TINYINT},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=BIT},
+      </if>
+      <if test="resumeId != null" >
+        resume_id = #{resumeId,jdbcType=VARCHAR},
+      </if>
+      <if test="infoId != null" >
+        info_id = #{infoId,jdbcType=VARCHAR},
+      </if>
+      <if test="yearWork != null" >
+        year_work = #{yearWork,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ccnu.scsx.model.ScsxUser" >
+    update scsx_user
+    set name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=BIT},
+      age = #{age,jdbcType=TINYINT},
+      number = #{number,jdbcType=VARCHAR},
+      position = #{position,jdbcType=TINYINT},
+      role = #{role,jdbcType=BIT},
+      resume_id = #{resumeId,jdbcType=VARCHAR},
+      info_id = #{infoId,jdbcType=VARCHAR},
+      year_work = #{yearWork,jdbcType=TINYINT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

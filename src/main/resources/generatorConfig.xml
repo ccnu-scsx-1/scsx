@@ -9,37 +9,40 @@
 		</commentGenerator>
 		<jdbcConnection 
 			driverClass="com.mysql.jdbc.Driver" 
-			connectionURL="jdbc:mysql://123.207.254.19:3306/jewelry" 
+			connectionURL="jdbc:mysql://123.207.254.19:3306/scsx" 
 			userId="root" 
-			password="123456">
+			password="junpeng.cai">
 		</jdbcConnection>
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false"/>
 		</javaTypeResolver>
 		<javaModelGenerator 
 			targetPackage="com.ccnu.scsx.model" 
-			targetProject="E:\gittest\examtation\examtation\src\main\java">
+			targetProject="E:\mygit\scsx\src\main\java">
 			<property name="enableSubPackages" value="true"/>
 			<property name="trimStrings" value="true"/>
 		</javaModelGenerator>
 		<sqlMapGenerator 
 			targetPackage="mybatis" 
-			targetProject="E:\gittest\examtation\examtation\src\main\resources">
+			targetProject="E:\mygit\scsx\src\main\resources">
 			<property name="enableSubPackages" value="true"/>
 		</sqlMapGenerator>
 		<javaClientGenerator type="XMLMAPPER" 
 			targetPackage="com.ccnu.scsx.mapper" 
-			targetProject="E:\gittest\examtation\examtation\src\main\java">
+			targetProject="E:\mygit\scsx\src\main\java">
 			<property name="enableSubPackages" value="true"/>
 		</javaClientGenerator>
-		<table tableName="product" domainObjectName="Product" 
+		<table tableName="scsx_user" domainObjectName="ScsxResume" 
 			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
-		<!-- <table tableName="order" domainObjectName="order" 
+		<table tableName="scsx_company" domainObjectName="ScsxCompany" 
 			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
-		<table tableName="total" domainObjectName="total" 
+		<table tableName="scsx_recruit_info" domainObjectName="ScsxRecruitInfo" 
 			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-		</table> -->
+		</table> 
+		<table tableName="scsx_feedback" domainObjectName="ScsxFeedBack" 
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>
 	</context>
 </generatorConfiguration>
