@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ccnu.scsx.mapper.ScsxRecruitInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ccnu.scsx.model.ScsxRecruitInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="salary_low" property="salaryLow" jdbcType="INTEGER" />
+    <result column="salary_high" property="salaryHigh" jdbcType="INTEGER" />
+    <result column="region" property="region" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="TINYINT" />
+    <result column="position" property="position" jdbcType="TINYINT" />
+    <result column="year_work" property="yearWork" jdbcType="TINYINT" />
+    <result column="last_modify" property="lastModify" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ccnu.scsx.model.ScsxRecruitInfo" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, company_id, title, salary_low, salary_high, region, education, position, 
+    year_work, last_modify
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from scsx_recruit_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from scsx_recruit_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ccnu.scsx.model.ScsxRecruitInfo" >
+    insert into scsx_recruit_info (id, user_id, company_id, 
+      title, salary_low, salary_high, 
+      region, education, position, 
+      year_work, last_modify, description
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{salaryLow,jdbcType=INTEGER}, #{salaryHigh,jdbcType=INTEGER}, 
+      #{region,jdbcType=VARCHAR}, #{education,jdbcType=TINYINT}, #{position,jdbcType=TINYINT}, 
+      #{yearWork,jdbcType=TINYINT}, #{lastModify,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ccnu.scsx.model.ScsxRecruitInfo" >
+    insert into scsx_recruit_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="salaryLow != null" >
+        salary_low,
+      </if>
+      <if test="salaryHigh != null" >
+        salary_high,
+      </if>
+      <if test="region != null" >
+        region,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="yearWork != null" >
+        year_work,
+      </if>
+      <if test="lastModify != null" >
+        last_modify,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="salaryLow != null" >
+        #{salaryLow,jdbcType=INTEGER},
+      </if>
+      <if test="salaryHigh != null" >
+        #{salaryHigh,jdbcType=INTEGER},
+      </if>
+      <if test="region != null" >
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=TINYINT},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=TINYINT},
+      </if>
+      <if test="yearWork != null" >
+        #{yearWork,jdbcType=TINYINT},
+      </if>
+      <if test="lastModify != null" >
+        #{lastModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ccnu.scsx.model.ScsxRecruitInfo" >
+    update scsx_recruit_info
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="salaryLow != null" >
+        salary_low = #{salaryLow,jdbcType=INTEGER},
+      </if>
+      <if test="salaryHigh != null" >
+        salary_high = #{salaryHigh,jdbcType=INTEGER},
+      </if>
+      <if test="region != null" >
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=TINYINT},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=TINYINT},
+      </if>
+      <if test="yearWork != null" >
+        year_work = #{yearWork,jdbcType=TINYINT},
+      </if>
+      <if test="lastModify != null" >
+        last_modify = #{lastModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ccnu.scsx.model.ScsxRecruitInfo" >
+    update scsx_recruit_info
+    set user_id = #{userId,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      salary_low = #{salaryLow,jdbcType=INTEGER},
+      salary_high = #{salaryHigh,jdbcType=INTEGER},
+      region = #{region,jdbcType=VARCHAR},
+      education = #{education,jdbcType=TINYINT},
+      position = #{position,jdbcType=TINYINT},
+      year_work = #{yearWork,jdbcType=TINYINT},
+      last_modify = #{lastModify,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ccnu.scsx.model.ScsxRecruitInfo" >
+    update scsx_recruit_info
+    set user_id = #{userId,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      salary_low = #{salaryLow,jdbcType=INTEGER},
+      salary_high = #{salaryHigh,jdbcType=INTEGER},
+      region = #{region,jdbcType=VARCHAR},
+      education = #{education,jdbcType=TINYINT},
+      position = #{position,jdbcType=TINYINT},
+      year_work = #{yearWork,jdbcType=TINYINT},
+      last_modify = #{lastModify,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
