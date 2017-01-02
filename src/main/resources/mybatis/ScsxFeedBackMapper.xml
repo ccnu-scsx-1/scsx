@@ -5,12 +5,13 @@
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="info_id" property="infoId" jdbcType="VARCHAR" />
     <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="TINYINT" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.ccnu.scsx.model.ScsxFeedBack" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, info_id, user_id
+    id, info_id, user_id, role
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -29,9 +30,9 @@
   </delete>
   <insert id="insert" parameterType="com.ccnu.scsx.model.ScsxFeedBack" >
     insert into scsx_feedback (id, info_id, user_id, 
-      content)
+      role, content)
     values (#{id,jdbcType=VARCHAR}, #{infoId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
-      #{content,jdbcType=LONGVARCHAR})
+      #{role,jdbcType=TINYINT}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ccnu.scsx.model.ScsxFeedBack" >
     insert into scsx_feedback
@@ -44,6 +45,9 @@
       </if>
       <if test="userId != null" >
         user_id,
+      </if>
+      <if test="role != null" >
+        role,
       </if>
       <if test="content != null" >
         content,
@@ -59,6 +63,9 @@
       <if test="userId != null" >
         #{userId,jdbcType=VARCHAR},
       </if>
+      <if test="role != null" >
+        #{role,jdbcType=TINYINT},
+      </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -73,6 +80,9 @@
       <if test="userId != null" >
         user_id = #{userId,jdbcType=VARCHAR},
       </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=TINYINT},
+      </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -83,13 +93,15 @@
     update scsx_feedback
     set info_id = #{infoId,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=VARCHAR},
+      role = #{role,jdbcType=TINYINT},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ccnu.scsx.model.ScsxFeedBack" >
     update scsx_feedback
     set info_id = #{infoId,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=VARCHAR}
+      user_id = #{userId,jdbcType=VARCHAR},
+      role = #{role,jdbcType=TINYINT}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

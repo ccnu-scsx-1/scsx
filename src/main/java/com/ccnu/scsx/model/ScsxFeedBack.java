@@ -7,6 +7,8 @@ public class ScsxFeedBack {
 
     private String userId;
 
+    private Byte role;
+
     private String content;
 
     public String getId() {
@@ -31,6 +33,14 @@ public class ScsxFeedBack {
 
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
+    }
+
+    public Byte getRole() {
+        return role;
+    }
+
+    public void setRole(Byte role) {
+        this.role = role;
     }
 
     public String getContent() {

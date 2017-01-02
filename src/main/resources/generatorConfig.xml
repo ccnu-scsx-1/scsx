@@ -32,7 +32,7 @@
 			targetProject="E:\mygit\scsx\src\main\java">
 			<property name="enableSubPackages" value="true"/>
 		</javaClientGenerator>
-		<table tableName="scsx_user" domainObjectName="ScsxResume" 
+		<!-- <table tableName="scsx_user" domainObjectName="ScsxResume" 
 			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
 		<table tableName="scsx_company" domainObjectName="ScsxCompany" 
@@ -40,7 +40,7 @@
 		</table>
 		<table tableName="scsx_recruit_info" domainObjectName="ScsxRecruitInfo" 
 			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-		</table> 
+		</table>  -->
 		<table tableName="scsx_feedback" domainObjectName="ScsxFeedBack" 
 			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>

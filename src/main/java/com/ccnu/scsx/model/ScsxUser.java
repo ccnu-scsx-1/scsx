@@ -15,7 +15,7 @@ public class ScsxUser {
 
 	private Byte position;
 
-	private Boolean role;
+	private Byte role;
 
 	private String resumeId;
 
@@ -79,11 +79,11 @@ public class ScsxUser {
 		this.position = position;
 	}
 
-	public Boolean getRole() {
+	public Byte getRole() {
 		return role;
 	}
 
-	public void setRole(Boolean role) {
+	public void setRole(Byte role) {
 		this.role = role;
 	}
 

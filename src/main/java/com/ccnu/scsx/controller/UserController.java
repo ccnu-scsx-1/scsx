@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ccnu.scsx.api.WebResultData;
@@ -63,9 +65,11 @@ public class UserController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/user/status")
-	public WebResultData getStatus(HttpServletRequest request) {
-		if (request.getSession().getAttribute("loginAdmin") != null){
+	@RequestMapping(value = "/user/status", method = RequestMethod.POST)
+	public WebResultData getStatus(HttpServletRequest request, HttpServletResponse response) {
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		response.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+		if (request.getSession().getAttribute("loginAdmin") != null) {
 			return WebResultUtils.buildSucResult();
 		}
 		return WebResultUtils.buildResult(ErrorCode.not_login);
