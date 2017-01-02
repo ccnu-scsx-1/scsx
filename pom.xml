@@ -381,7 +381,7 @@
 
 	</dependencies>
 	<build>
-		 <finalName>examtation</finalName>
+		 <finalName>scsx</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -425,7 +425,7 @@
 				<configuration>
 					<charset>UTF-8</charset>
 					<port>8080</port>
-					<path>/examtation</path>
+					<path>/scsx</path>
 					<uriEncoding>UTF-8</uriEncoding>
 					<systemProperties>
 						<druid.log.stmt.executableSql>true</druid.log.stmt.executableSql>

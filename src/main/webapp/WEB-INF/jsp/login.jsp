@@ -27,13 +27,17 @@
       <div id='input-form'>
         <p id='login-text'>管理员登录</p>
         <p id='error-info' class='alert alert-danger' style='display: none'></p>
-        <form id='login-form' method="post" action="<%=request.getContextPath()%>/admin/login">
+        <form id='login-form' method="post" action="<%=request.getContextPath()%>/scsx/register">
           <div class="form-group">
-            <label for="exampleInputEmail1">帐&nbsp;&nbsp;&nbsp;号:</label> <input type="email" class="form-control"
-              id="email" name="email" placeholder="您的邮箱地址" /> <span class='clear'></span>
+            <label for="exampleInputEmail1">帐&nbsp;&nbsp;&nbsp;号:</label> <input type="text" class="form-control"
+              id="email" name="name" placeholder="您的邮箱地址" /> <span class='clear'></span>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">密&nbsp;&nbsp;&nbsp;码:</label> <input type="password" class="form-control"
+              name="password" id="password" /> ${requestScope.errorMsg }
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">age</label> <input type="password" class="form-control"
               name="password" id="password" /> ${requestScope.errorMsg }
           </div>
           <button id='login-button' class='btn btn-danger' type='submit'>登&nbsp;&nbsp;&nbsp;&nbsp;录</button>

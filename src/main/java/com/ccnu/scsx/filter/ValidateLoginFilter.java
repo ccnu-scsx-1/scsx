@@ -25,6 +25,7 @@ public class ValidateLoginFilter implements Filter {
     if (StringUtils.containsIgnoreCase(uri, "/static/")
         || StringUtils.containsIgnoreCase(uri, "/index")
         || StringUtils.containsIgnoreCase(uri, "/admin/login")
+        || StringUtils.containsIgnoreCase(uri, "/api/user")
         || StringUtils.containsIgnoreCase(uri, "/download")
         || StringUtils.containsIgnoreCase(uri, "/api/third")
         || StringUtils.containsIgnoreCase(uri, "/third")) {

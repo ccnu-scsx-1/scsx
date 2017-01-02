@@ -1,103 +1,114 @@
 package com.ccnu.scsx.model;
 
 public class ScsxUser {
-    private String id;
+	private String id;
 
-    private String name;
+	private String name;
+	
+	private String password;
 
-    private Boolean gender;
+	private Byte gender;
 
-    private Byte age;
+	private Byte age;
 
-    private String number;
+	private String number;
 
-    private Byte position;
+	private Byte position;
 
-    private Boolean role;
+	private Boolean role;
 
-    private String resumeId;
+	private String resumeId;
 
-    private String infoId;
+	private String infoId;
 
-    private Byte yearWork;
+	private Byte yearWork;
 
-    public String getId() {
-        return id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
+	public void setId(String id) {
+		this.id = id == null ? null : id.trim();
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public void setName(String name) {
+		this.name = name == null ? null : name.trim();
+	}
+	
+	public String getPassword() {
+		return password;
+	}
 
-    public Boolean getGender() {
-        return gender;
-    }
+	public void setPassword(String password) {
+		this.password = password == null ? null : password.trim();
+	}
 
-    public void setGender(Boolean gender) {
-        this.gender = gender;
-    }
+	public Byte getGender() {
+		return gender;
+	}
 
-    public Byte getAge() {
-        return age;
-    }
+	public void setGender(Byte gender) {
+		this.gender = gender;
+	}
 
-    public void setAge(Byte age) {
-        this.age = age;
-    }
+	public Byte getAge() {
+		return age;
+	}
 
-    public String getNumber() {
-        return number;
-    }
+	public void setAge(Byte age) {
+		this.age = age;
+	}
 
-    public void setNumber(String number) {
-        this.number = number == null ? null : number.trim();
-    }
+	public String getNumber() {
+		return number;
+	}
 
-    public Byte getPosition() {
-        return position;
-    }
+	public void setNumber(String number) {
+		this.number = number == null ? null : number.trim();
+	}
 
-    public void setPosition(Byte position) {
-        this.position = position;
-    }
+	public Byte getPosition() {
+		return position;
+	}
 
-    public Boolean getRole() {
-        return role;
-    }
+	public void setPosition(Byte position) {
+		this.position = position;
+	}
 
-    public void setRole(Boolean role) {
-        this.role = role;
-    }
+	public Boolean getRole() {
+		return role;
+	}
 
-    public String getResumeId() {
-        return resumeId;
-    }
+	public void setRole(Boolean role) {
+		this.role = role;
+	}
 
-    public void setResumeId(String resumeId) {
-        this.resumeId = resumeId == null ? null : resumeId.trim();
-    }
+	public String getResumeId() {
+		return resumeId;
+	}
 
-    public String getInfoId() {
-        return infoId;
-    }
+	public void setResumeId(String resumeId) {
+		this.resumeId = resumeId == null ? null : resumeId.trim();
+	}
 
-    public void setInfoId(String infoId) {
-        this.infoId = infoId == null ? null : infoId.trim();
-    }
+	public String getInfoId() {
+		return infoId;
+	}
 
-    public Byte getYearWork() {
-        return yearWork;
-    }
+	public void setInfoId(String infoId) {
+		this.infoId = infoId == null ? null : infoId.trim();
+	}
 
-    public void setYearWork(Byte yearWork) {
-        this.yearWork = yearWork;
-    }
+	public Byte getYearWork() {
+		return yearWork;
+	}
+
+	public void setYearWork(Byte yearWork) {
+		this.yearWork = yearWork;
+	}
+
 }
