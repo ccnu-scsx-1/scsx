@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = ''
+const baseURL = 'http://192.168.31.40:8080/scsx'
 
 //通用类http-service
 export const commonService = axios.create({

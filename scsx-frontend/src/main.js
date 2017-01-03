@@ -6,6 +6,10 @@ import App from './App'
 import store from './store'
 import router from './router'
 
+import VueResource  from 'vue-resource'
+
+Vue.use(VueResource)
+
 //router
 Vue.use(VueRouter)
 
@@ -13,7 +17,7 @@ Vue.use(VueRouter)
 Vue.use(MintUI)
 
 const app = new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app')
