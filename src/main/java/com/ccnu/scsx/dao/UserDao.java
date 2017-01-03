@@ -24,10 +24,11 @@ public class UserDao extends BaseDaoImpl<ScsxUser> implements IBaseDao<ScsxUser>
 		return userMapper;
 	}
 
-	public ScsxUser findByNameAndPassword(String name, String password) {
-		Map<String, String> map = new HashMap<String, String>();
+	public ScsxUser findByNameAndPassword(String name, String password, Byte role) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("name", name);
 		map.put("password", password);
+		map.put("role", role);
 		return userMapper.findByNameAndPassword(map);
 	}
 	

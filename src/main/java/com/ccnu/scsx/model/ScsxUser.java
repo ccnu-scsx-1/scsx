@@ -5,6 +5,8 @@ public class ScsxUser {
 
 	private String name;
 	
+	private String email;
+	
 	private String password;
 
 	private Byte gender;
@@ -39,6 +41,14 @@ public class ScsxUser {
 		this.name = name == null ? null : name.trim();
 	}
 	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getPassword() {
 		return password;
 	}

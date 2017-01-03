@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.ccnu.scsx.model.ScsxUser" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="gender" property="gender" jdbcType="BIT" />
     <result column="age" property="age" jdbcType="TINYINT" />
@@ -15,7 +16,7 @@
     <result column="year_work" property="yearWork" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, password, gender, age, number, position, role, resume_id, info_id, year_work
+    id, name, email, password, gender, age, number, position, role, resume_id, info_id, year_work
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -28,11 +29,11 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.ccnu.scsx.model.ScsxUser" >
-    insert into scsx_user (id, name, gender, password,
+    insert into scsx_user (id, name, email, gender, password,
       age, number, position, 
       role, resume_id, info_id, 
       year_work)
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=BIT},#{password,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{gender,jdbcType=BIT},#{password,jdbcType=VARCHAR}, 
       #{age,jdbcType=TINYINT}, #{number,jdbcType=VARCHAR}, #{position,jdbcType=TINYINT}, 
       #{role,jdbcType=BIT}, #{resumeId,jdbcType=VARCHAR}, #{infoId,jdbcType=VARCHAR}, 
       #{yearWork,jdbcType=TINYINT})
@@ -110,6 +111,12 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="email != null" >
+        name = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        name = #{password,jdbcType=VARCHAR},
+      </if>
       <if test="gender != null" >
         gender = #{gender,jdbcType=BIT},
       </if>
@@ -158,6 +165,7 @@
     from scsx_user
     where name = #{name,jdbcType=VARCHAR}
     and password = #{password, jdbcType=VARCHAR}
+    and role = #{role,jdbcType=BIT}
   </select>
   
 </mapper>

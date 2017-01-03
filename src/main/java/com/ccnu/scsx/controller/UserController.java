@@ -9,14 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.ccnu.scsx.api.WebResultData;
 import com.ccnu.scsx.enu.ErrorCode;
 import com.ccnu.scsx.model.ScsxUser;
+import com.ccnu.scsx.params.LoginParams;
 import com.ccnu.scsx.service.UserService;
+import com.ccnu.scsx.utils.ObjectUtils;
 import com.ccnu.scsx.utils.WebResultUtils;
 
 /**
@@ -31,10 +35,16 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping("/user/login")
-	public WebResultData login(HttpServletRequest request) {
-		String name = request.getParameter("name");
-		String password = request.getParameter("password");
-		ScsxUser user = userService.findByNameAndPassword(name, password);
+	public WebResultData login(HttpServletRequest request, @RequestBody String object) {
+		if (ObjectUtils.isEmpty(object)){
+		    return WebResultUtils.buildResult(ErrorCode.param_empty);
+		}
+		LoginParams loginParams = JSON.parseObject(object, LoginParams.class);
+		String name = loginParams.getName();
+		String password = loginParams.getPassword();
+		Byte role = loginParams.getRole();
+		
+		ScsxUser user = userService.findByNameAndPassword(name, password, role);
 		if (user == null) {
 			return WebResultUtils.buildFailureResult();
 		}
@@ -67,8 +77,6 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/user/status", method = RequestMethod.POST)
 	public WebResultData getStatus(HttpServletRequest request, HttpServletResponse response) {
-		response.addHeader("Access-Control-Allow-Origin", "*");
-		response.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		if (request.getSession().getAttribute("loginAdmin") != null) {
 			return WebResultUtils.buildSucResult();
 		}

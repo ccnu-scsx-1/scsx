@@ -17,9 +17,9 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 
-	public ScsxUser findByNameAndPassword(String name, String password) {
+	public ScsxUser findByNameAndPassword(String name, String password, Byte role) {
 		String md5pwd = Md5Utils.getMD5(password);
-		return userDao.findByNameAndPassword(name, md5pwd);
+		return userDao.findByNameAndPassword(name, md5pwd, role);
 	}
 	
 	public void register(ScsxUser user) {
