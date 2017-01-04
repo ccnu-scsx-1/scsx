@@ -12,10 +12,11 @@
     </div>
 </template>
 <script>
-import login from '../api/login'
+import { mapGetters, mapActions } from 'vuex'
+import { Indicator, MessageBox } from 'mint-ui'
 
 export default {
-    name: 'Login',
+    name: 'Login',  
     data() {
         return {
             username: '',
@@ -23,14 +24,16 @@ export default {
             role: 2
         }
     },
+    computed: mapGetters([
+        'showIndicator',
+        'errorMsg'
+    ]),
     methods: {
-        clickLogin() {
-            login({
+        clickLogin(){
+            this.$store.dispatch('login', {
                 name: this.username,
                 password: this.password,
                 role: this.role
-            }).then(response => {
-                console.log(response)
             })
         }
     }
