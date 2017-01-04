@@ -200,6 +200,11 @@
   <sql id="Recruit_Info_List" >
     id,company_id, title, salary_low, salary_high, region
   </sql>
-  
+
+  <select id="getInfoList" resultMap="Base_Column_List"><!-- 传参数PageNum==limit() -->
+    select
+    <include refid="Base_Column_List"/>
+    FROM scsx_recruit_info limit #{offset},#{limit}
+  </select>
   
 </mapper>

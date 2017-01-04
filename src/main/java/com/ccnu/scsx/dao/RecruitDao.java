@@ -1,5 +1,6 @@
 package com.ccnu.scsx.dao;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -13,12 +14,18 @@ import com.ccnu.scsx.model.ScsxRecruitInfo;
  */
 @Repository
 public class RecruitDao extends BaseDaoImpl<ScsxRecruitInfo> implements IBaseDao<ScsxRecruitInfo> {
+
   @Autowired
   private ScsxRecruitInfoMapper recruitInfoMapper;
 
   @Override
   public BaseMapper<ScsxRecruitInfo> getMapper() {
     return recruitInfoMapper;
+  }
+
+  public List<ScsxRecruitInfo> getInfos(int offset, int limit) {
+    List<ScsxRecruitInfo> scsxRecruitInfos = recruitInfoMapper.getInfoList(offset, limit);
+    return scsxRecruitInfos;
   }
 
 }

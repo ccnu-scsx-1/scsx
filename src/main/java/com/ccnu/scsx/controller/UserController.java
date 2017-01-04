@@ -33,13 +33,14 @@ import com.ccnu.scsx.vo.UserInfoDto;
 @Controller
 @RequestMapping("/api")
 public class UserController {
+
   @Autowired
   private UserService userService;
   @Autowired
   private CompanyService companyService;
 
   @ResponseBody
-  @RequestMapping("/user/login")
+  @RequestMapping(value = "/user/login", method = RequestMethod.POST)
   public WebResultData login(HttpServletRequest request, @RequestBody String object) {
     if (ObjectUtils.isEmpty(object)) {
       return WebResultUtils.buildResult(ErrorCode.param_empty);
@@ -63,7 +64,7 @@ public class UserController {
 
   @SuppressWarnings("unchecked")
   @ResponseBody
-  @RequestMapping("/user/logout")
+  @RequestMapping(value = "/user/logout", method = RequestMethod.POST)
   public WebResultData logout(HttpServletRequest request) {
     Enumeration<String> attrNames = request.getSession().getAttributeNames();
     while (attrNames.hasMoreElements()) {
@@ -73,7 +74,7 @@ public class UserController {
   }
 
   @ResponseBody
-  @RequestMapping(value = "/user/register")
+  @RequestMapping(value = "/user/register", method = RequestMethod.POST)
   public WebResultData register(HttpServletRequest request, @RequestBody String object) {
     RegisterParams params = JSON.parseObject(object, RegisterParams.class);
     if (isExist(params)) {
@@ -105,7 +106,7 @@ public class UserController {
   @ResponseBody
   @RequestMapping(value = "/user/info", method = RequestMethod.POST)
   public WebResultData getUserInfo(@RequestBody String object) {
-    String userId = JSON.parseObject(object, IdParams.class);
+    String userId = JSON.parseObject(object, IdParams.class).getId();
     ScsxUser user = userService.findById(userId);
     UserInfoDto userInfoDto = UserInfoDto.build(user);
 

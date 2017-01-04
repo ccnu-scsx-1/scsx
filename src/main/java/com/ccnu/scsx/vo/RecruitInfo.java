@@ -1,5 +1,7 @@
 package com.ccnu.scsx.vo;
 
+import com.ccnu.scsx.model.ScsxRecruitInfo;
+
 /**
  * Create By Joban on2017年1月4日上午11:11:50
  */
@@ -59,5 +61,17 @@ public class RecruitInfo {
   public void setRegion(String region) {
     this.region = region;
   }
+
+  public static RecruitInfo build(ScsxRecruitInfo scsxRecruitInfo){
+    RecruitInfo info = new RecruitInfo();
+    info.setCompanyId(scsxRecruitInfo.getCompanyId());
+    info.setInfoId(scsxRecruitInfo.getId());
+    info.setRegion(scsxRecruitInfo.getRegion());
+    info.setTitle(scsxRecruitInfo.getTitle());
+    info.setSalary_high(scsxRecruitInfo.getSalaryHigh());
+    info.setSalary_low(scsxRecruitInfo.getSalaryLow());
+    return  info;
+  }
+
 }
 
