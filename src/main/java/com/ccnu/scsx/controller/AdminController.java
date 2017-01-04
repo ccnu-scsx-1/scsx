@@ -16,10 +16,13 @@ import com.ccnu.scsx.service.AdminService;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
   @Autowired
   private AdminService adminService;
 
-  /** 登录页 */
+  /**
+   * 登录页
+   */
   @RequestMapping("/login")
   public String showLogin() {
     return "login";
