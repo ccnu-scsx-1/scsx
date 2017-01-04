@@ -31,6 +31,16 @@ public enum RoleCode {
 		this.description = description;
 	}
 	
+	 // 普通方法  
+    public static String getDescByCode(int code) {  
+        for (RoleCode c : RoleCode.values()) {  
+            if (c.getCode() == code) {  
+                return c.description;  
+            }  
+        }  
+        return null;  
+    } 
+	
 	@Override
 	public String toString() {
 		return super.toString();

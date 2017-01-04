@@ -22,6 +22,10 @@ public class UserService {
 		return userDao.findByNameAndPassword(name, md5pwd, role);
 	}
 	
+	public ScsxUser findByName(String name) {
+        return userDao.findByName(name);
+    }
+	
 	public void register(ScsxUser user) {
 		String md5pwd = Md5Utils.getMD5(user.getPassword());
 		user.setPassword(md5pwd);
@@ -29,5 +33,10 @@ public class UserService {
 		user.setId(id);
 		userDao.register(user);
 	}
+	
+    public ScsxUser findById(String id) {
+        ScsxUser user = userDao.findById(id);
+        return user;
+    }
 
 }

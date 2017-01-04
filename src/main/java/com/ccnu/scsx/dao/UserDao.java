@@ -32,8 +32,16 @@ public class UserDao extends BaseDaoImpl<ScsxUser> implements IBaseDao<ScsxUser>
 		return userMapper.findByNameAndPassword(map);
 	}
 	
+	public ScsxUser findByName(String name) {
+        return userMapper.findByName(name);
+    }
+	
 	public void register(ScsxUser user) {
 		userMapper.insert(user);
 	}
+	
+	public ScsxUser findById(String id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
 
 }
