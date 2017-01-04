@@ -1,4 +1,5 @@
 # scsx
+<<<<<<< Updated upstream
 This is a project made by Team 1 started from 29 Dec.
 
 ## Requirement
@@ -18,3 +19,10 @@ This is a project made by Team 1 started from 29 Dec.
 -  数据库 李世宗
 -  Java后台 蔡俊鹏 喻邱晨 陈佳伟
 -  测试 魏阳
+=======
+This is a project made by Team 1 beginning from 29 Dec.
+## Aim
+## Code
+
+
+>>>>>>> Stashed changes
