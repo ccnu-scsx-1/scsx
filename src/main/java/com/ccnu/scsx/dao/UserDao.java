@@ -16,32 +16,32 @@ import com.ccnu.scsx.model.ScsxUser;
  */
 @Repository
 public class UserDao extends BaseDaoImpl<ScsxUser> implements IBaseDao<ScsxUser> {
-	@Autowired
-	private ScsxUserMapper userMapper;
+  @Autowired
+  private ScsxUserMapper userMapper;
 
-	@Override
-	public BaseMapper<ScsxUser> getMapper() {
-		return userMapper;
-	}
+  @Override
+  public BaseMapper<ScsxUser> getMapper() {
+    return userMapper;
+  }
 
-	public ScsxUser findByNameAndPassword(String name, String password, Byte role) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("name", name);
-		map.put("password", password);
-		map.put("role", role);
-		return userMapper.findByNameAndPassword(map);
-	}
-	
-	public ScsxUser findByName(String name) {
-        return userMapper.findByName(name);
-    }
-	
-	public void register(ScsxUser user) {
-		userMapper.insert(user);
-	}
-	
-	public ScsxUser findById(String id) {
-        return userMapper.selectByPrimaryKey(id);
-    }
+  public ScsxUser findByNameAndPassword(String name, String password, Byte role) {
+    Map<String, Object> map = new HashMap<String, Object>();
+    map.put("name", name);
+    map.put("password", password);
+    map.put("role", role);
+    return userMapper.findByNameAndPassword(map);
+  }
+
+  public ScsxUser findByName(String name) {
+    return userMapper.findByName(name);
+  }
+
+  public void register(ScsxUser user) {
+    userMapper.insert(user);
+  }
+
+  public ScsxUser findById(String id) {
+    return userMapper.selectByPrimaryKey(id);
+  }
 
 }

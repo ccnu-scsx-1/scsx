@@ -195,4 +195,11 @@
       last_modify = #{lastModify,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  
+  <!-- my sql -->
+  <sql id="Recruit_Info_List" >
+    id,company_id, title, salary_low, salary_high, region
+  </sql>
+  
+  
 </mapper>

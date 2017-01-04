@@ -14,29 +14,29 @@ import com.ccnu.scsx.utils.UUIDUtils;
 
 @Service
 public class UserService {
-	@Autowired
-	private UserDao userDao;
+  @Autowired
+  private UserDao userDao;
 
-	public ScsxUser findByNameAndPassword(String name, String password, Byte role) {
-		String md5pwd = Md5Utils.getMD5(password);
-		return userDao.findByNameAndPassword(name, md5pwd, role);
-	}
-	
-	public ScsxUser findByName(String name) {
-        return userDao.findByName(name);
-    }
-	
-	public void register(ScsxUser user) {
-		String md5pwd = Md5Utils.getMD5(user.getPassword());
-		user.setPassword(md5pwd);
-		String id = UUIDUtils.getUUID();
-		user.setId(id);
-		userDao.register(user);
-	}
-	
-    public ScsxUser findById(String id) {
-        ScsxUser user = userDao.findById(id);
-        return user;
-    }
+  public ScsxUser findByNameAndPassword(String name, String password, Byte role) {
+    String md5pwd = Md5Utils.getMD5(password);
+    return userDao.findByNameAndPassword(name, md5pwd, role);
+  }
+
+  public ScsxUser findByName(String name) {
+    return userDao.findByName(name);
+  }
+
+  public void register(ScsxUser user) {
+    String md5pwd = Md5Utils.getMD5(user.getPassword());
+    user.setPassword(md5pwd);
+    String id = UUIDUtils.getUUID();
+    user.setId(id);
+    userDao.register(user);
+  }
+
+  public ScsxUser findById(String id) {
+    ScsxUser user = userDao.findById(id);
+    return user;
+  }
 
 }
