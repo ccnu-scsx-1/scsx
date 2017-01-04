@@ -40,7 +40,16 @@ public enum PositionCode {
 		this.description = description;
 	}
 
-
+	 // 普通方法  
+    public static String getDescByCode(int code) {  
+        for (PositionCode c : PositionCode.values()) {  
+            if (c.getCode() == code) {  
+                return c.description;  
+            }  
+        }  
+        return null;  
+    } 
+	
 	@Override
 	public String toString() {
 		return super.toString();

@@ -21,7 +21,7 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
     mapper.insertSelective(obj);
   }
   
-  public List<T> findByIds(List<Long> idList) {
+  public List<T> findByIds(List<String> idList) {
     List<T> result = new ArrayList<T>();
     if (ObjectUtils.isEmpty(idList)) {
       return result;
@@ -30,7 +30,7 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
     return listDataInDB;
   }
 
-  public void delete(Long id){
+  public void delete(String id){
     mapper.deleteByPrimaryKey(id);
   }
   
@@ -38,7 +38,7 @@ public abstract class BaseDaoImpl<T> implements IBaseDao<T> {
     mapper.updateByPrimaryKeySelective(obj);
   }
   
-  public T findById(Long id){
+  public T findById(String id){
     return mapper.selectByPrimaryKey(id);
   }
   

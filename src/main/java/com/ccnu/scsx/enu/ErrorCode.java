@@ -6,7 +6,9 @@ public enum ErrorCode {
   invalid_param(2, "parameter bind exception "),
   sign_failuare(3,"sign fail "),
   param_empty(4,"param empty exception "),
-  not_login(5,"user not login");
+  not_login(5,"user not login"),
+  user_exist(6,"user has existed!"),
+  ;
 
   private Integer code;
   private String description;

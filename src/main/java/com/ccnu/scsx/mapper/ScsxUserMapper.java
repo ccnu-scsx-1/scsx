@@ -9,4 +9,6 @@ import com.ccnu.scsx.model.ScsxUser;
 @Mapper
 public interface ScsxUserMapper extends BaseMapper<ScsxUser>{
 	ScsxUser findByNameAndPassword(Map<String, Object> map);
+	
+	ScsxUser findByName(String name);
 }

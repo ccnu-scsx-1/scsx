@@ -5,11 +5,11 @@ import java.util.List;
 public interface IBaseDao<T> {
   public void save(T obj);
 
-  public void delete(Long id);
+  public void delete(String id);
 
   public void update(T obj);
 
-  public T findById(Long id);
+  public T findById(String id);
   
-  public List<T> findByIds(List<Long> idList);
+  public List<T> findByIds(List<String> idList);
 }

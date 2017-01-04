@@ -1,19 +1,15 @@
 package com.ccnu.scsx.mapper;
 
+import com.ccnu.scsx.annotation.Mapper;
+import com.ccnu.scsx.db.BaseMapper;
 import com.ccnu.scsx.model.ScsxCompany;
 
-public interface ScsxCompanyMapper {
-    int deleteByPrimaryKey(String id);
-
-    int insert(ScsxCompany record);
-
-    int insertSelective(ScsxCompany record);
+@Mapper
+public interface ScsxCompanyMapper extends BaseMapper<ScsxCompany>{
+    void deleteByPrimaryKey(String id);
 
     ScsxCompany selectByPrimaryKey(String id);
 
-    int updateByPrimaryKeySelective(ScsxCompany record);
+    void updateByPrimaryKeyWithBLOBs(ScsxCompany record);
 
-    int updateByPrimaryKeyWithBLOBs(ScsxCompany record);
-
-    int updateByPrimaryKey(ScsxCompany record);
 }
