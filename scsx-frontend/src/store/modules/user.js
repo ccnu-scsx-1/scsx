@@ -16,7 +16,11 @@ const getters = {
 }
 
 const actions = {
-    login({ commit, state}, data){
+    login({ commit }, data){
+        if(!data.name || !data.password){
+            MessageBox.alert('用户名或密码不能为空！')
+            return
+        }
         Indicator.open()
         user.login(data).then( response => {
             Indicator.close()
@@ -32,6 +36,11 @@ const actions = {
             Indicator.close()
             commit(types.LOGIN_FAIL, { errorMsg: 'error' })
         })
+    },
+    register({ commit }, data){
+        if( !data.name ){
+            MessageBox.alert('用户名不能为空！')
+        }
     }
 }
 

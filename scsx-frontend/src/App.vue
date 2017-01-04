@@ -1,18 +1,25 @@
 <template>
-  <div id="app">
-     <router-view></router-view>
-  </div>
+    <div id="app">
+        <router-view></router-view>
+    </div>
 </template>
-
 <script>
 export default {
-  name: 'app'
+    name: 'app'
 }
 </script>
 <style>
-html,body{
+html,
+body {
     margin: 0;
     padding: 0;
 }
-</style>
 
+input[type=search]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}
+
+a {
+    text-decoration: none;
+}
+</style>
