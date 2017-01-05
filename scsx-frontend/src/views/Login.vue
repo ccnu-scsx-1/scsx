@@ -1,6 +1,6 @@
 <template>
     <div class="v-container">
-        <mt-header title="欢迎登录">
+        <mt-header title="欢迎登录--PT网">
             <router-link to="/" slot="left">
                 <mt-button icon="back">返回</mt-button>
             </router-link>

@@ -1,10 +1,10 @@
 <template>
     <div class="v-container">
-        <mt-header title="xxx网"></mt-header>
+        <mt-header title="PT网"></mt-header>
         <mt-search class="searchBar" v-model="searchValue" placeholder="搜索公司或者岗位"></mt-search>
         <div class="btn-group">
             <div class="btn-line">
-                <mt-button type="primary" class="inline-btn" @click=clickGoMarket>我要求职</mt-button>
+                <mt-button type="primary" class="inline-btn" @click="clickGoMarket">我要求职</mt-button>
                 <mt-button class="inline-btn" type="primary" @click="clickGoReg">我要招人</mt-button>
             </div>
             <router-link to="/login">
@@ -29,7 +29,7 @@ export default {
             this.$router.push('/market')
         },
         clickGoReg(){
-            this.$router.push({path: '/register', query:{ role: 1}})
+            this.$router.push({path: '/registercom'})
         }
     }
 }
