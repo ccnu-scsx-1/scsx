@@ -10,9 +10,11 @@ export default {
 </script>
 <style>
 html,
-body {
+body,
+div{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 input[type=search]::-webkit-search-cancel-button {
@@ -22,4 +24,10 @@ input[type=search]::-webkit-search-cancel-button {
 a {
     text-decoration: none;
 }
+
+select{
+    appearance: none;
+    border: none;
+}
+
 </style>

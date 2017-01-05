@@ -3,7 +3,9 @@ import VueRouter from 'vue-router'
 import Login from '../views/Login'
 import Home from '../views/Home'
 import Register from '../views/Register'
+import RegisterCom from '../views/RegisterCom'
 import Market from '../views/Market'
+import JobDetail from '../views/JobDetail'
 
 const router = new VueRouter({
     mode: 'history',
@@ -18,11 +20,19 @@ const router = new VueRouter({
     },{
         path: '/register',
         component: Register,
-        title: '注册'
+        title: '求职注册'
+    },{
+        path: '/registercom',
+        component: RegisterCom,
+        title: '企业注册'
     },{
         path: '/market',
         component: Market,
         title: '求职市场'
+    },{
+        path: '/jobdetail',
+        component: JobDetail,
+        title: '职位详情'
     },{
        path: '*',
        redirect: '/home'
