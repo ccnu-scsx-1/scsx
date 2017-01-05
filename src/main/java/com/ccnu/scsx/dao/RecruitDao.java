@@ -1,6 +1,7 @@
 package com.ccnu.scsx.dao;
 
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,6 +27,22 @@ public class RecruitDao extends BaseDaoImpl<ScsxRecruitInfo> implements IBaseDao
   public List<ScsxRecruitInfo> getInfos(int offset, int limit) {
     List<ScsxRecruitInfo> scsxRecruitInfos = recruitInfoMapper.getInfoList(offset, limit);
     return scsxRecruitInfos;
+  }
+
+  public ScsxRecruitInfo getInfoDetail(String info_id) {
+    return recruitInfoMapper.selectByPrimaryKey(info_id);
+  }
+
+  public List<ScsxRecruitInfo> getInfosByTitle(int offset, int limit, String title) {
+    StringBuilder titlelike = new StringBuilder();
+    titlelike.append("%");
+    titlelike.append(title);
+    titlelike.append("%");
+    return recruitInfoMapper.getInfoListByTitle(offset, limit, titlelike.toString());
+  }
+
+  public List<Map<String, Object>> getUserIntentionList(String userId) {
+    return recruitInfoMapper.getUserIntentionList(userId);
   }
 
 }

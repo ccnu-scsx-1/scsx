@@ -120,6 +120,7 @@ public class UserInfoDto {
     userInfoDto.setResumeId(user.getResumeId());
     userInfoDto.setRole(RoleCode.getDescByCode(user.getRole()));
     userInfoDto.setYearWork(user.getYearWork());
+    userInfoDto.setInfoId(user.getInfoId());
     return userInfoDto;
   }
   

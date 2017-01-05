@@ -1,7 +1,9 @@
 package com.ccnu.scsx.controller;
 
+import com.ccnu.scsx.service.RecruitService;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +40,8 @@ public class UserController {
   private UserService userService;
   @Autowired
   private CompanyService companyService;
+  @Autowired
+  private RecruitService recruitService;
 
   @ResponseBody
   @RequestMapping(value = "/user/login", method = RequestMethod.POST)
@@ -113,6 +117,14 @@ public class UserController {
     Map<String, Object> mapResult = new HashMap<String, Object>();
     mapResult.put("info", userInfoDto);
     return WebResultUtils.buildSucResult(mapResult);
+  }
+
+  @ResponseBody
+  @RequestMapping(value = "/user/intention", method = RequestMethod.POST)
+  public WebResultData getUserIntention(@RequestBody String object) {
+    String userId = JSON.parseObject(object, IdParams.class).getId();
+    List<Map<String, Object>> list = recruitService.getUserIntentionList(userId);
+    return WebResultUtils.buildSucResult(list);
   }
 
   private Boolean isExist(RegisterParams params) {

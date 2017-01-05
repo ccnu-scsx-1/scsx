@@ -3,6 +3,7 @@ package com.ccnu.scsx.service;
 import com.ccnu.scsx.model.ScsxRecruitInfo;
 import com.ccnu.scsx.utils.PageUtils;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,22 @@ public class RecruitService {
     int offset = pageUtils.getOffsetByPageNum(pageNum);
     List<ScsxRecruitInfo> infos = recruitDao.getInfos(offset, limit);
     return infos;
+  }
+
+  public ScsxRecruitInfo getInfoDetail(String info_id) {
+    return recruitDao.getInfoDetail(info_id);
+  }
+
+  public List<ScsxRecruitInfo> getInfosByTitle(int pageNum, String title) {
+    PageUtils pageUtils = new PageUtils();
+    int limit = pageUtils.getPageSize();
+    int offset = pageUtils.getOffsetByPageNum(pageNum);
+    List<ScsxRecruitInfo> infos = recruitDao.getInfosByTitle(offset, limit, title);
+    return infos;
+  }
+
+  public List<Map<String, Object>> getUserIntentionList(String userId) {
+    return recruitDao.getUserIntentionList(userId);
   }
 
 }

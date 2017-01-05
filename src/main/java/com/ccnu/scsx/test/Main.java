@@ -19,11 +19,12 @@ public class Main {
 		//json串变对象
 		String jsonString = "{\"name\":\"Joban\",\"password\":\"123\",\"email\":\"Joban@123.com\"}";
 		ScsxUser user = JSON.parseObject(jsonString, ScsxUser.class);
-		System.out.println(user.getName());
-		
-		System.out.println(PositionCode.getDescByCode(PositionCode.C_Engineer.getCode()));*/
-		String jsonString1 = "{\"pageNum\":4}";
+		System.out.println(user.getName());*/
+		int code = PositionCode.C_Engineer.getCode();
+		System.out.println(code);
+		System.out.println(PositionCode.getDescByCode(1));
+		/*String jsonString1 = "{\"pageNum\":4}";
 		Map<String,Integer> object = JSON.parseObject(jsonString1,Map.class);
-		System.out.println(object.get("pageNum"));
+		System.out.println(object.get("pageNum"));*/
 	}
 }
