@@ -39,7 +39,6 @@ export default {
             if(infoid){
                 this.$router.push({path:'/jobdetail', query: {"infoid": infoid}})
             }
-            
         }
     }
 }

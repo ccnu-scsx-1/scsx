@@ -18,9 +18,22 @@ div{
     font-family: PingFang-SC-Regular,Helvetica Neue,Helvetica,"Microsoft Yahei",sans-serif;
 }
 
+html,body{
+    height: 100%;
+    width:100%;
+}
+
+#app{
+    height: 100%;
+    width:100%;
+}
+
 input, label, select, option, textarea, button, fieldset, legend{
+    font-size: 16px;
     font-family: inherit;
 }
+
+
 
 input[type=search]::-webkit-search-cancel-button {
     -webkit-appearance: none;
@@ -36,7 +49,7 @@ select{
 }
 
 .mint-header-title{
-    font-size: 18px;
+    font-size: 16px;
 }
 
 

@@ -45,11 +45,12 @@ export default {
     ]),
     methods: {
         clickLogin() {
-            this.$store.dispatch('login', {
-                name: this.username,
-                password: this.password,
-                role: this.role
-            })
+            this.$router.push('/userinfo')
+            // this.$store.dispatch('login', {
+            //     name: this.username,
+            //     password: this.password,
+            //     role: this.role
+            // })
         }
     }
 }

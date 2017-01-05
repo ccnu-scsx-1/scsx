@@ -30,7 +30,7 @@
 </template>
 <script>
 export default {
-    name: 'Market',
+    name: 'JobDetail',
     data() {
         return {}
     },

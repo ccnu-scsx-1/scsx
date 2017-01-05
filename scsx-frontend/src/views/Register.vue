@@ -9,6 +9,7 @@
             <mt-field label="用户名" placeholder="请输入用户名" v-model="username"></mt-field>
             <mt-field label="邮箱" placeholder="请输入邮箱 " v-model="email" type="email"></mt-field>
             <mt-field label="手机号" placeholder="请输入手机号" v-model="tel" type="tel"></mt-field>
+            <mt-field label="年龄" placeholder="请输入年龄" type="number" v-model="age"></mt-field>
             <mt-cell title="性别">
                 <select v-model="gender" style="width: 250px;">
                     <option value="0">男</option>
@@ -38,6 +39,7 @@ export default {
             username: '',
             email: '',
             tel: '',
+            age: '',
             gender: 0,
             role: 0,
             motto: '',

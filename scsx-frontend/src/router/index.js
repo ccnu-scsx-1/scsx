@@ -6,6 +6,9 @@ import Register from '../views/Register'
 import RegisterCom from '../views/RegisterCom'
 import Market from '../views/Market'
 import JobDetail from '../views/JobDetail'
+import UserInfo from '../views/UserInfo'
+import Resume from '../views/Resume'
+import Settings from '../views/Settings'
 
 const router = new VueRouter({
     mode: 'history',
@@ -33,6 +36,18 @@ const router = new VueRouter({
         path: '/jobdetail',
         component: JobDetail,
         title: '职位详情'
+    },{
+        path: '/userinfo',
+        component: UserInfo,
+        title: '个人信息'
+    },{
+        path: '/resume',
+        component: Resume,
+        title: '个人简历'
+    },{
+        path: '/settings',
+        component: Settings,
+        title: '注册信息'
     },{
        path: '*',
        redirect: '/home'
