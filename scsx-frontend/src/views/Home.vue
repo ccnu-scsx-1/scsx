@@ -1,6 +1,6 @@
 <template>
     <div class="v-container">
-        <mt-header title="xxx网"></mt-header>
+        <mt-header title="PT网"></mt-header>
         <mt-search class="searchBar" v-model="searchValue" placeholder="搜索公司或者岗位"></mt-search>
         <div class="btn-group">
             <div class="btn-line">
