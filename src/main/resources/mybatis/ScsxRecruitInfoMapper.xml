@@ -10,6 +10,7 @@
     <result column="salary_high" property="salaryHigh" jdbcType="INTEGER" />
     <result column="region" property="region" jdbcType="VARCHAR" />
     <result column="education" property="education" jdbcType="TINYINT" />
+    <result column="type" property="type" jdbcType="TINYINT" />
     <result column="position" property="position" jdbcType="TINYINT" />
     <result column="year_work" property="yearWork" jdbcType="TINYINT" />
     <result column="last_modify" property="lastModify" jdbcType="TIMESTAMP" />
@@ -18,7 +19,7 @@
     <result column="description" property="description" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_id, company_id, title, salary_low, salary_high, region, education, position, 
+    id, user_id, company_id, title, salary_low, salary_high, region, education, position, type,
     year_work, last_modify
   </sql>
   <sql id="Blob_Column_List" >
@@ -44,7 +45,7 @@
       )
     values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, 
       #{title,jdbcType=VARCHAR}, #{salaryLow,jdbcType=INTEGER}, #{salaryHigh,jdbcType=INTEGER}, 
-      #{region,jdbcType=VARCHAR}, #{education,jdbcType=TINYINT}, #{position,jdbcType=TINYINT}, 
+      #{region,jdbcType=VARCHAR}, #{education,jdbcType=TINYINT}, #{position,jdbcType=TINYINT},
       #{yearWork,jdbcType=TINYINT}, #{lastModify,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR}
       )
   </insert>
@@ -201,10 +202,22 @@
     id,company_id, title, salary_low, salary_high, region
   </sql>
 
-  <select id="getInfoList" resultMap="Base_Column_List"><!-- 传参数PageNum==limit() -->
+  <select id="getInfoList" resultMap="ResultMapWithBLOBs"><!-- 传参数PageNum==limit() -->
     select
     <include refid="Base_Column_List"/>
     FROM scsx_recruit_info limit #{offset},#{limit}
   </select>
-  
+
+  <select id="getInfoListByTitle" resultMap="ResultMapWithBLOBs"><!-- 传参数PageNum==limit() -->
+    select
+    <include refid="Base_Column_List"/>
+    FROM scsx_recruit_info WHERE title LIKE #{title,jdbcType=VARCHAR} limit #{offset},#{limit}
+  </select>
+
+  <select id="getUserIntentionList" resultType="java.util.HashMap">
+    SELECT id, title FROM scsx_recruit_info WHERE user_id = #{user_id,jdbcType=VARCHAR}
+  </select>
+
 </mapper>
+
+<!-- 新增了type字段 name like CONCAT('%',#{name},'%')-->

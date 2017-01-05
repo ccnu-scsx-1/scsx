@@ -6,6 +6,7 @@ package com.ccnu.scsx.enu;
 public enum PositionCode {
 	Java_Engineer(0,"Java工程师"),
 	C_Engineer(1,"C工程师"),
+	UI_Design(2,"UI设计师"),
 	Product_Manager(3,"产品经理"),
 	Web_Engineer(4,"前端工程师"),
 	Test_Engineer(5,"测试工程师"),

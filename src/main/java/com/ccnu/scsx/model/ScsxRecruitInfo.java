@@ -3,123 +3,134 @@ package com.ccnu.scsx.model;
 import java.util.Date;
 
 public class ScsxRecruitInfo {
-    private String id;
 
-    private String userId;
+  private String id;
 
-    private String companyId;
+  private String userId;
 
-    private String title;
+  private String companyId;
 
-    private Integer salaryLow;
+  private String title;
 
-    private Integer salaryHigh;
+  private Integer salaryLow;
 
-    private String region;
+  private Integer salaryHigh;
 
-    private Byte education;
+  private String region;
 
-    private Byte position;
+  private Byte education;
 
-    private Byte yearWork;
+  private Byte position;
 
-    private Date lastModify;
+  private Byte type;
 
-    private String description;
+  private Byte yearWork;
 
-    public String getId() {
-        return id;
-    }
+  private Date lastModify;
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
+  private String description;
 
-    public String getUserId() {
-        return userId;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
-    }
+  public void setId(String id) {
+    this.id = id == null ? null : id.trim();
+  }
 
-    public String getCompanyId() {
-        return companyId;
-    }
+  public String getUserId() {
+    return userId;
+  }
 
-    public void setCompanyId(String companyId) {
-        this.companyId = companyId == null ? null : companyId.trim();
-    }
+  public void setUserId(String userId) {
+    this.userId = userId == null ? null : userId.trim();
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public String getCompanyId() {
+    return companyId;
+  }
 
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
-    }
+  public void setCompanyId(String companyId) {
+    this.companyId = companyId == null ? null : companyId.trim();
+  }
 
-    public Integer getSalaryLow() {
-        return salaryLow;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public void setSalaryLow(Integer salaryLow) {
-        this.salaryLow = salaryLow;
-    }
+  public void setTitle(String title) {
+    this.title = title == null ? null : title.trim();
+  }
 
-    public Integer getSalaryHigh() {
-        return salaryHigh;
-    }
+  public Integer getSalaryLow() {
+    return salaryLow;
+  }
 
-    public void setSalaryHigh(Integer salaryHigh) {
-        this.salaryHigh = salaryHigh;
-    }
+  public void setSalaryLow(Integer salaryLow) {
+    this.salaryLow = salaryLow;
+  }
 
-    public String getRegion() {
-        return region;
-    }
+  public Integer getSalaryHigh() {
+    return salaryHigh;
+  }
 
-    public void setRegion(String region) {
-        this.region = region == null ? null : region.trim();
-    }
+  public void setSalaryHigh(Integer salaryHigh) {
+    this.salaryHigh = salaryHigh;
+  }
 
-    public Byte getEducation() {
-        return education;
-    }
+  public String getRegion() {
+    return region;
+  }
 
-    public void setEducation(Byte education) {
-        this.education = education;
-    }
+  public void setRegion(String region) {
+    this.region = region == null ? null : region.trim();
+  }
 
-    public Byte getPosition() {
-        return position;
-    }
+  public Byte getEducation() {
+    return education;
+  }
 
-    public void setPosition(Byte position) {
-        this.position = position;
-    }
+  public void setEducation(Byte education) {
+    this.education = education;
+  }
 
-    public Byte getYearWork() {
-        return yearWork;
-    }
+  public Byte getPosition() {
+    return position;
+  }
 
-    public void setYearWork(Byte yearWork) {
-        this.yearWork = yearWork;
-    }
+  public void setPosition(Byte position) {
+    this.position = position;
+  }
 
-    public Date getLastModify() {
-        return lastModify;
-    }
+  public Byte getYearWork() {
+    return yearWork;
+  }
 
-    public void setLastModify(Date lastModify) {
-        this.lastModify = lastModify;
-    }
+  public void setYearWork(Byte yearWork) {
+    this.yearWork = yearWork;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public Date getLastModify() {
+    return lastModify;
+  }
 
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
-    }
+  public void setLastModify(Date lastModify) {
+    this.lastModify = lastModify;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description == null ? null : description.trim();
+  }
+
+  public Byte getType() {
+    return type;
+  }
+
+  public void setType(Byte type) {
+    this.type = type;
+  }
 }
