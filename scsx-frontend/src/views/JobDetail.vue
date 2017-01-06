@@ -15,7 +15,7 @@
             </div>
             <div class="company-info">
                 <p>旺旺集团</p>
-
+                <p>地址：湖北省武汉市</p>
                 <p>联系方式：123123123123</p>
                 <p>招聘邮箱：fzzfsdfsdf@ww.com</p>
             </div>
@@ -36,7 +36,6 @@ export default {
     },
     methods: {
         clickVoteResume(){
-
         }
     }
 }

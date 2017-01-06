@@ -11,28 +11,38 @@ export default {
 <style>
 html,
 body,
-div{
+div {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: PingFang-SC-Regular,Helvetica Neue,Helvetica,"Microsoft Yahei",sans-serif;
+    font-family: PingFang-SC-Regular, Helvetica Neue, Helvetica, "Microsoft Yahei", sans-serif;
 }
 
-html,body{
+html,
+body {
     height: 100%;
-    width:100%;
+    width: 100%;
 }
 
-#app{
+#app {
     height: 100%;
-    width:100%;
+    width: 100%;
 }
 
-input, label, select, option, textarea, button, fieldset, legend{
-    font-size: 16px;
+input,
+label,
+select,
+option,
+textarea,
+button,
+fieldset,
+legend {
     font-family: inherit;
 }
 
+select, option, button{
+    font-size: 16px;
+}
 
 
 input[type=search]::-webkit-search-cancel-button {
@@ -43,14 +53,12 @@ a {
     text-decoration: none;
 }
 
-select{
+select {
     appearance: none;
     border: none;
 }
 
-.mint-header-title{
+.mint-header-title {
     font-size: 16px;
 }
-
-
 </style>

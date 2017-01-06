@@ -1,22 +1,25 @@
 <template>
-    <div>
-        <mt-header title="PT网">
-            <!-- <router-link to="/" slot="left">
+    <div class="v-container">
+        <mt-header title="招聘岗位">
+            <router-link to="/userinfo?role=1" slot="left">
                 <mt-button icon="back">返回</mt-button>
-            </router-link> -->
-            <!-- <a href="/" slot="left">&lt;返回</a> -->
+            </router-link>
         </mt-header>
-        <mt-search class="searchBar" v-model="searchValue" placeholder="搜索公司或者岗位" @click.native="clickInfoCell">
+        <div class="info-part" @click="clickInfoCell">
             <mt-cell data-infoid="infoid" v-for="item in result" :title="item.title" :value="item.value" :label="item.label" is-link></mt-cell>
-        </mt-search>
+        </div>
+
+        <div class="info-part">
+            <mt-button type="primary" @click="clickAdd" size="large">新增岗位</mt-button>
+            <mt-button plain @click="clickCancel" size="large">返回</mt-button>
+        </div>
     </div>
 </template>
 <script>
 export default {
-    name: 'Market',
+    name: 'ComSettings',
     data() {
         return {
-            searchValue: '',
             result: [{
                 title: 'web前端',
                 label: '旺旺集团',
@@ -33,27 +36,33 @@ export default {
         }
     },
     methods: {
+        clickCancel(){
+            this.$router.push('/userinfo')
+        },
+        clickAdd(){
+            this.$router.push('/publishjob')
+        },
         clickInfoCell(event) {
             let infoid = event.target.dataset.infoid || event.target.parentNode.dataset.infoid
 
             if (infoid) {
                 this.$router.push({
-                    path: '/jobdetail',
+                    path: '/editjob',
                     query: {
                         "infoid": infoid
                     }
                 })
             }
-        },
-
-    },
-    mounted() {
-        this.searchValue = this.$router.history.current.query.searchValue
+        }
     }
 }
 </script>
-<style>
-.mint-search-list {
-    padding-top: 84px;
+<style lang="less" scoped>
+.info-part {
+    margin-top: 10px;
+    padding: 0 10px;
+    button{
+        margin-top: 10px;
+    }
 }
 </style>
