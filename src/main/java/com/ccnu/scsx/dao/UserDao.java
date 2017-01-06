@@ -16,6 +16,7 @@ import com.ccnu.scsx.model.ScsxUser;
  */
 @Repository
 public class UserDao extends BaseDaoImpl<ScsxUser> implements IBaseDao<ScsxUser> {
+
   @Autowired
   private ScsxUserMapper userMapper;
 
@@ -42,6 +43,10 @@ public class UserDao extends BaseDaoImpl<ScsxUser> implements IBaseDao<ScsxUser>
 
   public ScsxUser findById(String id) {
     return userMapper.selectByPrimaryKey(id);
+  }
+
+  public void updateById(ScsxUser user) {
+    userMapper.updateByPrimaryKeySelective(user);
   }
 
 }

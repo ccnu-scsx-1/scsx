@@ -1,6 +1,9 @@
 package com.ccnu.scsx.controller;
 
+import com.ccnu.scsx.model.ScsxContact;
+import com.ccnu.scsx.service.ContactService;
 import com.ccnu.scsx.service.RecruitService;
+import com.ccnu.scsx.utils.UUIDUtils;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +45,8 @@ public class UserController {
   private CompanyService companyService;
   @Autowired
   private RecruitService recruitService;
+  @Autowired
+  ContactService contactService;
 
   @ResponseBody
   @RequestMapping(value = "/user/login", method = RequestMethod.POST)
@@ -85,6 +90,7 @@ public class UserController {
       return WebResultUtils.buildResult(ErrorCode.user_exist);
     }
     ScsxUser user = params.getUser();
+    user.setId(UUIDUtils.getUUID());
     Byte role = user.getRole();
     userService.register(user);
     if (role == 0) {
@@ -125,6 +131,36 @@ public class UserController {
     String userId = JSON.parseObject(object, IdParams.class).getId();
     List<Map<String, Object>> list = recruitService.getUserIntentionList(userId);
     return WebResultUtils.buildSucResult(list);
+  }
+
+  @ResponseBody
+  @RequestMapping(value = "/user/submitInfo", method = RequestMethod.POST)
+  public WebResultData userSubmitInfo(@RequestBody String object) {
+    ScsxContact contact = JSON.parseObject(object, ScsxContact.class);
+    String userId = contact.getUserId();
+    String infoId = contact.getInfoId();
+    contact.setId(UUIDUtils.getUUID());
+    if (isExist(userId, infoId)) {
+      return WebResultUtils.buildFailureResult();
+    }
+    contactService.insertContact(contact);
+    return WebResultUtils.buildSucResult();
+  }
+
+  @ResponseBody
+  @RequestMapping(value = "/user/updateUserInfo", method = RequestMethod.POST)
+  public WebResultData updateUserInfo(@RequestBody String object) {
+    ScsxUser user = JSON.parseObject(object, ScsxUser.class);
+    userService.updateById(user);
+    return WebResultUtils.buildSucResult();
+  }
+
+  private Boolean isExist(String userId, String infoId) {
+    ScsxContact contact = contactService.getContactByUserAndInfo(userId, infoId);
+    if (contact == null) {
+      return false;
+    }
+    return true;
   }
 
   private Boolean isExist(RegisterParams params) {

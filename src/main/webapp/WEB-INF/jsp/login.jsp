@@ -19,7 +19,7 @@
 <body>
   <div id='header' class='clearfix'>
     <div id='logo'></div>
-    <h1 id='title' style="color: #00BFFF">珠寶管理系统</h1>
+    <h1 id='title' style="color: #00BFFF">管理系统</h1>
   </div>
   <div id='main'>
     <div id='login-frame' class='clearfix'>

@@ -41,8 +41,11 @@
 		<table tableName="scsx_recruit_info" domainObjectName="ScsxRecruitInfo" 
 			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>  -->
-		<table tableName="scsx_feedback" domainObjectName="ScsxFeedBack" 
+		<!--<table tableName="scsx_feedback" domainObjectName="ScsxFeedBack"
 			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-		</table>
+		</table>-->
+		<!--<table tableName="scsx_contact" domainObjectName="ScsxContact"
+		enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+	  </table>-->
 	</context>
 </generatorConfiguration>

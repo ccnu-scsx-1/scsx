@@ -14,6 +14,7 @@ import com.ccnu.scsx.utils.UUIDUtils;
 
 @Service
 public class UserService {
+
   @Autowired
   private UserDao userDao;
 
@@ -37,6 +38,10 @@ public class UserService {
   public ScsxUser findById(String id) {
     ScsxUser user = userDao.findById(id);
     return user;
+  }
+
+  public void updateById(ScsxUser user) {
+    userDao.updateById(user);
   }
 
 }

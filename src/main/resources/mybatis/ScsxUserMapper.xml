@@ -112,10 +112,10 @@
         name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="email != null" >
-        name = #{email,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
-        name = #{password,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
       </if>
       <if test="gender != null" >
         gender = #{gender,jdbcType=BIT},
@@ -166,6 +166,12 @@
     where name = #{name,jdbcType=VARCHAR}
     and password = #{password, jdbcType=VARCHAR}
     and role = #{role,jdbcType=BIT}
+  </select>
+  <select id="findByName" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from scsx_user
+    where name = #{name,jdbcType=VARCHAR} limit 1
   </select>
   
 </mapper>

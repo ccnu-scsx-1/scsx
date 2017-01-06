@@ -406,7 +406,7 @@
 
 		<filters>
 			<filter>${resource.filter}</filter>
-		</filters>  
+		</filters>
 		
 		  <!-- <finalName>mybatis_generator</finalName>
         <plugins>
