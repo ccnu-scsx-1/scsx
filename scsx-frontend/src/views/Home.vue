@@ -8,10 +8,10 @@
                 <mt-button class="inline-btn" type="primary" @click="clickGoReg">我要招人</mt-button>
             </div>
             <router-link to="/login">
-                <mt-button type="primary" size="large">登录</mt-button>
+                <mt-button type="primary" size="large">登&nbsp;录</mt-button>
             </router-link>
             <router-link to="/register">
-                <mt-button size="large" plain>注册</mt-button>
+                <mt-button size="large" plain>注&nbsp;册</mt-button>
             </router-link>
         </div>
     </div>

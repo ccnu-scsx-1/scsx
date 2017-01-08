@@ -21,10 +21,10 @@
             <mt-field label="确认密码" placeholder="请再次输入密码" type="password" v-model="rpassword"></mt-field>
         </div>
         <div class="v-btn-group">
-            <mt-button @click.native="clickReg" type="primary" size="large">注册</mt-button>
+            <mt-button @click.native="clickReg" type="primary" size="large">注&nbsp;册</mt-button>
             <p style="font-size:12px;">已有账号？or 您是企业HR，请前往<router-link to="/registercom" style="color:#26a2ff;">企业HR注册</router-link></p>
             <router-link to="/login">
-            <mt-button size="large" plain>登录</mt-button>
+            <mt-button size="large" plain>登&nbsp;录</mt-button>
             </router-link>
         </div>
     </div>

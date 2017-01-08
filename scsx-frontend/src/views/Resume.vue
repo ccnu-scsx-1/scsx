@@ -2,8 +2,7 @@
     <div class="v-container">
         <mt-header title="个人简历"></mt-header>
         <div class="info-part">
-            <mt-cell title="个人介绍"></mt-cell>
-            <mt-field label="用户名" placeholder="请输入用户名" v-model="username"></mt-field>
+            <mt-field label="姓名" placeholder="请输入姓名" v-model="username"></mt-field>
             <mt-field label="邮箱" placeholder="请输入邮箱" type="email" v-model="email"></mt-field>
             <mt-field label="手机号" placeholder="请输入手机号" type="tel" v-model="tel"></mt-field>
             <mt-field label="年龄" placeholder="请输入年龄" type="number" v-model="age"></mt-field>
@@ -28,8 +27,8 @@
         </div>
         
         <div class="info-part">
-            <mt-button plain @click="clickCancel">返回</mt-button>
-            <mt-button type="primary" @click="clickSave">保存</mt-button>
+            <mt-button plain @click="clickCancel">返&nbsp;回</mt-button>
+            <mt-button type="primary" @click="clickSave">保&nbsp;存</mt-button>
         </div>
     </div>
 </template>

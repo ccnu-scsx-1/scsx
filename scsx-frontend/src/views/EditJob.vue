@@ -9,14 +9,14 @@
             <mt-field label="学历要求" placeholder="请输入学历要求" ></mt-field>
         </div>
         <div class="info-part">
-            <mt-cell title="技能要求"></mt-cell>
+            <mt-cell title="其他信息"></mt-cell>
             <mt-field label="技能要求" placeholder="请输入技能要求" type="textarea" ></mt-field>
         </div>
        
         <div class="info-part">
-            <mt-button plain @click="clickCancel">返回</mt-button>
-            <mt-button type="primary" @click="clickSave">保存</mt-button>
-            <mt-button type="danger" @click="clickDelete">删除</mt-button>
+            <mt-button plain @click="clickCancel">返&nbsp;回</mt-button>
+            <mt-button type="primary" @click="clickSave">保&nbsp;存</mt-button>
+            <mt-button type="danger" @click="clickDelete">删&nbsp;除</mt-button>
         </div>
     </div>
 </template>
