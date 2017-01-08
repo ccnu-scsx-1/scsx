@@ -3,6 +3,7 @@ package com.ccnu.scsx.dao;
 import com.ccnu.scsx.dao.impl.BaseDaoImpl;
 import com.ccnu.scsx.db.BaseMapper;
 import com.ccnu.scsx.mapper.ScsxResumeMapper;
+import com.ccnu.scsx.model.ScsxResume;
 import com.ccnu.scsx.model.ScsxResumeWithBLOBs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

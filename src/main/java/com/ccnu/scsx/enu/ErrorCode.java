@@ -8,6 +8,7 @@ public enum ErrorCode {
   param_empty(4,"param empty exception "),
   not_login(5,"user not login"),
   user_exist(6,"user has existed!"),
+  upload_faied(7,"Faild To Upload!!!"),
   ;
 
   private Integer code;
