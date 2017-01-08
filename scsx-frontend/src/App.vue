@@ -1,11 +1,28 @@
 <template>
     <div id="app">
         <router-view></router-view>
+        <mt-palette-button content="+" mainButtonStyle="color:#fff;background-color:#26a2ff;" style="position:absolute;right:20px;bottom:20px;">
+            <div class="my-icon-button icon-search"></div>
+            <div class="my-icon-button icon-user"></div>
+            <div class="my-icon-button icon-star"></div>
+        </mt-palette-button>
     </div>
 </template>
 <script>
 export default {
-    name: 'app'
+    name: 'app',
+    methods:{
+        clickGoSearch(){
+            this.$router.push('/market')
+        },
+        clickGoUserInfo(){
+            this.$router.push('/userinfo')
+        },
+        clickGoStar(){
+            this.$router.push('/star')
+        }
+
+    }
 }
 </script>
 <style>
@@ -40,10 +57,11 @@ legend {
     font-family: inherit;
 }
 
-select, option, button{
+select,
+option,
+button {
     font-size: 16px;
 }
-
 
 input[type=search]::-webkit-search-cancel-button {
     -webkit-appearance: none;
@@ -61,4 +79,26 @@ select {
 .mint-header-title {
     font-size: 16px;
 }
+
+
+.icon-search{
+    background: url('assets/search.png') no-repeat center;
+}
+
+.icon-user{
+    background: url('assets/user.png') no-repeat center;
+}
+
+.icon-star{
+    background: url('assets/star.png') no-repeat center;
+}
+
+.icon-search,.icon-user,.icon-star{
+    background-size: 25px 25px;
+    background-color: #26a2ff;
+    border-radius: 25px;
+}
+
+
+
 </style>

@@ -5,8 +5,8 @@
                 <mt-button icon="back">返回</mt-button>
             </router-link>
         </mt-header>
-        <div class="info-part" @click="clickInfoCell">
-            <mt-cell data-infoid="infoid" v-for="item in result" :title="item.title" :value="item.value" :label="item.label" is-link></mt-cell>
+        <div class="info-part">
+            <mt-cell to="/invitedetail" v-for="item in result" :title="item.title" :value="item.value" :label="item.label" is-link></mt-cell>
         </div>
         <div class="info-part">
             <mt-button type="primary" @click="clickToVote" size="large">继续投递</mt-button>
@@ -40,18 +40,6 @@ export default {
         },
         clickGoBack() {
             this.$router.push('/userinfo?role=0')
-        },
-        clickInfoCell(event) {
-            let infoid = event.target.dataset.infoid || event.target.parentNode.dataset.infoid
-
-            if (infoid) {
-                this.$router.push({
-                    path: '/invitedetail',
-                    query: {
-                        "infoid": infoid
-                    }
-                })
-            }
         }
     }
 }
