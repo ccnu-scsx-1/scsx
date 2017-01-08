@@ -1,5 +1,6 @@
 package com.ccnu.scsx.service;
 
+import com.ccnu.scsx.utils.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,8 @@ public class CompanyService {
   private CompanyDao companyDao;
 
   public void insertCompany(ScsxCompany company) {
+    String id = UUIDUtils.getUUID();
+    company.setId(id);
     companyDao.insertCompany(company);
   }
 

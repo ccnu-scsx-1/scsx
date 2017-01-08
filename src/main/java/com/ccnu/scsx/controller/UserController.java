@@ -90,7 +90,6 @@ public class UserController {
       return WebResultUtils.buildResult(ErrorCode.user_exist);
     }
     ScsxUser user = params.getUser();
-    user.setId(UUIDUtils.getUUID());
     Byte role = user.getRole();
     userService.register(user);
     if (role == 0) {

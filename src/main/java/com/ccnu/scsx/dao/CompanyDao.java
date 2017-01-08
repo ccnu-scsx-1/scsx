@@ -23,7 +23,7 @@ public class CompanyDao extends BaseDaoImpl<ScsxCompany> implements IBaseDao<Scs
   }
 
   public void insertCompany(ScsxCompany company) {
-    companyMapper.insert(company);
+    companyMapper.insertSelective(company);
   }
 
   public ScsxCompany getCompanyDetail(String company_id) {

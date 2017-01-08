@@ -47,6 +47,12 @@
       <if test="name != null" >
         name,
       </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
       <if test="gender != null" >
         gender,
       </if>
@@ -78,6 +84,12 @@
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
       </if>
       <if test="gender != null" >
         #{gender,jdbcType=BIT},
