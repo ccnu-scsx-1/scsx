@@ -1,17 +1,15 @@
 package com.ccnu.scsx.mapper;
 
+import com.ccnu.scsx.annotation.Mapper;
+import com.ccnu.scsx.db.BaseMapper;
 import com.ccnu.scsx.model.ScsxResume;
+import com.ccnu.scsx.model.ScsxResumeWithBLOBs;
 
-public interface ScsxResumeMapper {
-    int deleteByPrimaryKey(String id);
+@Mapper
+public interface ScsxResumeMapper extends BaseMapper<ScsxResumeWithBLOBs>{
 
-    int insert(ScsxResume record);
+    ScsxResumeWithBLOBs selectByPrimaryKey(String id);
 
-    int insertSelective(ScsxResume record);
+    int updateByPrimaryKeyWithBLOBs(ScsxResumeWithBLOBs record);
 
-    ScsxResume selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(ScsxResume record);
-
-    int updateByPrimaryKey(ScsxResume record);
 }

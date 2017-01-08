@@ -38,7 +38,7 @@ public class UserDao extends BaseDaoImpl<ScsxUser> implements IBaseDao<ScsxUser>
   }
 
   public void register(ScsxUser user) {
-    userMapper.insert(user);
+    userMapper.insertSelective(user);
   }
 
   public ScsxUser findById(String id) {

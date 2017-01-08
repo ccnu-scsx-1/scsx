@@ -1,32 +1,350 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ccnu.scsx.mapper.ScsxResumeMapper" >
-  <resultMap id="BaseResultMap" type="com.ccnu.scsx.model.ScsxResume" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="gender" property="gender" jdbcType="BIT" />
-    <result column="age" property="age" jdbcType="TINYINT" />
-    <result column="number" property="number" jdbcType="VARCHAR" />
-    <result column="position" property="position" jdbcType="TINYINT" />
-    <result column="role" property="role" jdbcType="BIT" />
-    <result column="resume_id" property="resumeId" jdbcType="VARCHAR" />
-    <result column="info_id" property="infoId" jdbcType="VARCHAR" />
-    <result column="year_work" property="yearWork" jdbcType="TINYINT" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccnu.scsx.mapper.ScsxResumeMapper">
+  <resultMap id="BaseResultMap" type="com.ccnu.scsx.model.ScsxResume">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="age" jdbcType="TINYINT" property="age" />
+    <result column="gender" jdbcType="BIT" property="gender" />
+    <result column="position" jdbcType="TINYINT" property="position" />
+    <result column="skill_label" jdbcType="VARCHAR" property="skillLabel" />
+    <result column="resume_path" jdbcType="VARCHAR" property="resumePath" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="major" jdbcType="VARCHAR" property="major" />
+    <result column="education" jdbcType="TINYINT" property="education" />
+    <result column="education_start" jdbcType="TIMESTAMP" property="educationStart" />
+    <result column="education_end" jdbcType="TIMESTAMP" property="educationEnd" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="company_start" jdbcType="DATE" property="companyStart" />
+    <result column="company_end" jdbcType="DATE" property="companyEnd" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ccnu.scsx.model.ScsxResumeWithBLOBs">
+    <result column="company_content" jdbcType="LONGVARCHAR" property="companyContent" />
+    <result column="edu_exp" jdbcType="LONGVARCHAR" property="eduExp" />
+    <result column="work_exp" jdbcType="LONGVARCHAR" property="workExp" />
+    <result column="pro_exp" jdbcType="LONGVARCHAR" property="proExp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, name, email, number, age, gender, position, skill_label, resume_path, 
+    school, major, education, education_start, education_end, company, company_start, 
+    company_end
+  </sql>
+  <sql id="Blob_Column_List">
+    company_content, edu_exp, work_exp, pro_exp
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from scsx_resume
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from scsx_resume
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ccnu.scsx.model.ScsxResumeWithBLOBs">
+    insert into scsx_resume (id, user_id, name, 
+      email, number, age, 
+      gender, position, skill_label, 
+      resume_path, school, major, 
+      education, education_start, education_end, 
+      company, company_start, company_end, 
+      company_content, edu_exp, work_exp, 
+      pro_exp)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, #{age,jdbcType=TINYINT}, 
+      #{gender,jdbcType=BIT}, #{position,jdbcType=TINYINT}, #{skillLabel,jdbcType=VARCHAR}, 
+      #{resumePath,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
+      #{education,jdbcType=TINYINT}, #{educationStart,jdbcType=TIMESTAMP}, #{educationEnd,jdbcType=TIMESTAMP}, 
+      #{company,jdbcType=VARCHAR}, #{companyStart,jdbcType=DATE}, #{companyEnd,jdbcType=DATE}, 
+      #{companyContent,jdbcType=LONGVARCHAR}, #{eduExp,jdbcType=LONGVARCHAR}, #{workExp,jdbcType=LONGVARCHAR}, 
+      #{proExp,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ccnu.scsx.model.ScsxResumeWithBLOBs">
+    insert into scsx_resume
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="skillLabel != null">
+        skill_label,
+      </if>
+      <if test="resumePath != null">
+        resume_path,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="major != null">
+        major,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="educationStart != null">
+        education_start,
+      </if>
+      <if test="educationEnd != null">
+        education_end,
+      </if>
+      <if test="company != null">
+        company,
+      </if>
+      <if test="companyStart != null">
+        company_start,
+      </if>
+      <if test="companyEnd != null">
+        company_end,
+      </if>
+      <if test="companyContent != null">
+        company_content,
+      </if>
+      <if test="eduExp != null">
+        edu_exp,
+      </if>
+      <if test="workExp != null">
+        work_exp,
+      </if>
+      <if test="proExp != null">
+        pro_exp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=TINYINT},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=BIT},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=TINYINT},
+      </if>
+      <if test="skillLabel != null">
+        #{skillLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="resumePath != null">
+        #{resumePath,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=TINYINT},
+      </if>
+      <if test="educationStart != null">
+        #{educationStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="educationEnd != null">
+        #{educationEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="companyStart != null">
+        #{companyStart,jdbcType=DATE},
+      </if>
+      <if test="companyEnd != null">
+        #{companyEnd,jdbcType=DATE},
+      </if>
+      <if test="companyContent != null">
+        #{companyContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="eduExp != null">
+        #{eduExp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="workExp != null">
+        #{workExp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="proExp != null">
+        #{proExp,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ccnu.scsx.model.ScsxResumeWithBLOBs">
+    update scsx_resume
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=TINYINT},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=BIT},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=TINYINT},
+      </if>
+      <if test="skillLabel != null">
+        skill_label = #{skillLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="resumePath != null">
+        resume_path = #{resumePath,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=TINYINT},
+      </if>
+      <if test="educationStart != null">
+        education_start = #{educationStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="educationEnd != null">
+        education_end = #{educationEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="companyStart != null">
+        company_start = #{companyStart,jdbcType=DATE},
+      </if>
+      <if test="companyEnd != null">
+        company_end = #{companyEnd,jdbcType=DATE},
+      </if>
+      <if test="companyContent != null">
+        company_content = #{companyContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="eduExp != null">
+        edu_exp = #{eduExp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="workExp != null">
+        work_exp = #{workExp,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="proExp != null">
+        pro_exp = #{proExp,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ccnu.scsx.model.ScsxResumeWithBLOBs">
+    update scsx_resume
+    set user_id = #{userId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      age = #{age,jdbcType=TINYINT},
+      gender = #{gender,jdbcType=BIT},
+      position = #{position,jdbcType=TINYINT},
+      skill_label = #{skillLabel,jdbcType=VARCHAR},
+      resume_path = #{resumePath,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      education = #{education,jdbcType=TINYINT},
+      education_start = #{educationStart,jdbcType=TIMESTAMP},
+      education_end = #{educationEnd,jdbcType=TIMESTAMP},
+      company = #{company,jdbcType=VARCHAR},
+      company_start = #{companyStart,jdbcType=DATE},
+      company_end = #{companyEnd,jdbcType=DATE},
+      company_content = #{companyContent,jdbcType=LONGVARCHAR},
+      edu_exp = #{eduExp,jdbcType=LONGVARCHAR},
+      work_exp = #{workExp,jdbcType=LONGVARCHAR},
+      pro_exp = #{proExp,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ccnu.scsx.model.ScsxResume">
+    update scsx_resume
+    set user_id = #{userId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      age = #{age,jdbcType=TINYINT},
+      gender = #{gender,jdbcType=BIT},
+      position = #{position,jdbcType=TINYINT},
+      skill_label = #{skillLabel,jdbcType=VARCHAR},
+      resume_path = #{resumePath,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      education = #{education,jdbcType=TINYINT},
+      education_start = #{educationStart,jdbcType=TIMESTAMP},
+      education_end = #{educationEnd,jdbcType=TIMESTAMP},
+      company = #{company,jdbcType=VARCHAR},
+      company_start = #{companyStart,jdbcType=DATE},
+      company_end = #{companyEnd,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.ccnu.scsx.model.ScsxResume">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="gender" jdbcType="BIT" property="gender" />
+    <result column="age" jdbcType="TINYINT" property="age" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="position" jdbcType="TINYINT" property="position" />
+    <result column="role" jdbcType="BIT" property="role" />
+    <result column="resume_id" jdbcType="VARCHAR" property="resumeId" />
+    <result column="info_id" jdbcType="VARCHAR" property="infoId" />
+    <result column="year_work" jdbcType="TINYINT" property="yearWork" />
+  </resultMap>
+  <sql id="Base_Column_List">
     id, name, gender, age, number, position, role, resume_id, info_id, year_work
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from scsx_user
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from scsx_user
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.ccnu.scsx.model.ScsxResume" >
+  <insert id="insert" parameterType="com.ccnu.scsx.model.ScsxResume">
     insert into scsx_user (id, name, gender, 
       age, number, position, 
       role, resume_id, info_id, 
@@ -36,107 +354,107 @@
       #{role,jdbcType=BIT}, #{resumeId,jdbcType=VARCHAR}, #{infoId,jdbcType=VARCHAR}, 
       #{yearWork,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.ccnu.scsx.model.ScsxResume" >
+  <insert id="insertSelective" parameterType="com.ccnu.scsx.model.ScsxResume">
     insert into scsx_user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         name,
       </if>
-      <if test="gender != null" >
+      <if test="gender != null">
         gender,
       </if>
-      <if test="age != null" >
+      <if test="age != null">
         age,
       </if>
-      <if test="number != null" >
+      <if test="number != null">
         number,
       </if>
-      <if test="position != null" >
+      <if test="position != null">
         position,
       </if>
-      <if test="role != null" >
+      <if test="role != null">
         role,
       </if>
-      <if test="resumeId != null" >
+      <if test="resumeId != null">
         resume_id,
       </if>
-      <if test="infoId != null" >
+      <if test="infoId != null">
         info_id,
       </if>
-      <if test="yearWork != null" >
+      <if test="yearWork != null">
         year_work,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="gender != null" >
+      <if test="gender != null">
         #{gender,jdbcType=BIT},
       </if>
-      <if test="age != null" >
+      <if test="age != null">
         #{age,jdbcType=TINYINT},
       </if>
-      <if test="number != null" >
+      <if test="number != null">
         #{number,jdbcType=VARCHAR},
       </if>
-      <if test="position != null" >
+      <if test="position != null">
         #{position,jdbcType=TINYINT},
       </if>
-      <if test="role != null" >
+      <if test="role != null">
         #{role,jdbcType=BIT},
       </if>
-      <if test="resumeId != null" >
+      <if test="resumeId != null">
         #{resumeId,jdbcType=VARCHAR},
       </if>
-      <if test="infoId != null" >
+      <if test="infoId != null">
         #{infoId,jdbcType=VARCHAR},
       </if>
-      <if test="yearWork != null" >
+      <if test="yearWork != null">
         #{yearWork,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ccnu.scsx.model.ScsxResume" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.ccnu.scsx.model.ScsxResume">
     update scsx_user
-    <set >
-      <if test="name != null" >
+    <set>
+      <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="gender != null" >
+      <if test="gender != null">
         gender = #{gender,jdbcType=BIT},
       </if>
-      <if test="age != null" >
+      <if test="age != null">
         age = #{age,jdbcType=TINYINT},
       </if>
-      <if test="number != null" >
+      <if test="number != null">
         number = #{number,jdbcType=VARCHAR},
       </if>
-      <if test="position != null" >
+      <if test="position != null">
         position = #{position,jdbcType=TINYINT},
       </if>
-      <if test="role != null" >
+      <if test="role != null">
         role = #{role,jdbcType=BIT},
       </if>
-      <if test="resumeId != null" >
+      <if test="resumeId != null">
         resume_id = #{resumeId,jdbcType=VARCHAR},
       </if>
-      <if test="infoId != null" >
+      <if test="infoId != null">
         info_id = #{infoId,jdbcType=VARCHAR},
       </if>
-      <if test="yearWork != null" >
+      <if test="yearWork != null">
         year_work = #{yearWork,jdbcType=TINYINT},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ccnu.scsx.model.ScsxResume" >
+  <update id="updateByPrimaryKey" parameterType="com.ccnu.scsx.model.ScsxResume">
     update scsx_user
     set name = #{name,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=BIT},
