@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <router-view></router-view>
-        <mt-palette-button content="+" mainButtonStyle="color:#fff;background-color:#26a2ff;" style="position:absolute;right:20px;bottom:20px;">
+        <mt-palette-button content="+" mainButtonStyle="color:#fff;background-color:#26a2ff;" style="position:fixed;right:20px;bottom:20px;">
             <div class="my-icon-button icon-search"></div>
             <div class="my-icon-button icon-user"></div>
             <div class="my-icon-button icon-star"></div>
