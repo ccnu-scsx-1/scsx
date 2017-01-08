@@ -16,14 +16,8 @@
         </div>
 
         <div class="info-part">
-            <mt-cell title="招聘岗位"></mt-cell>
-            <mt-cell data-infoid="infoid" v-for="item in result" :title="item.title" :value="item.value" :label="item.label" is-link></mt-cell>
-            <mt-cell title="新增招聘岗位" is-link></mt-cell>
-        </div>
-
-        <div class="info-part">
-            <mt-button plain @click="clickCancel">返回</mt-button>
-            <mt-button type="primary" @click="clickSave">保存</mt-button>
+            <mt-button plain @click="clickCancel">返&nbsp;回</mt-button>
+            <mt-button type="primary" @click="clickSave">保&nbsp;存</mt-button>
         </div>
     </div>
 </template>

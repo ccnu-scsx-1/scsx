@@ -1,13 +1,11 @@
 <template>
     <div class="v-container">
-        <mt-header title="密码修改"></mt-header>
+        <mt-header title="回复简历"></mt-header>
         <div class="info-part">
-            <mt-cell title="账号信息"></mt-cell>
-            <mt-field label="用户名" placeholder="请输入用户名" v-model="username"></mt-field>
-            <mt-field label="旧密码" placeholder="请输入旧密码" type="password" v-model="oldpassword"></mt-field>
-            <mt-field label="新密码" placeholder="请输入新密码" type="password" v-model="newpassword"></mt-field>
-            <mt-field label="确认密码" placeholder="请再次输入新密码" type="password" v-model="rnewpassword"></mt-field>
+            <mt-field label="标题" placeholder="请输入标题"></mt-field>
+            <mt-field label="反馈信息" placeholder="请输入反馈信息" type="textarea" :rows="4"></mt-field>
         </div>
+       
         <div class="info-part">
             <mt-button plain @click="clickCancel">返&nbsp;回</mt-button>
             <mt-button type="primary" @click="clickSave">保&nbsp;存</mt-button>
@@ -19,19 +17,16 @@
 import { MessageBox } from 'mint-ui'
 
 export default {
-    name: 'UpdatePassword',
+    name: 'Resume',
     data() {
         return {
-            username: '',
-            oldpassword: '',
-            newpassword: '',
-            rnewpassword: '',     
+
         }
     },
     methods: {
         clickCancel(){
             MessageBox.confirm('当前修改未保存，是否直接返回？').then(action => {
-                this.$router.push('/userinfo')
+                this.$router.push('/employment')
             }, action => {})
         },
         clickSave(){

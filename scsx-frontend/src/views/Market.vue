@@ -6,8 +6,8 @@
             </router-link> -->
             <!-- <a href="/" slot="left">&lt;返回</a> -->
         </mt-header>
-        <mt-search class="searchBar" v-model="searchValue" placeholder="搜索公司或者岗位" @click.native="clickInfoCell">
-            <mt-cell data-infoid="infoid" v-for="item in result" :title="item.title" :value="item.value" :label="item.label" is-link></mt-cell>
+        <mt-search class="searchBar" v-model="searchValue" placeholder="搜索公司或者岗位">
+            <mt-cell to="/jobdetail" v-for="item in result" :title="item.title" :value="item.value" :label="item.label" is-link></mt-cell>
         </mt-search>
     </div>
 </template>
@@ -33,18 +33,7 @@ export default {
         }
     },
     methods: {
-        clickInfoCell(event) {
-            let infoid = event.target.dataset.infoid || event.target.parentNode.dataset.infoid
 
-            if (infoid) {
-                this.$router.push({
-                    path: '/jobdetail',
-                    query: {
-                        "infoid": infoid
-                    }
-                })
-            }
-        },
 
     },
     mounted() {

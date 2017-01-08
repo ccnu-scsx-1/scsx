@@ -15,8 +15,8 @@
             <mt-field label="个性签名" placeholder="请输入个性签名（选填）" type="textarea" rows="4" v-model="motto">
         </div>
         <div class="info-part">
-            <mt-button plain @click="clickCancel">返回</mt-button>
-            <mt-button type="primary" @click="clickSave">保存</mt-button>
+            <mt-button plain @click="clickCancel">返&nbsp;回</mt-button>
+            <mt-button type="primary" @click="clickSave">保&nbsp;存</mt-button>
         </div>
     </div>
 </template>

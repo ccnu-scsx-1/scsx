@@ -16,10 +16,10 @@
             </mt-cell>
         </div>
         <div class="v-btn-group">
-            <mt-button @click.native="clickLogin" type="primary" size="large">登录</mt-button>
+            <mt-button @click.native="clickLogin" type="primary" size="large">登&nbsp;录</mt-button>
             <p style="font-size:12px;">还没账号?</p>
             <router-link to="/register">
-                <mt-button size="large" plain>注册</mt-button>
+                <mt-button size="large" plain>注&nbsp;册</mt-button>
             </router-link>
         </div>
     </div>
