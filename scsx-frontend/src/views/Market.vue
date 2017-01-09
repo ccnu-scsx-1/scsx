@@ -2,38 +2,50 @@
     <div>
         <mt-header title="PT网">
         </mt-header>
-        <mt-search class="searchBar" v-model="searchValue" placeholder="搜索公司或者岗位">
-            <mt-cell to="/jobdetail" v-for="item in result" :title="item.title" :value="item.value" :label="item.label" is-link></mt-cell>
+        <mt-search class="searchBar" v-model="searchValue" placeholder="搜索公司或者岗位" @search.native="searchBytitle" :show="true">
+            <v-cell v-for="item in searchResult" :title="item.title"  :region="item.region" :salary="item.salary" :link="{path: '/jobdetail', query: { infoId: item.infoId, companyId: item.companyId }}" ></v-cell>
         </mt-search>
     </div>
 </template>
 <script>
+import {
+    mapGetters
+} from 'vuex'
+import VCell from '../components/cell'
+
 export default {
     name: 'Market',
-    data() {
+    components:{
+        VCell
+    },
+    data(){
         return {
-            searchValue: '',
-            result: [{
-                title: 'web前端',
-                label: '旺旺集团',
-                value: '10k-20k'
-            }, {
-                title: 'Java后台',
-                label: '旺旺集团',
-                value: '10k-20k'
-            }, {
-                title: 'PHP',
-                label: '旺旺集团',
-                value: '10k-20k'
-            }]
+            searchValue: ''
         }
     },
+    computed: {
+        ...mapGetters([
+            'searchResult'
+        ])
+    },
     methods: {
-
-
+        searchBytitle() {
+            this.$store.dispatch('searchBytitle', {
+                title: this.searchValue,
+                pageNum: 1
+            })
+        }
     },
     mounted() {
         this.searchValue = this.$router.history.current.query.searchValue
+        if (this.searchValue) {
+            this.$store.dispatch('searchBytitle', {
+                title: this.searchValue,
+                pageNum: 1
+            })
+        } else {
+            this.$store.dispatch('getInfoList', { pageNum: 1 })
+        }
     }
 }
 </script>

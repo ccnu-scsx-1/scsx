@@ -12,6 +12,9 @@ export default {
     },
     status: function(data){
         return commonService.post('/api/user/status', data || {})
+    },
+    submitInfo: function(data){
+        return commonService.post('/api/user/submitInfo', data || {})
     }
 }
 

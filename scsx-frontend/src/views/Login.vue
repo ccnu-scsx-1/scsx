@@ -25,11 +25,6 @@
     </div>
 </template>
 <script>
-import {
-    mapGetters,
-    mapActions
-} from 'vuex'
-
 export default {
     name: 'Login',
     data() {
@@ -39,10 +34,6 @@ export default {
             role: 0
         }
     },
-    computed: mapGetters([
-        'showIndicator',
-        'errorMsg'
-    ]),
     methods: {
         clickLogin() {
             this.$store.dispatch('login', {

@@ -4,6 +4,8 @@ import actions from './actions'
 import mutations from './mutations'
 //modules
 import user from './modules/user'
+import market from './modules/market'
+import jobDetail from './modules/jobDetail'
 
 Vue.use(Vuex)
 
@@ -18,6 +20,8 @@ export default new Vuex.Store({
     mutations,
     actions,
     modules: {
-        user
+        user,
+        market,
+        jobDetail
     }
 })

@@ -6,22 +6,22 @@
             </router-link>
         </mt-header>
         <div class="job-detail">
-            <div class="job-title">web前端</div>
+            <div class="job-title">{{ title }}</div>
             <div class="job-info">
-                <p>薪资：10k - 20k</p>
-                <p>地点：上海</p>
-                <p>工作年限：1-3年</p>
-                <p>学历：本科及以上</p>
+                <p>薪资：{{ salary }}</p>
+                <p>地点：{{ region }}</p>
+                <p>工作年限：{{ yearWork }}</p>
+                <p>学历：{{ education }}</p>
             </div>
             <div class="company-info">
-                <p>旺旺集团</p>
-                <p>地址：湖北省武汉市</p>
-                <p>联系方式：123123123123</p>
-                <p>招聘邮箱：fzzfsdfsdf@ww.com</p>
+                <p>{{ name }}</p>
+                <p>公司地址：{{ address }}</p>
+                <p>联系方式：{{ tel }}</p>
+                <p>招聘邮箱：{{ email }}</p>
             </div>
             <div class="job-desc">
                 <div class="desc-title">职位描述</div>
-                <div class="desc-content">JAVA基础扎实：熟练掌握数据结构、多线程编程，掌握常用的设计模式；熟悉JVM，包括内存模型、类加载机制以及性能优化；JAVA基础扎实：熟练掌握数据结构、多线程编程，掌握常用的设计模式；熟悉JVM，包括内存模型、类加载机制以及性能优化；JAVA基础扎实：熟练掌握数据结构、多线程编程，掌握常用的设计模式；熟悉JVM，包括内存模型、类加载机制以及性能优化；JAVA基础扎实：熟练掌握数据结构、多线程编程，掌握常用的设计模式；熟悉JVM，包括内存模型、类加载机制以及性能优化；</div>
+                <div class="desc-content">{{ description }}</div>
             </div>
         </div>
         <div class="job-vote"><mt-button @click.native="clickVoteResume" type="primary" size="large">投个简历</mt-button></div>
@@ -29,14 +29,30 @@
     </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
     name: 'JobDetail',
-    data() {
-        return {}
-    },
+    computed: mapGetters([
+        'title',
+        'salary',
+        'yearWork',
+        'education',
+        'name',
+        'address',
+        'tel',
+        'email',
+        'description',
+        'region'
+    ]),
     methods: {
         clickVoteResume(){
+            this.$store.dispatch('voteResume')
         }
+    },
+    mounted(){
+        let query = this.$router.history.current.query
+        this.$store.dispatch('loadJobDetail', {info_id: query.infoId, company_id: query.companyId})
     }
 }
 </script>

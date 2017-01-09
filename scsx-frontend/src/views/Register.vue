@@ -39,7 +39,7 @@ export default {
             tel: '',
             age: '',
             gender: 0,
-            role: 1,
+            role: 0,
             motto: '',
             password: '',
             rpassword: ''
@@ -52,9 +52,9 @@ export default {
                 number: this.tel,
                 email: this.email,
                 gender: this.gender,
-               // motto: this.motto,
+                motto: this.motto,
                 password: this.password,
-               // rpassword: this.rpassword,
+                rpassword: this.rpassword,
                 role: this.role,
                 age: this.age
             })
