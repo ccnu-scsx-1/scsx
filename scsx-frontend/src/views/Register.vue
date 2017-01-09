@@ -30,8 +30,6 @@
     </div>
 </template>
 <script>
-import { mapGetters, mapActions } from 'vuex'
-
 export default {
     name: 'Login',  
     data() {
@@ -41,26 +39,24 @@ export default {
             tel: '',
             age: '',
             gender: 0,
-            role: 0,
+            role: 1,
             motto: '',
             password: '',
             rpassword: ''
         }
     },
-    computed: mapGetters([
-        'showIndicator',
-        'errorMsg'
-    ]),
     methods: {
         clickReg(){
             this.$store.dispatch('register', {
                 name: this.username,
                 number: this.tel,
+                email: this.email,
                 gender: this.gender,
-                motto: this.motto,
+               // motto: this.motto,
                 password: this.password,
-                rpassword: this.rpassword,
-                role: this.role
+               // rpassword: this.rpassword,
+                role: this.role,
+                age: this.age
             })
         }
     }

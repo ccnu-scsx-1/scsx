@@ -1,65 +1,156 @@
 import user from '../../api/user'
-import * as types  from  '../mutations-types'
-import { Indicator, MessageBox } from 'mint-ui'
+import * as types from '../mutations-types'
+import { Indicator, MessageBox, Toast } from 'mint-ui'
+import Validator from '../../util/validator'
+import router from '../../router'
 
 const state = {
-   loginStatus: false, 
-   username: '',
-   userid: '',
-   showIndicator: false,
-   errorMsg: ''
-}
-
-const getters = {
-    showIndicator: state => state.showIndicator,
-    errorMsg: state => state.errorMsg
+    loginStatus: false,
+    username: '',
+    userid: ''
 }
 
 const actions = {
-    login({ commit }, data){
-        if(!data.name || !data.password){
+    login({ commit }, data) {
+        if (Validator.isEmpty(data.name) || Validator.isEmpty(data.password)) {
             MessageBox.alert('用户名或密码不能为空！')
             return
         }
         Indicator.open()
-        user.login(data).then( response => {
+        user.login(data).then(response => {
             Indicator.close()
-            if(res.status === '0'){
-                commit(types.LOGIN_SUCCESS, { 
-                    id: res.data.id, 
-                    name: res.data.name 
+            let res = response.data
+            if (res.status === '0') {
+                commit(types.LOGIN_SUCCESS, {
+                    id: res.data.id,
+                    name: res.data.name
                 })
-            }else{
-                commit(types.LOGIN_FAIL, { errorMsg: response.data.errorMsg })
+            } else {
+                commit(types.LOGIN_FAIL, { errorMsg: res.msg })
             }
-        }).catch( error => {
+        }).catch(error => {
             Indicator.close()
             commit(types.LOGIN_FAIL, { errorMsg: 'error' })
         })
     },
-    register({ commit }, data){
-        if( !data.name ){
+    register({ commit }, data) {
+        if (Validator.isEmpty(data.name)) {
             MessageBox.alert('用户名不能为空！')
+            return
         }
+
+        if (!Validator.isEmail(data.email)) {
+            MessageBox.alert('请填写正确的邮箱！')
+            return
+        }
+
+        if (!Validator.isTel(data.number)) {
+            MessageBox.alert('请填写正确的手机号码！')
+            return
+        }
+
+        if (!Validator.isNumeric(data.age)) {
+            MessageBox.alert('请填写正确的年龄！')
+            return
+        }
+
+        // if (Validator.isEmpty(data.password) || Validator.isEmpty(data.rpassword)) {
+        //     MessageBox.alert('请填写密码！')
+        //     return
+        // }
+
+        // if (!Validator.isEqual(data.password, data.rpassword)) {
+        //     MessageBox.alert('两次输入的密码不一致！请重新输入。')
+        //     return
+        // }
+        Indicator.open()
+        user.register({ "user": data }).then(response => {
+            Indicator.close()
+            let res = response.data
+            if (res.status === '0') {
+                commit(types.REGISTER_SUCCESS)
+            } else {
+                commit(types.REGISTER_FAIL, { errorMsg: res.msg })
+            }
+        }).catch(error => {
+            Indicator.close()
+            commit(types.REGISTER_FAIL, { errorMsg: 'error' })
+        })
+    },
+    registerCom(){
+        if (Validator.isEmpty(data.name)) {
+            MessageBox.alert('用户名不能为空！')
+            return
+        }
+
+        if (!Validator.isEmail(data.email)) {
+            MessageBox.alert('请填写正确的邮箱！')
+            return
+        }
+
+        if (!Validator.isTel(data.number)) {
+            MessageBox.alert('请填写正确的手机号码！')
+            return
+        }
+
+        if (!Validator.isNumeric(data.age)) {
+            MessageBox.alert('请填写正确的年龄！')
+            return
+        }
+
+        if (Validator.isEmpty(data.password) || Validator.isEmpty(data.rpassword)) {
+            MessageBox.alert('请填写密码！')
+            return
+        }
+
+        if (!Validator.isEqual(data.password, data.rpassword)) {
+            MessageBox.alert('两次输入的密码不一致！请重新输入。')
+            return
+        }
+        Indicator.open()
+        user.register({ "user": data }).then(response => {
+            Indicator.close()
+            let res = response.data
+            if (res.status === '0') {
+                commit(types.REGISTER_COM_SUCCESS)
+            } else {
+                commit(types.REGISTER_COM_FAIL, { errorMsg: res.msg })
+            }
+        }).catch(error => {
+            Indicator.close()
+            commit(types.REGISTER_COM_FAIL, { errorMsg: 'error' })
+        })
     }
 }
 
 const mutations = {
-    [types.LOGIN_SUCCESS](state, { id, name}){
+    [types.LOGIN_SUCCESS](state, { id, name }) {
         state.userid = id
         state.username = name
         state.loginStatus = true
     },
-    [types.LOGIN_FAIL](state, { errorMsg }){
+    [types.LOGIN_FAIL](state, { errorMsg }) {
         state.loginStatus = false
-        state.errorMsg = errorMsg
+        MessageBox.alert(errorMsg)
+    },
+    [types.REGISTER_SUCCESS](state, {}){
+        Toast('注册成功！')
+        this.$router.push('/login')
+    },
+    [types.REGISTER_FAIL](state, { errorMsg }){
+        MessageBox.alert(errorMsg)
+    },
+    [types.REGISTER_COM_SUCCESS](state, {}){
+        Toast('注册成功！')
+        this.$router.push('/login')
+    },
+    [types.REGISTER_COM_FAIL](state, { errorMsg }){
         MessageBox.alert(errorMsg)
     }
 }
 
 export default {
     state,
-    getters,
     actions,
     mutations
 }

@@ -1,10 +1,6 @@
 <template>
     <div>
         <mt-header title="PT网">
-            <!-- <router-link to="/" slot="left">
-                <mt-button icon="back">返回</mt-button>
-            </router-link> -->
-            <!-- <a href="/" slot="left">&lt;返回</a> -->
         </mt-header>
         <mt-search class="searchBar" v-model="searchValue" placeholder="搜索公司或者岗位">
             <mt-cell to="/jobdetail" v-for="item in result" :title="item.title" :value="item.value" :label="item.label" is-link></mt-cell>

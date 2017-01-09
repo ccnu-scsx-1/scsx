@@ -9,6 +9,9 @@ export default {
     },
     register: function(data){
         return commonService.post('/api/user/register', data|| {})
+    },
+    status: function(data){
+        return commonService.post('/api/user/status', data || {})
     }
 }
 

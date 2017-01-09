@@ -45,18 +45,11 @@ export default {
     ]),
     methods: {
         clickLogin() {
-            if(this.role === 0){
-                this.$router.push('/userinfo?role=0')
-            }else{
-                this.$router.push('/userinfo?role=1')
-            }
-
-            
-            // this.$store.dispatch('login', {
-            //     name: this.username,
-            //     password: this.password,
-            //     role: this.role
-            // })
+            this.$store.dispatch('login', {
+                name: this.username,
+                password: this.password,
+                role: this.role
+            })
         }
     }
 }
