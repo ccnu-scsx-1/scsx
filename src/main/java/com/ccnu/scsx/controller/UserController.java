@@ -61,7 +61,7 @@ public class UserController {
 
     ScsxUser user = userService.findByNameAndPassword(name, password, role);
     if (user == null) {
-      return WebResultUtils.buildFailureResult();
+      return WebResultUtils.buildResult(ErrorCode.user_notExist);
     }
 
     request.getSession().setAttribute("loginAdmin", user);
@@ -91,12 +91,13 @@ public class UserController {
     }
     ScsxUser user = params.getUser();
     Byte role = user.getRole();
-    userService.register(user);
+    String userId = userService.register(user);
     if (role == 0) {
       return WebResultUtils.buildSucResult();
     }
     if (role == 1) {
       ScsxCompany company = params.getCompany();
+      company.setUserId(userId);
       companyService.insertCompany(company);
       return WebResultUtils.buildSucResult();
     }

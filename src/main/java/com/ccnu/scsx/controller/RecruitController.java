@@ -33,6 +33,13 @@ public class RecruitController {
   private CompanyService companyService;
 
   @ResponseBody
+  @RequestMapping(value = "/recruit/insertInfo", method = RequestMethod.POST)
+  public WebResultData insertInfo(@RequestBody String object) {
+
+    return WebResultUtils.buildSucResult();
+  }
+
+  @ResponseBody
   @RequestMapping(value = "/recruit/infoList", method = RequestMethod.POST)
   public WebResultData infoLists(@RequestBody String object) {
     Map<String, Integer> map = JSON.parseObject(object, Map.class);

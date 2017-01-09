@@ -1,5 +1,7 @@
 package com.ccnu.scsx.model;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
+@JsonAutoDetect
 public class ScsxResumeWithBLOBs extends ScsxResume {
     private String companyContent;
 

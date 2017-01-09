@@ -1,7 +1,9 @@
 package com.ccnu.scsx.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import java.util.Date;
 
+@JsonAutoDetect
 public class ScsxResume {
     private String id;
 

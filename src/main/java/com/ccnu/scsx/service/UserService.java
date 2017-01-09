@@ -27,12 +27,13 @@ public class UserService {
     return userDao.findByName(name);
   }
 
-  public void register(ScsxUser user) {
+  public String register(ScsxUser user) {
     String md5pwd = Md5Utils.getMD5(user.getPassword());
     user.setPassword(md5pwd);
     String id = UUIDUtils.getUUID();
     user.setId(id);
     userDao.register(user);
+    return id;
   }
 
   public ScsxUser findById(String id) {

@@ -42,5 +42,9 @@ public class RecruitService {
     return recruitDao.getUserIntentionList(userId);
   }
 
+  public void insertInfoSelective(ScsxRecruitInfo info) {
+    recruitDao.insertInfoSelective(info);
+  }
+
 }
 

@@ -5,10 +5,11 @@ public enum ErrorCode {
   suc(0, "Success"), 
   invalid_param(2, "parameter bind exception "),
   sign_failuare(3,"sign fail "),
-  param_empty(4,"param empty exception "),
-  not_login(5,"user not login"),
-  user_exist(6,"user has existed!"),
-  upload_faied(7,"Faild To Upload!!!"),
+  param_empty(4,"参数为空异常"),
+  not_login(5,"用户未登录"),
+  user_exist(6,"该用户已存在!"),
+  upload_faied(7,"上传简历失败!!!"),
+  user_notExist(8,"用户不存在!")
   ;
 
   private Integer code;

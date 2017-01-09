@@ -45,5 +45,9 @@ public class RecruitDao extends BaseDaoImpl<ScsxRecruitInfo> implements IBaseDao
     return recruitInfoMapper.getUserIntentionList(userId);
   }
 
+  public void insertInfoSelective(ScsxRecruitInfo info) {
+    recruitInfoMapper.insertSelective(info);
+  }
+
 }
 
