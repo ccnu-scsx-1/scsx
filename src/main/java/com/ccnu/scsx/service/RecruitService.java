@@ -2,6 +2,7 @@ package com.ccnu.scsx.service;
 
 import com.ccnu.scsx.model.ScsxRecruitInfo;
 import com.ccnu.scsx.utils.PageUtils;
+import com.ccnu.scsx.utils.UUIDUtils;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +44,18 @@ public class RecruitService {
   }
 
   public void insertInfoSelective(ScsxRecruitInfo info) {
+    String infoId = UUIDUtils.getUUID();
+    info.setId(infoId);
     recruitDao.insertInfoSelective(info);
   }
+
+  public List<ScsxRecruitInfo> getInfoListByInfoIds(List<String> infoIds) {
+    return recruitDao.getInfoListByInfoIds(infoIds);
+  }
+
+  /*public List<ScsxRecruitInfo> getListByUserIdAndInfoIds(String userId, List<String> infoIds) {
+    return recruitDao.getListByUserIdAndInfoIds(userId, infoIds);
+  }*/
 
 }
 

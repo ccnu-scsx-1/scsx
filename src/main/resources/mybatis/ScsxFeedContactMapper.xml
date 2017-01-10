@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ccnu.scsx.mapper.ScsxFeedContactMapper" >
+  <resultMap id="BaseResultMap" type="com.ccnu.scsx.model.ScsxFeedContact" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="feedback_id" property="feedbackId" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, feedback_id, role
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from scsx_feed_con
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from scsx_feed_con
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ccnu.scsx.model.ScsxFeedContact" >
+    insert into scsx_feed_con (id, user_id, feedback_id, 
+      role)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{feedbackId,jdbcType=VARCHAR}, 
+      #{role,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ccnu.scsx.model.ScsxFeedContact" >
+    insert into scsx_feed_con
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="feedbackId != null" >
+        feedback_id,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackId != null" >
+        #{feedbackId,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ccnu.scsx.model.ScsxFeedContact" >
+    update scsx_feed_con
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackId != null" >
+        feedback_id = #{feedbackId,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ccnu.scsx.model.ScsxFeedContact" >
+    update scsx_feed_con
+    set user_id = #{userId,jdbcType=VARCHAR},
+      feedback_id = #{feedbackId,jdbcType=VARCHAR},
+      role = #{role,jdbcType=BIT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

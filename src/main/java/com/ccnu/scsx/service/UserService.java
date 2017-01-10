@@ -45,4 +45,8 @@ public class UserService {
     userDao.updateById(user);
   }
 
+  public String findNameById(String userId){
+    return userDao.findNameById(userId);
+  }
+
 }

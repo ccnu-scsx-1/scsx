@@ -179,11 +179,18 @@
     and password = #{password, jdbcType=VARCHAR}
     and role = #{role,jdbcType=BIT}
   </select>
+
   <select id="findByName" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
     from scsx_user
     where name = #{name,jdbcType=VARCHAR} limit 1
+  </select>
+
+  <select id="findNameById" resultType="java.lang.String">
+    SELECT NAME
+    from scsx_user
+    where id = #{id,jdbcType=VARCHAR} limit 1
   </select>
   
 </mapper>

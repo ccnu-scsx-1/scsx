@@ -49,4 +49,8 @@ public class UserDao extends BaseDaoImpl<ScsxUser> implements IBaseDao<ScsxUser>
     userMapper.updateByPrimaryKeySelective(user);
   }
 
+  public String findNameById(String userId) {
+    return userMapper.findNameById(userId);
+  }
+
 }

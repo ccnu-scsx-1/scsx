@@ -2,6 +2,7 @@ package com.ccnu.scsx.service;
 
 import com.ccnu.scsx.dao.ContactDao;
 import com.ccnu.scsx.model.ScsxContact;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,14 @@ public class ContactService {
 
   public void insertContact(ScsxContact contact) {
     contactDao.insertContact(contact);
+  }
+
+  public List<String> selectInfoByUserId(String userId) {
+    return contactDao.selectInfoByUserId(userId);
+  }
+
+  public List<String> selectUserByinfoId(String infoId) {
+    return contactDao.selectUserByinfoId(infoId);
   }
 
 }

@@ -32,9 +32,12 @@
 			targetProject="E:\mygit\scsx\src\main\java">
 			<property name="enableSubPackages" value="true"/>
 		</javaClientGenerator>
-		<table tableName="scsx_resume" domainObjectName="ScsxResume"
+		<!--<table tableName="scsx_feedback" domainObjectName="ScsxFeedBack"
 			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>
+		<table tableName="scsx_feed_con" domainObjectName="ScsxFeedContact"
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+		</table>-->
 		<!-- <table tableName="scsx_company" domainObjectName="ScsxCompany"
 			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
 		</table>

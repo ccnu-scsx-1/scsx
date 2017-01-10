@@ -218,6 +218,29 @@
     SELECT id, title FROM scsx_recruit_info WHERE user_id = #{user_id,jdbcType=VARCHAR}
   </select>
 
+  <select id="getInfoListByInfoIds" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List"/>
+    FROM scsx_recruit_info
+    WHERE id IN
+    <foreach collection="list" item="infoId" index="index"
+      open="(" close=")" separator=",">
+      #{infoId}
+    </foreach>
+  </select>
+
+  <!--<select id="getListByUserIdAndInfoIds" resultMap="ResultMapWithBLOBs">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM scsx_recruit_info
+    WHERE user_id = #{user_id,jdbcType=VARCHAR} AND
+    id IN
+    <foreach collection="list" item="infoId" index="index"
+      open="(" close=")" separator=",">
+      #{infoId}
+    </foreach>
+  </select>-->
+
 </mapper>
 
 <!-- 新增了type字段 name like CONCAT('%',#{name},'%')-->

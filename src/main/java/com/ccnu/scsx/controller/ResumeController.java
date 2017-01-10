@@ -3,18 +3,24 @@ package com.ccnu.scsx.controller;
 import com.alibaba.fastjson.JSON;
 import com.ccnu.scsx.api.WebResultData;
 import com.ccnu.scsx.enu.ErrorCode;
+import com.ccnu.scsx.model.ScsxRecruitInfo;
 import com.ccnu.scsx.model.ScsxResume;
 import com.ccnu.scsx.model.ScsxResumeWithBLOBs;
 import com.ccnu.scsx.model.ScsxUser;
+import com.ccnu.scsx.service.ContactService;
+import com.ccnu.scsx.service.RecruitService;
 import com.ccnu.scsx.service.ResumeService;
 import com.ccnu.scsx.service.UserService;
 import com.ccnu.scsx.utils.DateUtils;
 import com.ccnu.scsx.utils.ObjectUtils;
 import com.ccnu.scsx.utils.UUIDUtils;
 import com.ccnu.scsx.utils.WebResultUtils;
+import com.ccnu.scsx.vo.InfoAndUserDto;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +49,10 @@ public class ResumeController {
   private ResumeService resumeService;
   @Autowired
   private UserService userService;
+  @Autowired
+  private RecruitService recruitService;
+  @Autowired
+  private ContactService contactService;
 
   @ResponseBody
   @RequestMapping(value = "/resume/insert", method = RequestMethod.POST)
@@ -84,6 +94,29 @@ public class ResumeController {
     }
     Map<String, Object> mapResult = new HashMap<String, Object>();//add fileId/filePath
     mapResult.put("fileName", time + originalFilename);
+    return WebResultUtils.buildSucResult(mapResult);
+  }
+
+  @ResponseBody
+  @RequestMapping(value = "/resume/resumeList", method = RequestMethod.POST)
+  public WebResultData getResuemListByUserId(@RequestBody String object) {
+    Map<String, String> map = JSON.parseObject(object, Map.class);
+    String hrId = map.get("userId");//select infoid by userid
+    List<Map<String, Object>> list = recruitService.getUserIntentionList(hrId);
+    List<InfoAndUserDto> infoAndUserDtos = new ArrayList<InfoAndUserDto>();
+    for (Map<String, Object> mapInfo : list) {
+      List<String> userIds = contactService.selectUserByinfoId((String) mapInfo.get("id"));
+      if (!ObjectUtils.isEmpty(userIds)) {
+        for (String userId : userIds) {
+          String username = userService.findNameById(userId);
+          InfoAndUserDto infoAndUserDto = InfoAndUserDto
+              .build(mapInfo.get("id"), mapInfo.get("title"), username);
+          infoAndUserDtos.add(infoAndUserDto);
+        }
+      }
+    }
+    Map<String, Object> mapResult = new HashMap<String, Object>();
+    mapResult.put("list", infoAndUserDtos);
     return WebResultUtils.buildSucResult(mapResult);
   }
 

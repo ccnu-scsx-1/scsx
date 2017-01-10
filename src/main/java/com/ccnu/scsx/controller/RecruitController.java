@@ -6,6 +6,7 @@ import com.ccnu.scsx.enu.TypeCode;
 import com.ccnu.scsx.model.ScsxCompany;
 import com.ccnu.scsx.model.ScsxRecruitInfo;
 import com.ccnu.scsx.service.CompanyService;
+import com.ccnu.scsx.service.ContactService;
 import com.ccnu.scsx.service.RecruitService;
 import com.ccnu.scsx.utils.WebResultUtils;
 import com.ccnu.scsx.vo.RecruitInfo;
@@ -31,11 +32,14 @@ public class RecruitController {
   private RecruitService recruitService;
   @Autowired
   private CompanyService companyService;
+  @Autowired
+  private ContactService contactService;
 
   @ResponseBody
   @RequestMapping(value = "/recruit/insertInfo", method = RequestMethod.POST)
   public WebResultData insertInfo(@RequestBody String object) {
-
+    ScsxRecruitInfo info = JSON.parseObject(object, ScsxRecruitInfo.class);
+    recruitService.insertInfoSelective(info);
     return WebResultUtils.buildSucResult();
   }
 
@@ -102,6 +106,26 @@ public class RecruitController {
     List<RecruitInfo> infos = new ArrayList<RecruitInfo>();
     for (ScsxRecruitInfo info : scsxRecruitInfos) {
       RecruitInfo recruitInfo = RecruitInfo.build(info);
+      infos.add(recruitInfo);
+    }
+    Map<String, Object> mapResult = new HashMap<String, Object>();
+    mapResult.put("infos", infos);
+    return WebResultUtils.buildSucResult(mapResult);
+  }
+
+  @ResponseBody
+  @RequestMapping(value = "/recruit/infoListById", method = RequestMethod.POST)
+  public WebResultData infoListById(@RequestBody String object) {
+    Map<String, String> map = JSON.parseObject(object, Map.class);
+    String userId = map.get("userId");
+    List<String> infoIds = contactService.selectInfoByUserId(userId);
+    List<ScsxRecruitInfo> scsxRecruitInfos = recruitService.getInfoListByInfoIds(infoIds);
+    List<RecruitInfo> infos = new ArrayList<RecruitInfo>();
+    for (ScsxRecruitInfo info : scsxRecruitInfos) {
+      String companyId = info.getCompanyId();
+      String companyName = companyService.findNameById(companyId);
+      RecruitInfo recruitInfo = RecruitInfo.build(info);
+      recruitInfo.setCompanyName(companyName);
       infos.add(recruitInfo);
     }
     Map<String, Object> mapResult = new HashMap<String, Object>();

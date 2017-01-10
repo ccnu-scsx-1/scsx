@@ -76,4 +76,17 @@
     FROM scsx_contact
     WHERE user_id = #{userId,jdbcType=VARCHAR} AND info_id = #{infoId,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectInfoByUserId" resultType="java.lang.String">
+    SELECT info_id
+    FROM scsx_contact
+    WHERE user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectUserByinfoId" resultType="java.lang.String">
+    SELECT user_id
+    FROM scsx_contact
+    WHERE info_id = #{infoId,jdbcType=VARCHAR}
+  </select>
+
 </mapper>

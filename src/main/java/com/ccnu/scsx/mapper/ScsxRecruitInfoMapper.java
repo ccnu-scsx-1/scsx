@@ -17,4 +17,9 @@ public interface ScsxRecruitInfoMapper extends BaseMapper<ScsxRecruitInfo> {
 
   List<Map<String, Object>> getUserIntentionList(@Param("user_id") String user_id);
 
+  List<ScsxRecruitInfo> getInfoListByInfoIds(@Param("list") List<String> infoIds);
+
+  /*List<ScsxRecruitInfo> getListByUserIdAndInfoIds(@Param("user_id") String user_id,
+      @Param("list") List<String> infoIds);*/
+
 }

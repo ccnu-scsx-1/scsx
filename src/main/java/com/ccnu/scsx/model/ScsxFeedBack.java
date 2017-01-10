@@ -5,9 +5,9 @@ public class ScsxFeedBack {
 
     private String infoId;
 
-    private String userId;
+    private Boolean result;
 
-    private Byte role;
+    private String title;
 
     private String content;
 
@@ -27,20 +27,20 @@ public class ScsxFeedBack {
         this.infoId = infoId == null ? null : infoId.trim();
     }
 
-    public String getUserId() {
-        return userId;
+    public Boolean getResult() {
+        return result;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+    public void setResult(Boolean result) {
+        this.result = result;
     }
 
-    public Byte getRole() {
-        return role;
+    public String getTitle() {
+        return title;
     }
 
-    public void setRole(Byte role) {
-        this.role = role;
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
     public String getContent() {

@@ -49,5 +49,13 @@ public class RecruitDao extends BaseDaoImpl<ScsxRecruitInfo> implements IBaseDao
     recruitInfoMapper.insertSelective(info);
   }
 
+  public List<ScsxRecruitInfo> getInfoListByInfoIds(List<String> infoIds) {
+    return recruitInfoMapper.getInfoListByInfoIds(infoIds);
+  }
+
+  /*public List<ScsxRecruitInfo> getListByUserIdAndInfoIds(String userId, List<String> infoIds) {
+    return recruitInfoMapper.getListByUserIdAndInfoIds(userId, infoIds);
+  }*/
+
 }
 

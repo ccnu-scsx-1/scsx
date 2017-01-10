@@ -4,6 +4,7 @@ import com.ccnu.scsx.dao.impl.BaseDaoImpl;
 import com.ccnu.scsx.db.BaseMapper;
 import com.ccnu.scsx.mapper.ScsxContactMapper;
 import com.ccnu.scsx.model.ScsxContact;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,6 +27,14 @@ public class ContactDao extends BaseDaoImpl<ScsxContact> implements IBaseDao<Scs
 
   public void insertContact(ScsxContact contact) {
     contactMapper.insert(contact);
+  }
+
+  public List<String> selectInfoByUserId(String userId) {
+    return contactMapper.selectInfoByUserId(userId);
+  }
+
+  public List<String> selectUserByinfoId(String infoId) {
+    return contactMapper.selectUserByinfoId(infoId);
   }
 
 }
