@@ -9,6 +9,7 @@ import com.ccnu.scsx.model.ScsxUser;
 import com.ccnu.scsx.service.ResumeService;
 import com.ccnu.scsx.service.UserService;
 import com.ccnu.scsx.utils.DateUtils;
+import com.ccnu.scsx.utils.ObjectUtils;
 import com.ccnu.scsx.utils.UUIDUtils;
 import com.ccnu.scsx.utils.WebResultUtils;
 import java.io.File;
@@ -47,6 +48,11 @@ public class ResumeController {
   @RequestMapping(value = "/resume/insert", method = RequestMethod.POST)
   public WebResultData insertResume(@RequestBody String object) {
     ScsxResumeWithBLOBs resume = JSON.parseObject(object, ScsxResumeWithBLOBs.class);
+    String userId = resume.getUserId();
+    if (isResumeExist(userId)) {
+      resumeService.updateResumeByUserId(resume);
+      return WebResultUtils.buildSucResult();
+    }
     resume.setId(UUIDUtils.getUUID());
     resume.setResumePath(storage + resume.getResumePath());
     resumeService.insertWithBloBs(resume);
@@ -84,6 +90,14 @@ public class ResumeController {
   private boolean isExist(String userId) {
     ScsxUser user = userService.findById(userId);
     if (user == null) {
+      return false;
+    }
+    return true;
+  }
+
+  private boolean isResumeExist(String userId) {
+    String resumePath = resumeService.selectResumePathByUserId(userId);
+    if (ObjectUtils.isEmpty(resumePath)) {
       return false;
     }
     return true;

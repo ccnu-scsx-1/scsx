@@ -207,9 +207,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.ccnu.scsx.model.ScsxResumeWithBLOBs">
     update scsx_resume
     <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=VARCHAR},
-      </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
@@ -271,7 +268,7 @@
         pro_exp = #{proExp,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ccnu.scsx.model.ScsxResumeWithBLOBs">
     update scsx_resume
@@ -319,5 +316,13 @@
       company_end = #{companyEnd,jdbcType=DATE}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <!-- mysql -->
+  <select id="selectResumePathByUserId" resultType="java.lang.String">
+    SELECT resume_path
+    FROM scsx_resume
+    WHERE user_id = #{userId,jdbcType=VARCHAR}
+    LIMIT 1
+  </select>
 
 </mapper>

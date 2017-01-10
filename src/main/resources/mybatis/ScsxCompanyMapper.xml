@@ -154,4 +154,13 @@
       scale = #{scale,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <!-- my sql -->
+  <select id="findNameById" resultType="java.lang.String">
+    SELECT NAME
+    FROM scsx_company
+    WHERE id = #{companyId,jdbcType=VARCHAR}
+    limit 1
+  </select>
+
 </mapper>

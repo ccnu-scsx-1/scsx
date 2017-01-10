@@ -30,5 +30,9 @@ public class CompanyDao extends BaseDaoImpl<ScsxCompany> implements IBaseDao<Scs
     return companyMapper.selectByPrimaryKey(company_id);
   }
 
+  public String findNameById(String companyId) {
+    return companyMapper.findNameById(companyId);
+  }
+
 }
 

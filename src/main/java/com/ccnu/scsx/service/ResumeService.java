@@ -18,4 +18,12 @@ public class ResumeService {
     resumeDao.insertWithBloBs(resumeWithBLOBs);
   }
 
+  public String selectResumePathByUserId(String userId) {
+    return resumeDao.selectResumePathByUserId(userId);
+  }
+
+  public void updateResumeByUserId(ScsxResumeWithBLOBs resumeWithBLOBs) {
+    resumeDao.updateResumeByUserId(resumeWithBLOBs);
+  }
+
 }

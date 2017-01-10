@@ -26,4 +26,12 @@ public class ResumeDao extends BaseDaoImpl<ScsxResumeWithBLOBs> implements
     resumeMapper.insertSelective(resumeWithBLOBs);
   }
 
+  public String selectResumePathByUserId(String userId) {
+    return resumeMapper.selectResumePathByUserId(userId);
+  }
+
+  public void updateResumeByUserId(ScsxResumeWithBLOBs resumeWithBLOBs) {
+    resumeMapper.updateByPrimaryKeySelective(resumeWithBLOBs);
+  }
+
 }

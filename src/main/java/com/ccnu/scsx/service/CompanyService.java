@@ -1,6 +1,7 @@
 package com.ccnu.scsx.service;
 
 import com.ccnu.scsx.utils.UUIDUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,10 @@ public class CompanyService {
 
   public ScsxCompany getCompanyDetail(String company_id) {
     return companyDao.getCompanyDetail(company_id);
+  }
+
+  public String findNameById(@Param("companyId") String companyId) {
+    return companyDao.findNameById(companyId);
   }
 
 }

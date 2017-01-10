@@ -47,7 +47,10 @@ public class RecruitController {
     List<ScsxRecruitInfo> scsxRecruitInfos = recruitService.getInfos(pageNum);
     List<RecruitInfo> infos = new ArrayList<RecruitInfo>();
     for (ScsxRecruitInfo info : scsxRecruitInfos) {
+      String companyId = info.getCompanyId();
+      String companyName = companyService.findNameById(companyId);
       RecruitInfo recruitInfo = RecruitInfo.build(info);
+      recruitInfo.setCompanyName(companyName);
       infos.add(recruitInfo);
     }
     Map<String, Object> mapResult = new HashMap<String, Object>();

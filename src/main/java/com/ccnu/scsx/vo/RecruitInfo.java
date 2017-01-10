@@ -9,6 +9,7 @@ public class RecruitInfo {
 
   private String infoId;
   private String companyId;
+  private String companyName;
   private String title;
   private int salary_high;
   private int salary_low;
@@ -62,7 +63,15 @@ public class RecruitInfo {
     this.region = region;
   }
 
-  public static RecruitInfo build(ScsxRecruitInfo scsxRecruitInfo){
+  public String getCompanyName() {
+    return companyName;
+  }
+
+  public void setCompanyName(String companyName) {
+    this.companyName = companyName;
+  }
+
+  public static RecruitInfo build(ScsxRecruitInfo scsxRecruitInfo) {
     RecruitInfo info = new RecruitInfo();
     info.setCompanyId(scsxRecruitInfo.getCompanyId());
     info.setInfoId(scsxRecruitInfo.getId());
@@ -70,7 +79,7 @@ public class RecruitInfo {
     info.setTitle(scsxRecruitInfo.getTitle());
     info.setSalary_high(scsxRecruitInfo.getSalaryHigh());
     info.setSalary_low(scsxRecruitInfo.getSalaryLow());
-    return  info;
+    return info;
   }
 
 }
