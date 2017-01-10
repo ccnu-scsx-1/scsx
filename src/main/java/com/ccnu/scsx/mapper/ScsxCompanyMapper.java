@@ -16,4 +16,6 @@ public interface ScsxCompanyMapper extends BaseMapper<ScsxCompany> {
 
   String findNameById(@Param("companyId") String companyId);
 
+  ScsxCompany findByUserId(@Param("userId") String userId);
+
 }

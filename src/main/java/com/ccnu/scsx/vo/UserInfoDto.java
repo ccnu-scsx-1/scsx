@@ -2,23 +2,24 @@ package com.ccnu.scsx.vo;
 
 import com.ccnu.scsx.enu.PositionCode;
 import com.ccnu.scsx.enu.RoleCode;
+import com.ccnu.scsx.model.ScsxCompany;
 import com.ccnu.scsx.model.ScsxUser;
 
 /**
-*Create By Joban on2017年1月3日下午7:12:51
-*/
+ * Create By Joban on2017年1月3日下午7:12:51
+ */
 public class UserInfoDto {
 
   private String name;
-  
+
   private String email;
-  
+
   private String gender;
 
   private int age;
 
   private String number;
-  
+
   private String position;
 
   private String role;
@@ -28,6 +29,8 @@ public class UserInfoDto {
   private String infoId;
 
   private int yearWork;
+
+  private ScsxCompany company;
 
   public String getName() {
     return name;
@@ -108,21 +111,30 @@ public class UserInfoDto {
   public void setYearWork(int yearWork) {
     this.yearWork = yearWork;
   }
-  
+
+  public ScsxCompany getCompany() {
+    return company;
+  }
+
+  public void setCompany(ScsxCompany company) {
+    this.company = company;
+  }
+
   public static UserInfoDto build(ScsxUser user) {
     UserInfoDto userInfoDto = new UserInfoDto();
     userInfoDto.setAge(user.getAge());
     userInfoDto.setEmail(user.getEmail());
-    userInfoDto.setGender((user.getGender()==0)?"男":"女");
+    userInfoDto.setGender((user.getGender() == 0) ? "男" : "女");
     userInfoDto.setName(user.getName());
     userInfoDto.setNumber(user.getNumber());
-    userInfoDto.setPosition(PositionCode.getDescByCode(user.getPosition()));
+    userInfoDto.setPosition(
+        PositionCode.getDescByCode(user.getPosition() == null ? 0 : user.getPosition()));
     userInfoDto.setResumeId(user.getResumeId());
     userInfoDto.setRole(RoleCode.getDescByCode(user.getRole()));
-    userInfoDto.setYearWork(user.getYearWork());
+    userInfoDto.setYearWork(user.getYearWork() == null ? 0 : user.getYearWork());
     userInfoDto.setInfoId(user.getInfoId());
     return userInfoDto;
   }
-  
+
 }
 

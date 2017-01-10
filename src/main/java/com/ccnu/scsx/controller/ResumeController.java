@@ -110,7 +110,7 @@ public class ResumeController {
         for (String userId : userIds) {
           String username = userService.findNameById(userId);
           InfoAndUserDto infoAndUserDto = InfoAndUserDto
-              .build(mapInfo.get("id"), mapInfo.get("title"), username);
+              .build(userId, mapInfo.get("title"), username);
           infoAndUserDtos.add(infoAndUserDto);
         }
       }

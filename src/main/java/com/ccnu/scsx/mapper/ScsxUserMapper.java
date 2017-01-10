@@ -15,4 +15,7 @@ public interface ScsxUserMapper extends BaseMapper<ScsxUser> {
   ScsxUser findByName(@Param("name") String name);
 
   String findNameById(@Param("id") String id);
+
+  ScsxUser findById(@Param("userId")String userId);
+
 }

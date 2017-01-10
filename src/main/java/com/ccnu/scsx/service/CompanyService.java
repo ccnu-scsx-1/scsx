@@ -31,5 +31,9 @@ public class CompanyService {
     return companyDao.findNameById(companyId);
   }
 
+  public ScsxCompany findByUserId(String userId) {
+    return companyDao.findByUserId(userId);
+  }
+
 }
 

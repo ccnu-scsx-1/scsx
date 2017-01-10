@@ -42,7 +42,7 @@ public class UserDao extends BaseDaoImpl<ScsxUser> implements IBaseDao<ScsxUser>
   }
 
   public ScsxUser findById(String id) {
-    return userMapper.selectByPrimaryKey(id);
+    return userMapper.findById(id);
   }
 
   public void updateById(ScsxUser user) {

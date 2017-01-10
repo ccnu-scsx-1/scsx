@@ -108,7 +108,12 @@ public class UserController {
   @RequestMapping(value = "/user/status", method = RequestMethod.POST)
   public WebResultData getStatus(HttpServletRequest request) {
     if (request.getSession().getAttribute("loginAdmin") != null) {
-      return WebResultUtils.buildSucResult();
+      ScsxUser user = (ScsxUser) request.getSession().getAttribute("loginAdmin");
+      Map<String, Object> mapResult = new HashMap<String, Object>();
+      mapResult.put("name", user.getName());
+      mapResult.put("id", user.getId());
+      mapResult.put("role", user.getRole());
+      return WebResultUtils.buildSucResult(mapResult);
     }
     return WebResultUtils.buildResult(ErrorCode.not_login);
   }
@@ -116,10 +121,16 @@ public class UserController {
   @ResponseBody
   @RequestMapping(value = "/user/info", method = RequestMethod.POST)
   public WebResultData getUserInfo(@RequestBody String object) {
-    String userId = JSON.parseObject(object, IdParams.class).getId();
+    Map<String, Object> map = JSON.parseObject(object, Map.class);
+    String userId = (String) map.get("id");
+    int role = (Integer) map.get("role");
     ScsxUser user = userService.findById(userId);
     UserInfoDto userInfoDto = UserInfoDto.build(user);
-
+    System.out.println(role);
+    if (role == 1) {
+      ScsxCompany company = companyService.findByUserId(userId);
+      userInfoDto.setCompany(company);
+    }
     Map<String, Object> mapResult = new HashMap<String, Object>();
     mapResult.put("info", userInfoDto);
     return WebResultUtils.buildSucResult(mapResult);

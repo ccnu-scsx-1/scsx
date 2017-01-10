@@ -5,17 +5,17 @@ package com.ccnu.scsx.vo;
  */
 public class InfoAndUserDto {
 
-  private Object infoId;
+  private Object userId;
   private Object title;
 
   private String username;
 
-  public Object getInfoId() {
-    return infoId;
+  public Object getUserId() {
+    return userId;
   }
 
-  public void setInfoId(Object infoId) {
-    this.infoId = infoId;
+  public void setUserId(Object userId) {
+    this.userId = userId;
   }
 
   public void setUsername(String username) {
@@ -35,10 +35,10 @@ public class InfoAndUserDto {
     this.title = title;
   }
 
-  public static InfoAndUserDto build(Object infoId, Object title, String username) {
+  public static InfoAndUserDto build(Object userId, Object title, String username) {
     InfoAndUserDto infoAndUserDto = new InfoAndUserDto();
     infoAndUserDto.setTitle(title);
-    infoAndUserDto.setInfoId(infoId);
+    infoAndUserDto.setUserId(userId);
     infoAndUserDto.setUsername(username);
     return infoAndUserDto;
   }

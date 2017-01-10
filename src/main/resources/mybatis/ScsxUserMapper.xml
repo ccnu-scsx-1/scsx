@@ -192,5 +192,12 @@
     from scsx_user
     where id = #{id,jdbcType=VARCHAR} limit 1
   </select>
+
+  <select id="findById" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from scsx_user
+    where id = #{userId,jdbcType=VARCHAR}
+  </select>
   
 </mapper>

@@ -34,5 +34,9 @@ public class CompanyDao extends BaseDaoImpl<ScsxCompany> implements IBaseDao<Scs
     return companyMapper.findNameById(companyId);
   }
 
+  public ScsxCompany findByUserId(String userId) {
+    return companyMapper.findByUserId(userId);
+  }
+
 }
 
