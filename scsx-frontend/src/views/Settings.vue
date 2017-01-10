@@ -12,7 +12,6 @@
                     <option value="1">女</option>
                 </select>
             </mt-cell>
-            <mt-field label="个性签名" placeholder="请输入个性签名（选填）" type="textarea" rows="4" v-model="motto">
         </div>
         <div class="info-part">
             <mt-button plain @click="clickCancel">返&nbsp;回</mt-button>
@@ -27,16 +26,48 @@ import {
 
 export default {
     name: 'Settings',
-    data() {
-        return {
-            username: '',
-            email: '',
-            tel: '',
-            age: '',
-            gender: 0,
-            role: 0,
-            motto: ''
-        }
+    computed: {
+        username: {
+            get(){
+                return this.$store.state.settings.username
+            },
+            set(value){
+                this.$store.state.settings.username = value
+            }
+        },
+        email: {
+            get(){
+                return this.$store.state.settings.email
+            },
+            set(value){
+                this.$store.state.settings.email = value
+            }
+        },
+        tel: {
+            get(){
+                return this.$store.state.settings.tel
+            },
+            set(value){
+                this.$store.state.settings.tel = value
+            }
+        },
+        age: {
+            get(){
+                return this.$store.state.settings.age
+            },
+            set(value){
+                this.$store.state.settings.age = value
+            }
+        },
+        gender: {
+            get(){
+                return this.$store.state.settings.gender
+            },
+            set(value){
+                this.$store.state.settings.gender = value
+            }
+        },
+        role: 0,
     },
     methods: {
         clickCancel() {
@@ -45,8 +76,11 @@ export default {
             }, action => {})
         },
         clickSave() {
-            MessageBox.alert('保存成功！')
+            this.$store.dispatch('updateReigsterInfo')
         }
+    },
+    mounted(){
+        this.$store.dispatch('loadRegisterInfo')
     }
 }
 </script>

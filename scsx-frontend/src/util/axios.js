@@ -4,7 +4,8 @@ const baseURL = 'http://joban.top/scsx'
 
 //通用类http-service
 export const commonService = axios.create({
-    baseURL
+    baseURL,
+    //withCredentials: true
 })
 
 //文件服务类file-service, 

@@ -15,6 +15,15 @@ export default {
     },
     submitInfo: function(data){
         return commonService.post('/api/user/submitInfo', data || {})
+    },
+    updatePassword: function(data){
+        return commonService.post('/api/user/updateUserInfo', data || {})
+    },
+    updateUserInfo: function(data){
+        return commonService.post('/api/user/updateUserInfo', data || {})
+    },
+    publishJobList:  function(data){
+        return commonService.post('/api/user/intention', data || {})
     }
 }
 

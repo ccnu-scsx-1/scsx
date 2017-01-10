@@ -16,7 +16,6 @@
                     <option value="1">女</option>
                 </select>
             </mt-cell>
-            <mt-field label="个性签名" placeholder="请输入个性签名（选填）" type="textarea" rows="4" v-model="motto"></mt-field>
             <mt-field label="密码" placeholder="请输入密码" type="password" v-model="password"></mt-field>
             <mt-field label="确认密码" placeholder="请再次输入密码" type="password" v-model="rpassword"></mt-field>
         </div>

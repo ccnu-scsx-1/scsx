@@ -49,10 +49,15 @@ const actions = {
             }
         }).catch( error=> {
             Indicator.close()
-            commit('LOAD_JOB_DETAIL_FAIL', { errorMsg: error })
+            commit('LOAD_JOB_DETAIL_FAIL', { errorMsg: 'error' })
         })
     },
-    voteResume({ commit }){
+    voteResume({ commit, state}){
+        if(!state.loginStatus){
+            commit('NOT_LOGIN')
+        }else{
+
+        }
 
     }
 }
@@ -73,6 +78,11 @@ const mutations = {
     },
     [types.LOAD_JOB_DETAIL_FAIL](state, { errorMsg }){
         MessageBox.alert(errorMsg)
+    },
+    [types.NOT_LOGIN](state){
+        MessageBox.alert('您尚未登录，请先登录！').then(action =>{
+            router.push('/login')
+        })
     }
 }
 

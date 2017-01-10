@@ -14,11 +14,6 @@ const getters = {
         let result = state.searchResult
 
         result.forEach(obj => {
-            // newObj.title = obj.title
-            // newObj.infoId = obj.infoId
-            // newObj.companyId = obj.companyId
-           // newObj.label = obj. TODO: ADD COMPANY  NAME 
-          // newObj.value =  formatSalary(obj.salary_low, )
           obj.salary = formatSalary(obj.salary_low, obj.salary_high)
         })
 
@@ -39,7 +34,7 @@ const actions = {
             }
         }).catch(error => {
             Indicator.close()
-            commit(types.MARKET_JOB_LIST_FAIL, { errorMsg: error })
+            commit(types.MARKET_JOB_LIST_FAIL, { errorMsg: 'error' })
         })
     },
     searchBytitle({ commit }, data) {
@@ -54,7 +49,7 @@ const actions = {
             }
         }).catch(error => {
             Indicator.close()
-            commit(types.MARKET_JOB_SEARCH_FAIL, { errorMsg: error })
+            commit(types.MARKET_JOB_SEARCH_FAIL, { errorMsg: 'error' })
         })
     }
 }

@@ -6,7 +6,7 @@
             </router-link>
         </mt-header>
         <div class="info-part" >
-            <mt-cell to="/resumeinfo" v-for="item in result" :title="item.title" :value="item.value" :label="item.label" is-link></mt-cell>
+            <v-cell v-for="item in resumePool" :title="item.title" :salary="item.username" ></v-cell>
         </div>
         <div class="info-part">
             <mt-button plain @click="clickGoBack" size="large">返&nbsp;回</mt-button>
@@ -14,32 +14,23 @@
     </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
+import VCell from '../components/cell'
 export default {
     name: 'ComSettings',
-    data() {
-        return {
-            result: [{
-                title: 'web前端',
-                label: '旺旺集团',
-                value: '已投递'
-            }, {
-                title: 'Java后台',
-                label: '旺旺集团',
-                value: '已投递'
-            }, {
-                title: 'PHP',
-                label: '旺旺集团',
-                value: '已投递'
-            }]
+    components: {
+        VCell
+    },
+    computed: mapGetters([
+        'resumePool'
+    ]),
+    methods: {
+        clickGoBack() {
+            this.$router.push('/userinfo?role='+ this.$store.state.user.role)
         }
     },
-    methods: {
-        clickToVote() {
-            this.$router.push('/market')
-        },
-        clickGoBack() {
-            this.$router.push('/userinfo?role=1')
-        }
+    mounted(){
+        this.$store.dispatch('loadResumePool', { userId: this.$store.state.user.userid })
     }
 }
 </script>

@@ -6,22 +6,17 @@ import mutations from './mutations'
 import user from './modules/user'
 import market from './modules/market'
 import jobDetail from './modules/jobDetail'
+import resume from './modules/resume'
+import resumePool from './modules/resumePool'
 
 Vue.use(Vuex)
 
-const state = {
-    isLogin: false,
-    username: '',
-    userid: ''
-}
-
 export default new Vuex.Store({
-    state,
-    mutations,
-    actions,
     modules: {
         user,
         market,
-        jobDetail
+        jobDetail,
+        resume,
+        resumePool
     }
 })

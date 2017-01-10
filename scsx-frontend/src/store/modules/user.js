@@ -7,11 +7,19 @@ import router from '../../router'
 const state = {
     loginStatus: false,
     username: '',
-    userid: ''
+    userid: '',
+    menuClass: 'user',
+    role: 0
+}
+
+const getters = {
+    loginStatus: state => state.loginStatus,
+    menuClass: state => state.menuClass,
+    username: state => state.username
 }
 
 const actions = {
-    login({ commit }, data) {
+    login({ commit, state}, data) {
         if (Validator.isEmpty(data.name) || Validator.isEmpty(data.password)) {
             MessageBox.alert('用户名或密码不能为空！')
             return
@@ -23,14 +31,35 @@ const actions = {
             if (res.status === '0') {
                 commit(types.LOGIN_SUCCESS, {
                     id: res.data.id,
-                    name: res.data.name
+                    name: res.data.name,
+                    role: data.role
                 })
             } else {
                 commit(types.LOGIN_FAIL, { errorMsg: res.msg })
             }
         }).catch(error => {
             Indicator.close()
-            commit(types.LOGIN_FAIL, { errorMsg: error })
+            commit(types.LOGIN_FAIL, { errorMsg: 'error' })
+        })
+    },
+    logout({ commit }){
+        user.logout().then( response => {
+            let res = response.data
+            if(res.status === '0'){
+                commit('LOGOUT_SUCCESS')
+            }else{
+                commit('LOGOUT_FAIL', { errorMsg: res.msg })
+            }
+        })
+    },
+    logStatus({ commit }){
+        user.status().then(response => {
+            let res = response.data
+            if(res.status === '0'){
+                commit('HAS_LOGIN', res.data)
+            }else{
+                commit('NOT_LOGIN')
+            }
         })
     },
     register({ commit }, data) {
@@ -76,7 +105,7 @@ const actions = {
             }
         }).catch(error => {
             Indicator.close()
-            commit(types.REGISTER_FAIL, { errorMsg: error })
+            commit(types.REGISTER_FAIL, { errorMsg: 'error' })
         })
     },
     registerCom({ commit }, data) {
@@ -143,16 +172,23 @@ const actions = {
             }
         }).catch(error => {
             Indicator.close()
-            commit(types.REGISTER_COM_FAIL, { errorMsg: error })
+            commit(types.REGISTER_COM_FAIL, { errorMsg: 'error' })
         })
+    },
+    changeMenu({ commit, state}, { className }){
+        state.menuClass = className
+    },
+    updatePassword({ commit },){
+
     }
 }
 
 const mutations = {
-    [types.LOGIN_SUCCESS](state, { id, name }) {
+    [types.LOGIN_SUCCESS](state, { id, name, role}) {
         state.userid = id
         state.username = name
         state.loginStatus = true
+        state.role = role
         router.push('/market')
     },
     [types.LOGIN_FAIL](state, { errorMsg }) {
@@ -172,11 +208,33 @@ const mutations = {
     },
     [types.REGISTER_COM_FAIL](state, { errorMsg }) {
         MessageBox.alert(errorMsg)
+    },
+    [types.LOGOUT_SUCCESS](state){
+        state.userid = ''
+        state.username = ''
+        state.loginStatus = false
+        state.menuClass = 'user'
+        router.push('/')
+    },
+    [types.LOGOUT_FAIL](state, { errorMsg }){
+        MessageBox.alert(errorMsg)
+    },
+    [types.NOT_LOGIN](state){
+        MessageBox.alert('您尚未登录，请先登录！').then(action =>{
+            router.push('/login')
+        })
+    },
+    [types.HAS_LOGIN](state, data){
+        state.userid = data.userId,
+        state.username = data.userName,
+        state.role = data.role
+        state.loginStatus = true
     }
 }
 
 export default {
     state,
+    getters,
     actions,
     mutations
 }

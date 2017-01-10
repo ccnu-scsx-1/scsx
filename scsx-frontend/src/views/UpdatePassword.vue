@@ -2,8 +2,6 @@
     <div class="v-container">
         <mt-header title="密码修改"></mt-header>
         <div class="info-part">
-            <mt-cell title="账号信息"></mt-cell>
-            <mt-field label="用户名" placeholder="请输入用户名" v-model="username"></mt-field>
             <mt-field label="旧密码" placeholder="请输入旧密码" type="password" v-model="oldpassword"></mt-field>
             <mt-field label="新密码" placeholder="请输入新密码" type="password" v-model="newpassword"></mt-field>
             <mt-field label="确认密码" placeholder="请再次输入新密码" type="password" v-model="rnewpassword"></mt-field>
@@ -15,14 +13,12 @@
     </div>
 </template>
 <script>
-
 import { MessageBox } from 'mint-ui'
 
 export default {
     name: 'UpdatePassword',
     data() {
         return {
-            username: '',
             oldpassword: '',
             newpassword: '',
             rnewpassword: '',     
@@ -30,12 +26,13 @@ export default {
     },
     methods: {
         clickCancel(){
+            let role = this.$store.state.user.role
             MessageBox.confirm('当前修改未保存，是否直接返回？').then(action => {
-                this.$router.push('/userinfo')
+                this.$router.push('/userinfo?role=' + role)
             }, action => {})
         },
         clickSave(){
-            MessageBox.alert('保存成功！')
+            this.$store.dispatch('updatePassword', { oldpassword: this.oldpassword })
         }
     }
 }

@@ -6,7 +6,7 @@
             </router-link>
         </mt-header>
         <div class="info-part">
-            <mt-cell to="/editjob" v-for="item in result" :title="item.title" :value="item.value" :label="item.label" is-link></mt-cell>
+            <v-cell v-for="item in jobList" :title="item.title" :company="item.companyName" :region="item.region" :salary="item.salary" :link="{path: '/jobdetail', query: { infoId: item.id, companyId: item.companyId }}" ></v-cell>
         </div>
 
         <div class="info-part">
@@ -16,28 +16,20 @@
     </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
+import VCell from '../components/cell'
+
 export default {
-    name: 'ComSettings',
-    data() {
-        return {
-            result: [{
-                title: 'web前端',
-                label: '旺旺集团',
-                value: '10k-20k'
-            }, {
-                title: 'Java后台',
-                label: '旺旺集团',
-                value: '10k-20k'
-            }, {
-                title: 'PHP',
-                label: '旺旺集团',
-                value: '10k-20k'
-            }]
-        }
+    name: 'Employment',
+    components:{
+        VCell
     },
+    computed: mapGetters([
+        'jobList'
+    ]),
     methods: {
         clickCancel(){
-            this.$router.push('/userinfo')
+            this.$router.push('/userinfo?role=' + this.$store.state.user.role)
         },
         clickAdd(){
             this.$router.push('/publishjob')
