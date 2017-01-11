@@ -7,6 +7,7 @@ public class InfoAndUserDto {
 
   private Object userId;
   private Object title;
+  private Object infoId;
 
   private String username;
 
@@ -28,18 +29,26 @@ public class InfoAndUserDto {
 
   public Object getTitle() {
     return title;
+  }
 
+  public Object getInfoId() {
+    return infoId;
+  }
+
+  public void setInfoId(Object infoId) {
+    this.infoId = infoId;
   }
 
   public void setTitle(Object title) {
     this.title = title;
   }
 
-  public static InfoAndUserDto build(Object userId, Object title, String username) {
+  public static InfoAndUserDto build(Object userId, Object title, String username, Object infoId) {
     InfoAndUserDto infoAndUserDto = new InfoAndUserDto();
     infoAndUserDto.setTitle(title);
     infoAndUserDto.setUserId(userId);
     infoAndUserDto.setUsername(username);
+    infoAndUserDto.setInfoId(infoId);
     return infoAndUserDto;
   }
 

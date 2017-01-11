@@ -1,53 +1,66 @@
 package com.ccnu.scsx.model;
 
 public class ScsxFeedBack {
-    private String id;
 
-    private String infoId;
+  private String id;
 
-    private Boolean result;
+  private String infoId;
 
-    private String title;
+  private Boolean result;
 
-    private String content;
+  private String title;
 
-    public String getId() {
-        return id;
-    }
+  private String content;
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
+  public String getId() {
+    return id;
+  }
 
-    public String getInfoId() {
-        return infoId;
-    }
+  public void setId(String id) {
+    this.id = id == null ? null : id.trim();
+  }
 
-    public void setInfoId(String infoId) {
-        this.infoId = infoId == null ? null : infoId.trim();
-    }
+  public String getInfoId() {
+    return infoId;
+  }
 
-    public Boolean getResult() {
-        return result;
-    }
+  public void setInfoId(String infoId) {
+    this.infoId = infoId == null ? null : infoId.trim();
+  }
 
-    public void setResult(Boolean result) {
-        this.result = result;
-    }
+  public Boolean getResult() {
+    return result;
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public void setResult(Boolean result) {
+    this.result = result;
+  }
 
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public String getContent() {
-        return content;
-    }
+  public void setTitle(String title) {
+    this.title = title == null ? null : title.trim();
+  }
 
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
-    }
+  public String getContent() {
+    return content;
+  }
+
+  public void setContent(String content) {
+    this.content = content == null ? null : content.trim();
+  }
+
+  public static ScsxFeedBack build(String feedbackId, String infoId, String title, String content,
+      boolean result) {
+    ScsxFeedBack feedBack = new ScsxFeedBack();
+    feedBack.setId(feedbackId);
+    feedBack.setInfoId(infoId);
+    feedBack.setTitle(title);
+    feedBack.setContent(content);
+    feedBack.setResult(result);
+    return feedBack;
+  }
+
 }

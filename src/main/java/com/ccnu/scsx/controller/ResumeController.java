@@ -8,6 +8,7 @@ import com.ccnu.scsx.model.ScsxResume;
 import com.ccnu.scsx.model.ScsxResumeWithBLOBs;
 import com.ccnu.scsx.model.ScsxUser;
 import com.ccnu.scsx.service.ContactService;
+import com.ccnu.scsx.service.FeedBackService;
 import com.ccnu.scsx.service.RecruitService;
 import com.ccnu.scsx.service.ResumeService;
 import com.ccnu.scsx.service.UserService;
@@ -53,6 +54,8 @@ public class ResumeController {
   private RecruitService recruitService;
   @Autowired
   private ContactService contactService;
+  @Autowired
+  private FeedBackService feedBackService;
 
   @ResponseBody
   @RequestMapping(value = "/resume/insert", method = RequestMethod.POST)
@@ -110,7 +113,7 @@ public class ResumeController {
         for (String userId : userIds) {
           String username = userService.findNameById(userId);
           InfoAndUserDto infoAndUserDto = InfoAndUserDto
-              .build(userId, mapInfo.get("title"), username);
+              .build(userId, mapInfo.get("title"), username, mapInfo.get("id"));
           infoAndUserDtos.add(infoAndUserDto);
         }
       }
@@ -118,6 +121,19 @@ public class ResumeController {
     Map<String, Object> mapResult = new HashMap<String, Object>();
     mapResult.put("list", infoAndUserDtos);
     return WebResultUtils.buildSucResult(mapResult);
+  }
+
+  @ResponseBody
+  @RequestMapping(value = "/resume/feedbackResume", method = RequestMethod.POST)
+  public WebResultData feedbackResume(@RequestBody String object) {
+    Map<String, Object> map = JSON.parseObject(object, Map.class);
+    String feedBackId = feedBackService.insertSelective(map);
+    String infoId = (String) map.get("infoId");
+    String hrId = (String) map.get("hrId");
+    String userId = (String) map.get("userId");
+    feedBackService.insertFeedContact(feedBackId, userId, 0);
+    feedBackService.insertFeedContact(feedBackId, hrId, 1);
+    return WebResultUtils.buildSucResult();
   }
 
   @ResponseBody
