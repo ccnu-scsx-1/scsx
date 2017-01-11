@@ -25,7 +25,26 @@ const getters = {
     title: state => state.title,
     region: state => state.region,
     yearWork: state => state.yearWork,
-    education: state => state.education,
+    education: state => {
+        let edu = ''
+        switch (state.education) {
+            case 0:
+                edu = '专科';
+                break;
+            case 1:
+                edu = '本科';
+                break;
+            case 2:
+                edu = '硕士';
+                break;
+            case 3:
+                edu = '博士';
+                break;
+            default:
+                break;
+        }
+        return edu
+    },
     name: state => state.name,
     address: state => state.address,
     tel: state => state.tel,
@@ -37,33 +56,43 @@ const getters = {
 }
 
 const actions = {
-    loadJobDetail({ commit }, data ){
+    loadJobDetail({ commit }, data) {
         Indicator.open()
-        recuit.jobDetail(data).then( response => {
+        recuit.jobDetail(data).then(response => {
             Indicator.close()
             let res = response.data
-            if(res.status === '0'){
+            if (res.status === '0') {
                 commit('LOAD_JOB_DETAIL_SUCCESS', res.data)
-            }else{
-                commit('LOAD_JOB_DETAIL_FAIL', { errorMsg:res.msg })
+            } else {
+                commit('LOAD_JOB_DETAIL_FAIL', { errorMsg: res.msg })
             }
-        }).catch( error=> {
+        }).catch(error => {
             Indicator.close()
             commit('LOAD_JOB_DETAIL_FAIL', { errorMsg: 'error' })
         })
     },
-    voteResume({ commit, state}){
-        if(!state.loginStatus){
+    voteResume({ commit, state }, data) {
+        if (!data.loginStatus) {
             commit('NOT_LOGIN')
-        }else{
-
+        } else {
+            delete data.loginStatus
+            user.voteResume(data).then(response => {
+                let res = response.data
+                if (res.status === '0') {
+                    commit('VOTE_RESUME_SUCCESS')
+                } else {
+                    commit('VOTE_RESUME_FAIL', { errorMsg: res.msg })
+                }
+            }).catch(error => {
+                Indicator.close()
+                commit('VOTE_RESUME_FAIL', { errorMsg: 'error' })
+            })
         }
-
     }
 }
 
 const mutations = {
-    [types.LOAD_JOB_DETAIL_SUCCESS](state, data){
+    [types.LOAD_JOB_DETAIL_SUCCESS](state, data) {
         state.title = data.infoDetail.title
         state.salaryHigh = data.infoDetail.salaryHigh
         state.salaryLow = data.infoDetail.salaryLow
@@ -76,13 +105,20 @@ const mutations = {
         state.tel = data.company.tel
         state.email = data.company.email
     },
-    [types.LOAD_JOB_DETAIL_FAIL](state, { errorMsg }){
+    [types.LOAD_JOB_DETAIL_FAIL](state, { errorMsg }) {
         MessageBox.alert(errorMsg)
     },
-    [types.NOT_LOGIN](state){
-        MessageBox.alert('您尚未登录，请先登录！').then(action =>{
+    [types.NOT_LOGIN](state) {
+        MessageBox.alert('您尚未登录，请先登录！').then(action => {
             router.push('/login')
         })
+    },
+    [types.VOTE_RESUME_SUCCESS](state) {
+        Toast('投递成功！')
+        router.push('/market')
+    },
+    [types.VOTE_RESUME_FAIL](state, { errorMsg }) {
+        MessageBox.alert(errorMsg)
     }
 }
 

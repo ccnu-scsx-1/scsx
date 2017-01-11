@@ -12,7 +12,11 @@ export default {
     //职位详情
     jobDetail: function(data){
         return commonService.post('/api/recruit/jobDetail', data || {})
-    }
+    },
+    //新增岗位
+    publishJob: function(data){
+        return commonService.post('/api/recruit/insertInfo', data || {})
+    }    
 }
 
 

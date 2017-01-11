@@ -34,6 +34,9 @@ export default {
         clickAdd(){
             this.$router.push('/publishjob')
         }
+    },
+    mounted(){
+        this.$store.dispatch('loadJobList', { id : this.$store.state.user.userid})
     }
 }
 </script>

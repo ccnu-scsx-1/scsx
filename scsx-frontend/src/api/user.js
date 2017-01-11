@@ -13,7 +13,8 @@ export default {
     status: function(data){
         return commonService.post('/api/user/status', data || {})
     },
-    submitInfo: function(data){
+    //提交简历
+    voteResume: function(data){
         return commonService.post('/api/user/submitInfo', data || {})
     },
     updatePassword: function(data){
@@ -22,7 +23,8 @@ export default {
     updateUserInfo: function(data){
         return commonService.post('/api/user/updateUserInfo', data || {})
     },
-    publishJobList:  function(data){
+    //加载发布的岗位信息
+    loadPublishJobList:  function(data){
         return commonService.post('/api/user/intention', data || {})
     }
 }

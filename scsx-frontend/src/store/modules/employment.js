@@ -14,7 +14,7 @@ const getters = {
 const actions = {
     loadJobList({ commit }, data) {
         Indicator.open()
-        resume.fetchResumePool(data).then(response => {
+        user.loadPublishJobList(data).then(response => {
             Indicator.close()
             let res = response.data
             if (res.status === '0') {

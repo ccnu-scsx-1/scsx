@@ -41,6 +41,10 @@ export const LOAD_RESUME_FAIL = 'LOAD_RESUME_FAIL'
 export const LOAD_RESUME_POOL_SUCCESS = 'LOAD_RESUME_POOL_SUCCESS'
 export const LOAD_RESUME_POOL_FAIL = 'LOAD_RESUME_POOL_FAIL'
 
-/**publish job list**/
+/**load publish job list**/
 export const LOAD_JOB_LIST_SUCCESS = 'LOAD_JOB_LIST_SUCCESS'
 export const LOAD_JOB_LIST_FAIL = 'LOAD_JOB_LIST_FAIL'
+
+/**publish job**/
+export const PUBLISH_JOB_SUCCESS = 'PUBLISH_JOB_SUCCESS'
+export const PUBLISH_JOB_FAIL = 'PUBLISH_JOB_FAIL'

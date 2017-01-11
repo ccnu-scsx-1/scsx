@@ -47,7 +47,11 @@ export default {
     ]),
     methods: {
         clickVoteResume(){
-            this.$store.dispatch('voteResume')
+            let user = this.$store.state.user
+            let loginStatus = user.loginStatus
+            let userId = user.userid
+            let infoId = this.$router.history.current.query.infoId
+            this.$store.dispatch('voteResume', { loginStatus, userId, infoId})
         }
     },
     mounted(){
@@ -115,6 +119,7 @@ export default {
         width:100%;
         padding: 13px 10px;
         font-size: 12px;
+        word-break: break-word;
     }
 }
 

@@ -8,6 +8,8 @@ import market from './modules/market'
 import jobDetail from './modules/jobDetail'
 import resume from './modules/resume'
 import resumePool from './modules/resumePool'
+import employment from './modules/employment'
+import publishJob from './modules/publishJob'
 
 Vue.use(Vuex)
 
@@ -17,6 +19,8 @@ export default new Vuex.Store({
         market,
         jobDetail,
         resume,
-        resumePool
+        resumePool,
+        employment,
+        publishJob
     }
 })
