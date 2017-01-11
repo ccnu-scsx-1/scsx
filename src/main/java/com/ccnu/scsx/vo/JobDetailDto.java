@@ -19,7 +19,7 @@ public class JobDetailDto {
    */
   private String description;
   private String region;
-  private int year_work;
+  private String year_work;
   private int education;
   private int position;
 
@@ -87,11 +87,11 @@ public class JobDetailDto {
     this.region = region;
   }
 
-  public int getYear_work() {
+  public String getYear_work() {
     return year_work;
   }
 
-  public void setYear_work(int year_work) {
+  public void setYear_work(String year_work) {
     this.year_work = year_work;
   }
 

@@ -26,4 +26,8 @@ public class ResumeService {
     resumeDao.updateResumeByUserId(resumeWithBLOBs);
   }
 
+  public ScsxResumeWithBLOBs findResumeByUserId(String userId) {
+    return resumeDao.findResumeByUserId(userId);
+  }
+
 }

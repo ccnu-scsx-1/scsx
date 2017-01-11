@@ -15,4 +15,6 @@ public interface ScsxResumeMapper extends BaseMapper<ScsxResumeWithBLOBs> {
 
   String selectResumePathByUserId(@Param("userId") String userId);
 
+  ScsxResumeWithBLOBs findResumeByUserId(@Param("userId") String userId);
+
 }

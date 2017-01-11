@@ -34,4 +34,8 @@ public class ResumeDao extends BaseDaoImpl<ScsxResumeWithBLOBs> implements
     resumeMapper.updateByPrimaryKeySelective(resumeWithBLOBs);
   }
 
+  public ScsxResumeWithBLOBs findResumeByUserId(String userId) {
+    return resumeMapper.findResumeByUserId(userId);
+  }
+
 }

@@ -120,6 +120,17 @@ public class ResumeController {
     return WebResultUtils.buildSucResult(mapResult);
   }
 
+  @ResponseBody
+  @RequestMapping(value = "/resume/detail", method = RequestMethod.POST)
+  public WebResultData getDetail(@RequestBody String object) {
+    Map<String, String> map = JSON.parseObject(object, Map.class);
+    String userId = map.get("userId");
+    ScsxResumeWithBLOBs resumeWithBLOBs = resumeService.findResumeByUserId(userId);
+    Map<String, Object> mapResult = new HashMap<String, Object>();
+    mapResult.put("resume", resumeWithBLOBs);
+    return WebResultUtils.buildSucResult(mapResult);
+  }
+
   private boolean isExist(String userId) {
     ScsxUser user = userService.findById(userId);
     if (user == null) {

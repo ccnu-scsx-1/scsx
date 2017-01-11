@@ -12,7 +12,7 @@
     <result column="education" property="education" jdbcType="TINYINT" />
     <result column="type" property="type" jdbcType="TINYINT" />
     <result column="position" property="position" jdbcType="TINYINT" />
-    <result column="year_work" property="yearWork" jdbcType="TINYINT" />
+    <result column="year_work" property="yearWork" jdbcType="VARCHAR" />
     <result column="last_modify" property="lastModify" jdbcType="TIMESTAMP" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.ccnu.scsx.model.ScsxRecruitInfo" extends="BaseResultMap" >

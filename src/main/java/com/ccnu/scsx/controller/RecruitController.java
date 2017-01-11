@@ -39,6 +39,9 @@ public class RecruitController {
   @RequestMapping(value = "/recruit/insertInfo", method = RequestMethod.POST)
   public WebResultData insertInfo(@RequestBody String object) {
     ScsxRecruitInfo info = JSON.parseObject(object, ScsxRecruitInfo.class);
+    String userId = info.getUserId();
+    String companyId = companyService.findByUserId(userId).getId();
+    info.setCompanyId(companyId);
     recruitService.insertInfoSelective(info);
     return WebResultUtils.buildSucResult();
   }

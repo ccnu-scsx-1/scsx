@@ -24,7 +24,7 @@ public class ScsxRecruitInfo {
 
   private Byte type;
 
-  private Byte yearWork;
+  private String yearWork;
 
   private Date lastModify;
 
@@ -102,11 +102,11 @@ public class ScsxRecruitInfo {
     this.position = position;
   }
 
-  public Byte getYearWork() {
+  public String getYearWork() {
     return yearWork;
   }
 
-  public void setYearWork(Byte yearWork) {
+  public void setYearWork(String yearWork) {
     this.yearWork = yearWork;
   }
 
