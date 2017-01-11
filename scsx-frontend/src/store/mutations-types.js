@@ -34,12 +34,19 @@ export const VOTE_RESUME_SUCCESS = 'VOTE_RESUME_SUCCESS'
 export const VOTE_RESUME_FAIL = 'VOTE_RESUME_FAIL'
 
 /**resume**/
+//load resume
 export const LOAD_RESUME_SUCCESS = 'LOAD_RESUME_SUCCESS'
 export const LOAD_RESUME_FAIL = 'LOAD_RESUME_FAIL'
+//save resume
+export const SAVE_RESUME_SUCCESS = 'SAVE_RESUME_SUCCESS'
+export const SAVE_RESUME_FAIL = 'SAVE_RESUME_FAIL'
 
 /**resume pool**/
 export const LOAD_RESUME_POOL_SUCCESS = 'LOAD_RESUME_POOL_SUCCESS'
 export const LOAD_RESUME_POOL_FAIL = 'LOAD_RESUME_POOL_FAIL'
+//load resume info
+export const LOAD_RESUME_INFO_SUCCESS = 'LOAD_RESUME_INFO_SUCCESS'
+export const LOAD_RESUME_INFO_FAIL = 'LOAD_RESUME_INFO_FAIL'
 
 /**load publish job list**/
 export const LOAD_JOB_LIST_SUCCESS = 'LOAD_JOB_LIST_SUCCESS'
@@ -48,3 +55,7 @@ export const LOAD_JOB_LIST_FAIL = 'LOAD_JOB_LIST_FAIL'
 /**publish job**/
 export const PUBLISH_JOB_SUCCESS = 'PUBLISH_JOB_SUCCESS'
 export const PUBLISH_JOB_FAIL = 'PUBLISH_JOB_FAIL'
+
+/**vote info**/
+export const LOAD_VOTE_INFO_LIST_SUCCESS = 'LOAD_VOTE_INFO_LIST_SUCCESS'
+export const LOAD_VOTE_INFO_LIST_FAIL = 'LOAD_VOTE_INFO_LIST_FAIL'

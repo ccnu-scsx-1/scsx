@@ -116,11 +116,11 @@ export default {
             }, action => {})
         },
         clickSave() {
-            this.$store.dispatch('saveResume')
+            this.$store.dispatch('saveResume', { userId: this.$store.state.user.userid })
         }
     },
     mounted() {
-        this.$store.dispatch('loadResume')
+        this.$store.dispatch('loadResume', { userId: this.$store.state.user.userid })
     }
 }
 </script>

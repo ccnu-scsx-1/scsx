@@ -1,12 +1,9 @@
 <template>
     <div class="v-container">
         <mt-header title="投递信息">
-            <router-link to="/userinfo?role=0" slot="left">
-                <mt-button icon="back">返回</mt-button>
-            </router-link>
         </mt-header>
         <div class="info-part">
-            <mt-cell to="/jobdetail" v-for="item in result" :title="item.title" :value="item.value" :label="item.label" is-link></mt-cell>
+            <v-cell v-for="item in voteInfoResult" :title="item.title" :company="item.companyName" :region="item.region" :salary="item.salary" :link="{path: '/jobdetai?noVote=1', query: { infoId: item.infoId, companyId: item.companyId }}" ></v-cell>
         </div>
         <div class="info-part">
             <mt-button type="primary" @click="clickToVote" size="large">继续投递</mt-button>
@@ -15,31 +12,18 @@
     </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
-    name: 'ComSettings',
-    data() {
-        return {
-            result: [{
-                title: 'web前端',
-                label: '旺旺集团',
-                value: '已投递'
-            }, {
-                title: 'Java后台',
-                label: '旺旺集团',
-                value: '已投递'
-            }, {
-                title: 'PHP',
-                label: '旺旺集团',
-                value: '已投递'
-            }]
-        }
-    },
+    name: 'VoteInfo',
+    computed: mapGetters([
+        'voteInfoResult'
+    ]),
     methods: {
         clickToVote() {
             this.$router.push('/market')
         },
         clickGoBack() {
-            this.$router.push('/userinfo?role=0')
+            this.$router.go(-1)
         }
     }
 }

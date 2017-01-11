@@ -50,6 +50,9 @@ export default {
 }
 </script>
 <style>
+.mint-header{
+    z-index: 1000;
+}
 .mint-search-list {
     padding-top: 84px;
 }

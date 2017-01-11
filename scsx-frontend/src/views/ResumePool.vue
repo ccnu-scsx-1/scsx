@@ -6,7 +6,7 @@
             </router-link>
         </mt-header>
         <div class="info-part" >
-            <v-cell v-for="item in resumePool" :title="item.title" :salary="item.username" ></v-cell>
+            <v-cell v-for="item in resumePool" :title="item.title" :salary="item.username" :link="{path:'/resumeinfo',query:{userId: item.userId, infoId: item.infoId}}"></v-cell>
         </div>
         <div class="info-part">
             <mt-button plain @click="clickGoBack" size="large">返&nbsp;回</mt-button>

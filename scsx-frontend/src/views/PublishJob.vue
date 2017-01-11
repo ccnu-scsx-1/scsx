@@ -10,8 +10,8 @@
                 <select v-model="education" style="width: 250px;">
                     <option value="0">专科</option>
                     <option value="1">本科</option>
-                    <option value="3">硕士</option>
-                    <option value="4">博士</option>
+                    <option value="2">硕士</option>
+                    <option value="3">博士</option>
                 </select>
             </mt-cell>
             <mt-field label="工作年限" placeholder="请输入工作年限" v-model="yearWork"></mt-field>

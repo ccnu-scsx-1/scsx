@@ -8,7 +8,7 @@ const state = {
     resumeEmail: '',
     resumeTel: '',
     resumeAge: '',
-    resumeGender: '',
+    resumeGender: 0,
     resumeEdu: '',
     resumeCom: '',
     resumeProject: '',
@@ -23,7 +23,7 @@ const actions = {
             Indicator.close()
             let res = response.data
             if (res.status === '0') {
-                commit('LOAD_RESUME_SUCCESS', res.data)
+                commit('LOAD_RESUME_SUCCESS', res.data.resume)
             } else {
                 commit('LOAD_RESUME_FAIL', { errorMsg: res.msg })
             }
@@ -32,16 +32,54 @@ const actions = {
             commit('LOAD_RESUME_FAIL', { errorMsg: 'error' })
         })
     },
-    saveResume({ commit }, ) {
-        MessageBox.alert('保存成功！')
+    saveResume({ commit, state }, { userId }) {
+        Indicator.open()
+        resume.saveResume({
+            userId,
+            name: state.resumeName,
+            email: state.resumeEmail,
+            number: state.resumeTel,
+            age: state.resumeAge,
+            gender: state.resumeGender,
+            school: state.resumeEdu,
+            company: state.resumeCom,
+            companyContent: state.resumeProject,
+            skillLabel: state.resumeSkill
+        }).then(response => {
+            Indicator.close()
+            let res = response.data
+            if (res.status === '0') {
+                commit('SAVE_RESUME_SUCCESS', res.data)
+            } else {
+                commit('SAVE_RESUME_FAIL', { errorMsg: res.msg })
+            }
+        }).catch(error => {
+            Indicator.close()
+            commit('SAVE_RESUME_FAIL', { errorMsg: 'error' })
+        })
     }
 }
 
 const mutations = {
-    [types.LOAD_RESUME_SUCCESSC](state, data) {
-
+    [types.LOAD_RESUME_SUCCESS](state, data) {
+        state.resumeName = data.name
+        state.resumeEmail = data.email
+        state.resumeTel = data.number
+        state.resumeAge = data.age
+        state.gender = data.gender
+        state.resumeEdu = data.school
+        state.resumeCom = data.company
+        state.resumeProject = data.companyContent
+        state.resumeSkill = data.skillLabel
     },
     [types.LOAD_RESUME_FAIL](state, { errorMsg }) {
+        MessageBox.alert(errorMsg)
+    },
+    [types.SAVE_RESUME_SUCCESS](state) {
+        Toast('保存成功！')
+        router.go(-1)
+    },
+    [types.SAVE_RESUME_FAIL](state, { errorMsg }) {
         MessageBox.alert(errorMsg)
     }
 
