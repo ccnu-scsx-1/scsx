@@ -32,7 +32,7 @@ export default {
             }, action => {})
         },
         clickSave(){
-            this.$store.dispatch('updatePassword', { oldpassword: this.oldpassword })
+            this.$store.dispatch('updatePassword', { oldPassword: this.oldpassword, newPassword: this.newpassword, rPassword: this.rnewpassword, id: this.$store.state.user.userid })
         }
     }
 }

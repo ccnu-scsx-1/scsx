@@ -180,8 +180,45 @@ const actions = {
     changeMenu({ commit, state }, { className }) {
         state.menuClass = className
     },
-    updatePassword({ commit }) {
+    updatePassword({ commit, state }, { oldPassword, newPassword, rPassword, id}) {
+        if(Validator.isEmpty(oldPassword)){
+            MessageBox.alert('请输入旧密码！')
+            return
+        }
 
+        if (Validator.isEmpty(newPassword) || Validator.isEmpty(rPassword)) {
+            MessageBox.alert('请填写新密码！')
+            return
+        }
+
+        if (!Validator.isEqual(newPassword, rPassword)) {
+            MessageBox.alert('两次输入的密码不一致！请重新输入。')
+            return
+        }
+        Indicator.open()
+
+        user.login({ name: state.username, password: oldPassword, role: state.role }).then(response => {
+            let res = response.data
+            if (res.status === '0') {
+                user.updatePassword({ id, password: newPassword }).then(response => {
+                    Indicator.close()
+                    let res = response.data
+                    if (res.status === '0') {
+                        commit(types.UPDATE_PASSWORD_SUCCESS)
+                    } else {
+                        commit(types.UPDATE_PASSWORD_FAIL, { errorMsg: res.msg })
+                    }
+                }).catch(error => {
+                    Indicator.close()
+                    commit(types.UPDATE_PASSWORD_FAIL, { errorMsg: 'error' })
+                })
+            } else {
+                commit(types.UPDATE_PASSWORD_FAIL, { errorMsg: res.msg })
+            }
+        }).catch(error => {
+            Indicator.close()
+            commit(types.UPDATE_PASSWORD_FAIL, { errorMsg: 'error' })
+        })
     }
 }
 
@@ -234,9 +271,17 @@ const mutations = {
     },
     [types.HAS_LOGIN](state, data) {
         state.userid = data.userId,
-        state.username = data.userName,
-        state.role = data.role
+            state.username = data.userName,
+            state.role = data.role
         state.loginStatus = true
+    },
+    [types.UPDATE_PASSWORD_SUCCESS](state) {
+        MessageBox.alert('修改成功！请重新登陆！').then(action => {
+            router.push('/login')
+        })
+    },
+    [types.UPDATE_PASSWORD_FAIL](state, { errorMsg }) {
+        MessageBox.alert(errorMsg)
     }
 }
 

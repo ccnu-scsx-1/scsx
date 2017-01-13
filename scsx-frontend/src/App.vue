@@ -29,7 +29,11 @@ export default {
         }
     },
     mounted(){
-        this.$store.dispatch('logStatus')
+        let path = this.$router.history.current.path
+
+        if((['/home', '/login', '/register', '/registercom'].join(',').indexOf(path)) === -1){
+            this.$store.dispatch('logStatus')
+        }
     }
 }
 </script>

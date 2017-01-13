@@ -23,6 +23,7 @@ import ResumeFeedback from '../views/ResumeFeedback'
 
 const router = new VueRouter({
     mode: 'history',
+    base: '/scsx/page',
     routes: [{
         path: '/home',
         component: Home,
