@@ -3,7 +3,7 @@
         <mt-header title="个人信息"></mt-header>
         <mt-cell title="用户名" :value="username"></mt-cell>
         <mt-cell title="个人简历" to="/resume" is-link v-show="userShow"></mt-cell>
-        <mt-cell title="职位意向" to="/intention" is-link v-show="userShow"></mt-cell>
+       <!--  <mt-cell title="职位意向" to="/intention" is-link v-show="userShow"></mt-cell> -->
         <mt-cell title="投递信息" to="/voteinfo" is-link v-show="userShow"></mt-cell>
         <mt-cell title="邀约信息" to="/inviteinfo" is-link v-show="userShow"></mt-cell>
         <mt-cell title="招聘岗位" to="/employment" is-link v-show="hrShow"></mt-cell>
@@ -40,7 +40,6 @@ export default {
         },
         clickGoSettings(){
             if(this.userShow) this.$router.push('/settings')
-            if(this.hrShow) this.$router.push('/comsettings') 
         }   
     },
     mounted(){

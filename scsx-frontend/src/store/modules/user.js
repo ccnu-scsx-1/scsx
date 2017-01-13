@@ -9,17 +9,19 @@ const state = {
     username: '',
     userid: '',
     menuClass: 'user',
+    menuShow: true,
     role: 0
 }
 
 const getters = {
     loginStatus: state => state.loginStatus,
     menuClass: state => state.menuClass,
-    username: state => state.username
+    username: state => state.username,
+    isShow: state => state.loginStatus && state.menuShow
 }
 
 const actions = {
-    login({ commit, state}, data) {
+    login({ commit, state }, data) {
         if (Validator.isEmpty(data.name) || Validator.isEmpty(data.password)) {
             MessageBox.alert('用户名或密码不能为空！')
             return
@@ -42,22 +44,22 @@ const actions = {
             commit(types.LOGIN_FAIL, { errorMsg: 'error' })
         })
     },
-    logout({ commit }){
-        user.logout().then( response => {
+    logout({ commit }) {
+        user.logout().then(response => {
             let res = response.data
-            if(res.status === '0'){
+            if (res.status === '0') {
                 commit('LOGOUT_SUCCESS')
-            }else{
+            } else {
                 commit('LOGOUT_FAIL', { errorMsg: res.msg })
             }
         })
     },
-    logStatus({ commit }){
+    logStatus({ commit }) {
         user.status().then(response => {
             let res = response.data
-            if(res.status === '0'){
+            if (res.status === '0') {
                 commit('HAS_LOGIN', res.data)
-            }else{
+            } else {
                 commit('NOT_LOGIN')
             }
         })
@@ -175,21 +177,26 @@ const actions = {
             commit(types.REGISTER_COM_FAIL, { errorMsg: 'error' })
         })
     },
-    changeMenu({ commit, state}, { className }){
+    changeMenu({ commit, state }, { className }) {
         state.menuClass = className
     },
-    updatePassword({ commit },){
+    updatePassword({ commit }, ) {
 
     }
 }
 
 const mutations = {
-    [types.LOGIN_SUCCESS](state, { id, name, role}) {
+    [types.LOGIN_SUCCESS](state, { id, name, role }) {
         state.userid = id
         state.username = name
         state.loginStatus = true
         state.role = role
-        router.push('/market')
+        if (role === 0) {
+            router.push('/market')
+        } else {
+            state.menuShow = false
+            router.push('/userinfo?role=1')
+        }
     },
     [types.LOGIN_FAIL](state, { errorMsg }) {
         state.loginStatus = false
@@ -209,22 +216,23 @@ const mutations = {
     [types.REGISTER_COM_FAIL](state, { errorMsg }) {
         MessageBox.alert(errorMsg)
     },
-    [types.LOGOUT_SUCCESS](state){
+    [types.LOGOUT_SUCCESS](state) {
         state.userid = ''
         state.username = ''
         state.loginStatus = false
         state.menuClass = 'user'
+        state.menuShow = true
         router.push('/')
     },
-    [types.LOGOUT_FAIL](state, { errorMsg }){
+    [types.LOGOUT_FAIL](state, { errorMsg }) {
         MessageBox.alert(errorMsg)
     },
-    [types.NOT_LOGIN](state){
-        MessageBox.alert('您尚未登录，请先登录！').then(action =>{
+    [types.NOT_LOGIN](state) {
+        MessageBox.alert('您尚未登录，请先登录！').then(action => {
             router.push('/login')
         })
     },
-    [types.HAS_LOGIN](state, data){
+    [types.HAS_LOGIN](state, data) {
         state.userid = data.userId,
         state.username = data.userName,
         state.role = data.role

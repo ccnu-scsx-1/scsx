@@ -12,6 +12,14 @@ export default {
     //hr简历池
     fetchResumePool: function(data){
         return commonService.post('/api/resume/resumeList', data || {})
+    },
+    //hr反馈信息
+    feedbackResume: function(data){
+        return commonService.post('/api/resume/feedbackResume', data || {})
+    },
+    //用户查看邀约信息列表
+    feedbackList: function(data){
+        return commonService.post('/api/resume/feedbackList', data || {})
     }
 }
 

@@ -1,9 +1,7 @@
 <template>
     <div>
         <mt-header title="职位详情">
-            <router-link to="/market" slot="left">
-                <mt-button icon="back">返回</mt-button>
-            </router-link>
+            <mt-button icon="back" slot="left" @click="clickGoBack">返回</mt-button>
         </mt-header>
         <div class="job-detail">
             <div class="job-title">{{ title }}</div>
@@ -24,15 +22,23 @@
                 <div class="desc-content">{{ description }}</div>
             </div>
         </div>
-        <div class="job-vote"><mt-button @click.native="clickVoteResume" type="primary" size="large">投个简历</mt-button></div>
-        
+        <div class="job-vote" v-if="noVoteBtn">
+            <mt-button @click.native="clickVoteResume" type="primary" size="large">投个简历</mt-button>
+        </div>
     </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import {
+    mapGetters
+} from 'vuex'
 
 export default {
     name: 'JobDetail',
+    data() {
+        return {
+            noVoteBtn: true
+        }
+    },
     computed: mapGetters([
         'title',
         'salary',
@@ -46,17 +52,31 @@ export default {
         'region'
     ]),
     methods: {
-        clickVoteResume(){
+        clickVoteResume() {
             let user = this.$store.state.user
             let loginStatus = user.loginStatus
             let userId = user.userid
             let infoId = this.$router.history.current.query.infoId
-            this.$store.dispatch('voteResume', { loginStatus, userId, infoId})
+            this.$store.dispatch('voteResume', {
+                loginStatus,
+                userId,
+                infoId
+            })
+        },
+        clickGoBack() {
+            this.$router.go(-1)
         }
     },
-    mounted(){
+    mounted() {
         let query = this.$router.history.current.query
-        this.$store.dispatch('loadJobDetail', {info_id: query.infoId, company_id: query.companyId})
+        this.$store.dispatch('loadJobDetail', {
+            info_id: query.infoId,
+            company_id: query.companyId
+        })
+
+        if (query.noVoteBtn === 1) {
+            this.noVoteBtn = false
+        }
     }
 }
 </script>
@@ -65,7 +85,7 @@ export default {
     width: 100%;
 }
 
-.job-title{
+.job-title {
     width: 100%;
     height: 40px;
     line-height: 40px;
@@ -75,14 +95,14 @@ export default {
     padding: 0 10px;
 }
 
-.job-info{
+.job-info {
     width: 100%;
     border-bottom: 1px solid #d9d9d9;
     padding: 13px 10px;
     font-size: 14px;
     display: flex;
     flex-wrap: wrap;
-    p{
+    p {
         width: 50%;
         margin: 0;
         line-height: 24px;
@@ -90,42 +110,40 @@ export default {
     }
 }
 
-.company-info{
+.company-info {
     width: 100%;
     border-bottom: 1px solid #d9d9d9;
     padding: 13px 10px;
     font-size: 14px;
-    p{
+    p {
         margin: 0;
-        &:first-child{
+        &:first-child {
             font-size: 15px;
             margin-bottom: 5px;
         }
     }
 }
 
-.job-desc{
+.job-desc {
     width: 100%;
-    border-bottom: 1px solid #d9d9d9; 
+    border-bottom: 1px solid #d9d9d9;
     line-height: 20px;
-    .desc-title{
+    .desc-title {
         width: 100%;
         background: #26a2ff;
         color: #fff;
         padding: 10px;
         font-size: 13px;
     }
-    .desc-content{
-        width:100%;
+    .desc-content {
+        width: 100%;
         padding: 13px 10px;
         font-size: 12px;
         word-break: break-word;
     }
 }
 
-
-.job-vote{
+.job-vote {
     padding: 20px 10px;
 }
-
 </style>

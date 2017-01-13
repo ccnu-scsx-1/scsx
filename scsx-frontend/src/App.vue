@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <router-view></router-view>
-        <v-menu :show="loginStatus" :type="menuClass"></v-menu>
+        <v-menu :show="isShow" :type="menuClass"></v-menu>
     </div>
 </template>
 <script>
@@ -14,7 +14,7 @@ export default {
         VMenu
     },
     computed: mapGetters([
-        'loginStatus',
+        'isShow',
         'menuClass'
     ]),
     methods:{

@@ -1,34 +1,37 @@
-import recruit from '../../api/recruit'
+import resume from '../../api/resume'
 import * as types from '../mutations-types'
 import { Indicator, MessageBox, Toast } from 'mint-ui'
 import router from '../../router'
 import { formatSalary } from '../../util/format'
 
 const state = {
-    voteInfoResult: []
+    inviteInfoResult: []
 }
 
 const getters = {
-    voteInfoResult: state => {
-        let result = state.voteInfoResult
+    inviteInfoResult: state => {
+        let arr = state.inviteInfoResult
 
-        if (result && result[0]) {
-            result.forEach(obj => {
-                obj.salary = formatSalary(obj.salary_low, obj.salary_high)
+        if (arr && arr[0]) {
+            arr.forEach(obj => {
+                obj.result = obj.result ? '已通过' : '未通过'
             })
         }
-        return result 
+
+        return arr
     }
 }
 
 const actions = {
-    fetchVoteInfoList({ commit }, data) {
+    feedbackList({ commit }, data) {
         Indicator.open()
-        recruit.fetchVoteInfoList(data).then(response => {
+        resume.feedbackList(data).then(response => {
             Indicator.close()
             let res = response.data
             if (res.status === '0') {
-                commit('LOAD_VOTE_INFO_LIST_SUCCESS', { infos: res.data.infos })
+                if (res.data.feedList[0]) {
+                    commit('LOAD_VOTE_INFO_LIST_SUCCESS', { feedList: res.data.feedList })
+                }
             } else {
                 commit('LOAD_VOTE_INFO_LIST_FAIL', { errorMsg: res.msg })
             }
@@ -40,8 +43,8 @@ const actions = {
 }
 
 const mutations = {
-    [types.LOAD_VOTE_INFO_LIST_SUCCESS](state, { infos }) {
-        state.voteInfoResult = infos
+    [types.LOAD_VOTE_INFO_LIST_SUCCESS](state, { feedList }) {
+        state.inviteInfoResult = feedList
     },
     [types.LOAD_VOTE_INFO_LIST_FAIL](state, { errorMsg }) {
         MessageBox.alert(errorMsg)

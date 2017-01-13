@@ -13,11 +13,13 @@ const getters = {
     searchResult: state => {
         let result = state.searchResult
 
-        result.forEach(obj => {
-          obj.salary = formatSalary(obj.salary_low, obj.salary_high)
-        })
+        if (result && result[0]) {
+            result.forEach(obj => {
+                obj.salary = formatSalary(obj.salary_low, obj.salary_high)
+            })
+        }
 
-        return result 
+        return result
     }
 }
 
@@ -65,7 +67,7 @@ const mutations = {
         state.searchValue = searchValue
         state.searchResult = infos
     },
-    [types.MARKET_JOB_SEARCH_FAIL](state, { errorMsg }){
+    [types.MARKET_JOB_SEARCH_FAIL](state, { errorMsg }) {
         MessageBox.alert(errorMsg)
     }
 

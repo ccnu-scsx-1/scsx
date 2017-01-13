@@ -28,46 +28,53 @@ export default {
     name: 'Settings',
     computed: {
         username: {
-            get(){
+            get() {
                 return this.$store.state.settings.username
             },
-            set(value){
+            set(value) {
                 this.$store.state.settings.username = value
             }
         },
         email: {
-            get(){
+            get() {
                 return this.$store.state.settings.email
             },
-            set(value){
+            set(value) {
                 this.$store.state.settings.email = value
             }
         },
         tel: {
-            get(){
+            get() {
                 return this.$store.state.settings.tel
             },
-            set(value){
+            set(value) {
                 this.$store.state.settings.tel = value
             }
         },
         age: {
-            get(){
+            get() {
                 return this.$store.state.settings.age
             },
-            set(value){
+            set(value) {
                 this.$store.state.settings.age = value
             }
         },
         gender: {
-            get(){
+            get() {
                 return this.$store.state.settings.gender
             },
-            set(value){
+            set(value) {
                 this.$store.state.settings.gender = value
             }
         },
-        role: 0,
+        role: {
+            get() {
+                return this.$store.state.settings.role
+            },
+            set(value) {
+                this.$store.state.settings.role = value
+            }
+        }
     },
     methods: {
         clickCancel() {
@@ -79,8 +86,11 @@ export default {
             this.$store.dispatch('updateReigsterInfo')
         }
     },
-    mounted(){
-        this.$store.dispatch('loadRegisterInfo')
+    mounted() {
+        this.$store.dispatch('loadRegisterInfo', {
+            id: this.$store.state.user.userid,
+            role: 0
+        })
     }
 }
 </script>

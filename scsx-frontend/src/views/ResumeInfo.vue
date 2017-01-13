@@ -57,7 +57,8 @@ export default {
             this.$router.go(-1)
         },
         clickFeedBack() {
-            this.$router.push('/resumefeedback')
+            let query = this.$router.history.current.query
+            this.$router.push({path: '/resumefeedback', query})
         }
     },
     mounted() {

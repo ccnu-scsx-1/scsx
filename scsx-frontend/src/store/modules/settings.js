@@ -1,4 +1,4 @@
-import resume from '../../api/resume'
+import user from '../../api/user'
 import * as types from '../mutations-types'
 import { Indicator, MessageBox, Toast } from 'mint-ui'
 import router from '../../router'
@@ -16,29 +16,53 @@ const state = {
 const actions = {
     loadRegisterInfo({ commit }, data) {
         Indicator.open()
-        resume.fetchResume(data).then(response => {
+        user.fetchUserInfo(data).then(response => {
             Indicator.close()
             let res = response.data
             if (res.status === '0') {
-                commit('LOAD_RESUME_SUCCESS', res.data)
+                commit('LOAD_REGISTER_INFO_SUCCESS', res.data.info)
             } else {
-                commit('LOAD_RESUME_FAIL', { errorMsg: res.msg })
+                commit('LOAD_REGISTER_INFO_FAIL', { errorMsg: res.msg })
             }
         }).catch(error => {
             Indicator.close()
-            commit('LOAD_RESUME_FAIL', { errorMsg: 'error' })
+            commit('LOAD_REGISTER_INFO_FAIL', { errorMsg: 'error' })
         })
     },
-    updateReigsterInfo({ commit }, ) {
-        MessageBox.alert('保存成功！')
+    updateReigsterInfo({ commit }, data) {
+        Indicator.open()
+        user.updateUserInfo(data).then(response => {
+            Indicator.close()
+            let res = response.data
+            if (res.status === '0') {
+                commit('UPDATE_REGISTER_INFO_SUCCESS')
+            } else {
+                commit('UPDATE_REGISTER_INFO_FAIL', { errorMsg: res.msg })
+            }
+        }).catch(error => {
+            Indicator.close()
+            commit('UPDATE_REGISTER_INFO_FAIL', { errorMsg: 'error' })
+        })
     }
 }
 
 const mutations = {
-    [types.LOAD_RESUME_SUCCESSC](state, data) {
-
+    [types.LOAD_REGISTER_INFO_SUCCESS](state, data) {
+        state.username = data.name
+        state.age = data.age
+        state.email = data.email
+        state.tel = data.number
+        state.gender = data.gender === '男' ? 0 : 1
     },
-    [types.LOAD_RESUME_FAIL](state, { errorMsg }) {
+    [types.LOAD_REGISTER_INFO_FAIL](state, { errorMsg }) {
+        MessageBox.alert(errorMsg)
+    },
+    [types.UPDATE_REGISTER_INFO_SUCCESS](state){
+        MessageBox.alert('保存成功！').then(action => {
+            router.go(-1)
+        })
+    },
+    [types.UPDATE_REGISTER_INFO_FAIL](state, { errorMsg }){
         MessageBox.alert(errorMsg)
     }
 

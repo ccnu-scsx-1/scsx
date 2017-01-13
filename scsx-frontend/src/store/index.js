@@ -11,6 +11,10 @@ import resumePool from './modules/resumePool'
 import employment from './modules/employment'
 import publishJob from './modules/publishJob'
 import resumeInfo from './modules/resumeInfo'
+import voteInfo from './modules/voteInfo'
+import inviteInfo from './modules/inviteInfo'
+import resumeFeedback from './modules/resumeFeedback'
+import settings from './modules/settings'
 
 Vue.use(Vuex)
 
@@ -23,6 +27,10 @@ export default new Vuex.Store({
         resumePool,
         employment,
         publishJob,
-        resumeInfo
+        resumeInfo,
+        voteInfo,
+        inviteInfo,
+        resumeFeedback,
+        settings
     }
 })

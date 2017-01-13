@@ -20,6 +20,11 @@ export default {
     updatePassword: function(data){
         return commonService.post('/api/user/updateUserInfo', data || {})
     },
+    //获取注册信息
+    fetchUserInfo: function(data){
+        return commonService.post('/api/user/info', data || {})
+    },
+    //更新注册信息
     updateUserInfo: function(data){
         return commonService.post('/api/user/updateUserInfo', data || {})
     },

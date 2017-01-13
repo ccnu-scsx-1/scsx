@@ -34,7 +34,9 @@ const actions = {
             Indicator.close()
             let res = response.data
             if (res.status === '0') {
-                commit('LOAD_RESUME_INFO_SUCCESS', res.data.resume)
+                if(res.data.resume){
+                    commit('LOAD_RESUME_INFO_SUCCESS', res.data.resume)
+                }
             } else {
                 commit('LOAD_RESUME_INFO_FAIL', { errorMsg: res.msg })
             }
