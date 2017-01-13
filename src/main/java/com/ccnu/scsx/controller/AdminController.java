@@ -25,7 +25,7 @@ public class AdminController {
    */
   @RequestMapping("/login")
   public String showLogin() {
-    return "login";
+    return "redirect:/page/index.html";
   }
 
   @RequestMapping(value = "/login", method = RequestMethod.POST)

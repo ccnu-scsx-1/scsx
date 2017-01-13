@@ -3,6 +3,7 @@ package com.ccnu.scsx.controller;
 import com.ccnu.scsx.model.ScsxContact;
 import com.ccnu.scsx.service.ContactService;
 import com.ccnu.scsx.service.RecruitService;
+import com.ccnu.scsx.utils.Md5Utils;
 import com.ccnu.scsx.utils.UUIDUtils;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -152,7 +153,7 @@ public class UserController {
     String infoId = contact.getInfoId();
     contact.setId(UUIDUtils.getUUID());
     if (isExist(userId, infoId)) {
-      return WebResultUtils.buildFailureResult();
+      return WebResultUtils.buildResult(ErrorCode.already_submit);
     }
     contactService.insertContact(contact);
     return WebResultUtils.buildSucResult();
@@ -162,6 +163,7 @@ public class UserController {
   @RequestMapping(value = "/user/updateUserInfo", method = RequestMethod.POST)
   public WebResultData updateUserInfo(@RequestBody String object) {
     ScsxUser user = JSON.parseObject(object, ScsxUser.class);
+    user.setPassword(Md5Utils.getMD5(user.getPassword()));
     userService.updateById(user);
     return WebResultUtils.buildSucResult();
   }

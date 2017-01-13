@@ -79,27 +79,7 @@
 			url : "wallpaperOrderRuleManage.html"
 		}]
 	};
-	$(function() {
-		$('#main-menu > li > a').each(function(i1, e1) {
-			var dropdownNavs = '<ul class="dropdown-menu">';
-			$.each(LeftMenu[$(e1).find('span').text()], function(i2, e2) {
-				dropdownNavs += '<li><a href="'+e2.url+'">' + e2.name + '</a></li>';
-			});
-			dropdownNavs += '</ul>';
-			$(e1).parent().append(dropdownNavs);
-			if ($(e1).find('span').text() == SelectedTopMenu) {
-				$(e1).parent().addClass("active");
-				$('#current-position > ol').append('<span><b>' + SelectedLeftMenu + ': </b></span>');
-				$.each(navPaths, function(i3, e3) {
-					if (i3 == navPaths.length - 1) {
-						$('#current-position > ol').append('<li>' + e3.text + '</li>');
-					} else {
-						$('#current-position > ol').append('<li><a href="'+ e3.url +'">' + e3.text + '</a></li>');
-					}
-				});
-			}
-		});
-	});
+
 
 	// 需要在body页面赋值的变量
 	var SelectedTopMenu; // 顶部菜单名
@@ -110,31 +90,6 @@
 </head>
 
 <body>
-	<!--header-->
-	<div class="wrap header">
-		<nav class="navbar navbar-default navbar-static-top" role="navigation">
-
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#"><span style="color: red;">JEWELRY</span>&nbsp;<small><i>珠宝管理界面</i></small></a>
-		</div>
-
-		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav" id="main-menu">
-<!-- 				<li id="launcher-man" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>小T桌面</span><b class="caret"></b></a></li> -->
-				<li id="wallpaper-man" class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>訂單管理</span><b class="caret"></b></a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right" style="margin-right:0px;">
-                <li class="dropdown">
-                <a href="../page/categoryManage.html" class="dropdown-toggle" data-toggle="dropdown">${loginAdmin.email}<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="../admin/logout/">注销(login out)</a></li>
-                </ul>
-                </li>
-            </ul> 
-		</div>
-
-		</nav>
-	</div>
 
 	<div class="wrap content">
 		<div class="row">
@@ -149,9 +104,6 @@
 		</div>
 	</div>
 
-	<div class="wrap footer">
-		<p class="text-center" style="color: #999999;">Copyright©2017 Joban Inc. All rights reserved</p>
-	</div>
 </body>
 
 </html>

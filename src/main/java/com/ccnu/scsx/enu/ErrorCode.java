@@ -9,7 +9,8 @@ public enum ErrorCode {
   not_login(5,"用户未登录"),
   user_exist(6,"该用户已存在!"),
   upload_faied(7,"上传简历失败!!!"),
-  user_notExist(8,"用户不存在!")
+  user_notExist(8,"用户不存在!"),
+  already_submit(9,"该职位已经投递！！！")
   ;
 
   private Integer code;

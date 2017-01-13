@@ -22,17 +22,17 @@ public class ValidateLoginFilter implements Filter {
     String uri = httpServletRequest.getRequestURI();
     String contextPath = httpServletRequest.getContextPath();
 
-    if (StringUtils.containsIgnoreCase(uri, "/static/")
+    if (StringUtils.containsIgnoreCase(uri, "/page")
         || StringUtils.containsIgnoreCase(uri, "/index")
         || StringUtils.containsIgnoreCase(uri, "/admin/login")
         || StringUtils.containsIgnoreCase(uri, "/api")
         || StringUtils.containsIgnoreCase(uri, "/download")
-        || StringUtils.containsIgnoreCase(uri, "/third")) {
+        || StringUtils.containsIgnoreCase(uri, "/static")) {
       chain.doFilter(request, response);
     } else {
       if (httpServletRequest.getSession().getAttribute("loginAdmin") != null) {
         if (StringUtils.equals(contextPath + "/", uri)) {
-          httpServletResponse.sendRedirect(contextPath + "/page/wallpaperManage.html");//展示的首页
+          httpServletResponse.sendRedirect(contextPath + "/page/index.html");//展示的首页
         } else {
           chain.doFilter(request, response);
         }
