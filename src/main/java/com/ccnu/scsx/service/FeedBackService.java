@@ -2,9 +2,11 @@ package com.ccnu.scsx.service;
 
 import com.ccnu.scsx.dao.FeedBackDao;
 import com.ccnu.scsx.dao.FeedContactDao;
+import com.ccnu.scsx.model.ContactFeed;
 import com.ccnu.scsx.model.ScsxFeedBack;
 import com.ccnu.scsx.model.ScsxFeedContact;
 import com.ccnu.scsx.utils.UUIDUtils;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,14 @@ public class FeedBackService {
     String id = UUIDUtils.getUUID();
     ScsxFeedContact feedContact = ScsxFeedContact.build(id, feedBackId, userId, role);
     feedContactDao.insertSelective(feedContact);
+  }
+
+  public List<String> getFeedBackIds(String userId, int role) {
+    return feedContactDao.getFeedBackIds(userId, role);
+  }
+
+  public List<ContactFeed> getSomeThing(String userId, int role) {
+    return feedContactDao.getSomeThing(userId, role);
   }
 
 }

@@ -3,6 +3,7 @@ package com.ccnu.scsx.controller;
 import com.alibaba.fastjson.JSON;
 import com.ccnu.scsx.api.WebResultData;
 import com.ccnu.scsx.enu.ErrorCode;
+import com.ccnu.scsx.model.ContactFeed;
 import com.ccnu.scsx.model.ScsxRecruitInfo;
 import com.ccnu.scsx.model.ScsxResume;
 import com.ccnu.scsx.model.ScsxResumeWithBLOBs;
@@ -16,6 +17,7 @@ import com.ccnu.scsx.utils.DateUtils;
 import com.ccnu.scsx.utils.ObjectUtils;
 import com.ccnu.scsx.utils.UUIDUtils;
 import com.ccnu.scsx.utils.WebResultUtils;
+import com.ccnu.scsx.vo.FeedList;
 import com.ccnu.scsx.vo.InfoAndUserDto;
 import java.io.File;
 import java.io.IOException;
@@ -134,6 +136,27 @@ public class ResumeController {
     feedBackService.insertFeedContact(feedBackId, userId, 0);
     feedBackService.insertFeedContact(feedBackId, hrId, 1);
     return WebResultUtils.buildSucResult();
+  }
+
+  @ResponseBody
+  @RequestMapping(value = "/resume/feedbackList", method = RequestMethod.POST)
+  public WebResultData feedbackList(@RequestBody String object) {
+    Map<String, Object> map = JSON.parseObject(object, Map.class);
+    String userId = (String) map.get("userId");
+    int role = (Integer) map.get("role");
+    List<FeedList> feedLists = new ArrayList<FeedList>();
+    Map<String, Object> mapResult = new HashMap<String, Object>();
+    List<ContactFeed> contactFeeds = feedBackService.getSomeThing(userId, role);
+    if (!ObjectUtils.isEmpty(contactFeeds)) {
+      for (ContactFeed contactFeed : contactFeeds) {
+        FeedList feedList = FeedList.build(contactFeed);
+        String title = recruitService.getInfoDetail(feedList.getInfoId()).getTitle();
+        feedList.setTitle(title);
+        feedLists.add(feedList);
+      }
+    }
+    mapResult.put("feedList", feedLists);
+    return WebResultUtils.buildSucResult(mapResult);
   }
 
   @ResponseBody
