@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.ccnu.scsx.api.WebResultData;
 import com.ccnu.scsx.enu.ErrorCode;
 import com.ccnu.scsx.model.ContactFeed;
+import com.ccnu.scsx.model.ScsxFeedBack;
 import com.ccnu.scsx.model.ScsxRecruitInfo;
 import com.ccnu.scsx.model.ScsxResume;
 import com.ccnu.scsx.model.ScsxResumeWithBLOBs;
@@ -122,6 +123,17 @@ public class ResumeController {
     }
     Map<String, Object> mapResult = new HashMap<String, Object>();
     mapResult.put("list", infoAndUserDtos);
+    return WebResultUtils.buildSucResult(mapResult);
+  }
+
+  @ResponseBody
+  @RequestMapping(value = "/resume/feedbackDetail", method = RequestMethod.POST)
+  public WebResultData feedbackDetail(@RequestBody String object) {
+    Map<String, String> map = JSON.parseObject(object, Map.class);
+    String feedbackId = map.get("feedbackId");
+    ScsxFeedBack feedBack = feedBackService.getFeedBack(feedbackId);
+    Map<String, Object> mapResult = new HashMap<String, Object>();
+    mapResult.put("detail", feedBack);
     return WebResultUtils.buildSucResult(mapResult);
   }
 

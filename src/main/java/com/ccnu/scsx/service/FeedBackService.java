@@ -47,4 +47,8 @@ public class FeedBackService {
     return feedContactDao.getSomeThing(userId, role);
   }
 
+  public ScsxFeedBack getFeedBack(String feedbackId) {
+    return feedBackDao.getFeedBack(feedbackId);
+  }
+
 }

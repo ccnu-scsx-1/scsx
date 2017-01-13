@@ -24,4 +24,8 @@ public class FeedBackDao extends BaseDaoImpl<ScsxFeedBack> implements IBaseDao<S
     feedBackMapper.insertSelective(feedBack);
   }
 
+  public ScsxFeedBack getFeedBack(String feedbackId) {
+    return feedBackMapper.selectByPrimaryKey(feedbackId);
+  }
+
 }
