@@ -180,7 +180,7 @@ const actions = {
     changeMenu({ commit, state }, { className }) {
         state.menuClass = className
     },
-    updatePassword({ commit }, ) {
+    updatePassword({ commit }) {
 
     }
 }

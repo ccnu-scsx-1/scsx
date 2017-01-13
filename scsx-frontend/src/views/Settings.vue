@@ -83,7 +83,7 @@ export default {
             }, action => {})
         },
         clickSave() {
-            this.$store.dispatch('updateReigsterInfo')
+            this.$store.dispatch('updateReigsterInfo', { id: this.$store.state.user.userid })
         }
     },
     mounted() {

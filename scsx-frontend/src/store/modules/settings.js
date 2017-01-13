@@ -1,6 +1,7 @@
 import user from '../../api/user'
 import * as types from '../mutations-types'
 import { Indicator, MessageBox, Toast } from 'mint-ui'
+import Validator from '../../util/validator'
 import router from '../../router'
 
 const state = {
@@ -29,9 +30,36 @@ const actions = {
             commit('LOAD_REGISTER_INFO_FAIL', { errorMsg: 'error' })
         })
     },
-    updateReigsterInfo({ commit }, data) {
+    updateReigsterInfo({ commit, state}, { id }) {
+        if (Validator.isEmpty(state.username)) {
+            MessageBox.alert('用户名不能为空！')
+            return
+        }
+
+        if (!Validator.isEmail(state.email)) {
+            MessageBox.alert('请填写正确的邮箱！')
+            return
+        }
+
+        if (!Validator.isTel(state.tel)) {
+            MessageBox.alert('请填写正确的手机号码！')
+            return
+        }
+
+        if (!Validator.isNumeric(state.age)) {
+            MessageBox.alert('请填写正确的年龄！')
+            return
+        }
+
         Indicator.open()
-        user.updateUserInfo(data).then(response => {
+        user.updateUserInfo({
+            id,
+            name: state.name,
+            email: state.email,
+            gender: state.gender,
+            age: state.age,
+            number: state.tel
+        }).then(response => {
             Indicator.close()
             let res = response.data
             if (res.status === '0') {
