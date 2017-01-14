@@ -198,10 +198,10 @@ const actions = {
         Indicator.open()
 
         user.login({ name: state.username, password: oldPassword, role: state.role }).then(response => {
+            Indicator.close()
             let res = response.data
             if (res.status === '0') {
                 user.updatePassword({ id, password: newPassword }).then(response => {
-                    Indicator.close()
                     let res = response.data
                     if (res.status === '0') {
                         commit(types.UPDATE_PASSWORD_SUCCESS)
@@ -209,7 +209,6 @@ const actions = {
                         commit(types.UPDATE_PASSWORD_FAIL, { errorMsg: res.msg })
                     }
                 }).catch(error => {
-                    Indicator.close()
                     commit(types.UPDATE_PASSWORD_FAIL, { errorMsg: 'error' })
                 })
             } else {
