@@ -39,7 +39,7 @@ export default {
             }, action => {})
         },
         clickGoSettings(){
-            if(this.userShow) this.$router.push('/settings')
+            this.$router.push('/settings')
         }   
     },
     mounted(){

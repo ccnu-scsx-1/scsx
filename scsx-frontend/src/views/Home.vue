@@ -2,6 +2,7 @@
     <div class="v-container">
         <mt-header title="PT网"></mt-header>
         <mt-search class="searchBar" v-model="searchValue" placeholder="搜索公司或者岗位" @search.native="searchResult"></mt-search>
+        
         <div class="btn-group">
             <div class="btn-line">
                 <mt-button type="primary" class="inline-btn" @click="clickGoMarket">我要求职</mt-button>
@@ -25,14 +26,21 @@ export default {
         }
     },
     methods: {
-        clickGoMarket(){
+        clickGoMarket() {
             this.$router.push('/market')
         },
-        clickGoReg(){
-            this.$router.push({path: '/registercom'})
+        clickGoReg() {
+            this.$router.push({
+                path: '/registercom'
+            })
         },
-        searchResult(){
-            this.$router.push({path:'/market', query: { searchValue: this.searchValue }})
+        searchResult() {
+            this.$router.push({
+                path: '/market',
+                query: {
+                    searchValue: this.searchValue
+                }
+            })
         }
     }
 }
@@ -43,7 +51,7 @@ export default {
     overflow: visible;
 }
 
-.v-container{
+.v-container {
     height: 100%;
     display: flex;
     flex-direction: column;
