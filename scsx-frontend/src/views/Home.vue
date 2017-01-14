@@ -1,7 +1,7 @@
 <template>
     <div class="v-container">
         <mt-header title="PT网"></mt-header>
-        <mt-search class="searchBar" v-model="searchValue" placeholder="搜索公司或者岗位" @search.native="searchResult"></mt-search>
+        <mt-search class="searchBar" v-model="searchValue" placeholder="搜索岗位名" @search.native="searchResult"></mt-search>
         
         <div class="btn-group">
             <div class="btn-line">
