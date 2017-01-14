@@ -8,6 +8,7 @@ import com.ccnu.scsx.model.ScsxRecruitInfo;
 import com.ccnu.scsx.service.CompanyService;
 import com.ccnu.scsx.service.ContactService;
 import com.ccnu.scsx.service.RecruitService;
+import com.ccnu.scsx.utils.ObjectUtils;
 import com.ccnu.scsx.utils.WebResultUtils;
 import com.ccnu.scsx.vo.RecruitInfo;
 import java.util.ArrayList;
@@ -122,17 +123,19 @@ public class RecruitController {
     Map<String, String> map = JSON.parseObject(object, Map.class);
     String userId = map.get("userId");
     List<String> infoIds = contactService.selectInfoByUserId(userId);
-    List<ScsxRecruitInfo> scsxRecruitInfos = recruitService.getInfoListByInfoIds(infoIds);
-    List<RecruitInfo> infos = new ArrayList<RecruitInfo>();
-    for (ScsxRecruitInfo info : scsxRecruitInfos) {
-      String companyId = info.getCompanyId();
-      String companyName = companyService.findNameById(companyId);
-      RecruitInfo recruitInfo = RecruitInfo.build(info);
-      recruitInfo.setCompanyName(companyName);
-      infos.add(recruitInfo);
-    }
     Map<String, Object> mapResult = new HashMap<String, Object>();
-    mapResult.put("infos", infos);
+    if (ObjectUtils.isNotEmpty(infoIds)) {
+      List<ScsxRecruitInfo> scsxRecruitInfos = recruitService.getInfoListByInfoIds(infoIds);
+      List<RecruitInfo> infos = new ArrayList<RecruitInfo>();
+      for (ScsxRecruitInfo info : scsxRecruitInfos) {
+        String companyId = info.getCompanyId();
+        String companyName = companyService.findNameById(companyId);
+        RecruitInfo recruitInfo = RecruitInfo.build(info);
+        recruitInfo.setCompanyName(companyName);
+        infos.add(recruitInfo);
+      }
+      mapResult.put("infos", infos);
+    }
     return WebResultUtils.buildSucResult(mapResult);
   }
 
