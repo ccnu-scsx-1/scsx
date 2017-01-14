@@ -163,7 +163,9 @@ public class UserController {
   @RequestMapping(value = "/user/updateUserInfo", method = RequestMethod.POST)
   public WebResultData updateUserInfo(@RequestBody String object) {
     ScsxUser user = JSON.parseObject(object, ScsxUser.class);
-    user.setPassword(Md5Utils.getMD5(user.getPassword()));
+    if (ObjectUtils.isNotEmpty(user.getPassword())){
+      user.setPassword(Md5Utils.getMD5(user.getPassword()));
+    }
     userService.updateById(user);
     return WebResultUtils.buildSucResult();
   }

@@ -122,7 +122,7 @@ public class UserInfoDto {
 
   public static UserInfoDto build(ScsxUser user) {
     UserInfoDto userInfoDto = new UserInfoDto();
-    userInfoDto.setAge(user.getAge());
+    userInfoDto.setAge(user.getAge() == null ? 0 : user.getAge());
     userInfoDto.setEmail(user.getEmail());
     userInfoDto.setGender((user.getGender() == 0) ? "男" : "女");
     userInfoDto.setName(user.getName());

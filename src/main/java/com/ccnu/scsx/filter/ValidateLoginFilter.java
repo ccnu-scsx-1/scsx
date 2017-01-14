@@ -22,7 +22,7 @@ public class ValidateLoginFilter implements Filter {
     String uri = httpServletRequest.getRequestURI();
     String contextPath = httpServletRequest.getContextPath();
 
-    if (StringUtils.containsIgnoreCase(uri, "/page")
+    if (StringUtils.containsIgnoreCase(uri, "/page/index.html")
         || StringUtils.containsIgnoreCase(uri, "/index")
         || StringUtils.containsIgnoreCase(uri, "/admin/login")
         || StringUtils.containsIgnoreCase(uri, "/api")
