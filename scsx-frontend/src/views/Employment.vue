@@ -6,7 +6,7 @@
             </router-link>
         </mt-header>
         <div class="info-part">
-            <v-cell v-for="item in jobList" :title="item.title" :company="item.companyName" :region="item.region" :salary="item.salary" :link="{path: '/jobdetail', query: { infoId: item.id, companyId: item.companyId }}" ></v-cell>
+            <v-cell v-for="item in jobList" :title="item.title" :company="item.companyName" :region="item.region" :salary="item.salary" :link="{path: '/jobdetail', query: { infoId: item.id, companyId: item.company_id, noVoteBtn:1}}" ></v-cell>
         </div>
 
         <div class="info-part">
