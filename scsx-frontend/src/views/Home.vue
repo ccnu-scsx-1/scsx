@@ -66,20 +66,17 @@ export default {
 }
 
 .swipe-contanier {
-    margin-top: 30px;
+    margin-top: 60px;
     .swipe-item-pic {
+        width: 100%;
+        height: 100%;
         &:first-child {
-            background: url('../assets/pic1.png') no-repeat center;
-            background-size: 100%;
+            background: url('../assets/pic1.png') no-repeat;
+            background-size: contain;
         }
         &:last-child {
-            background: url('../assets/pic2.png') no-repeat center;
-            background-size: 100%;
-        }
-    }
-    .mint-swipe-indicators {
-        & > * {
-            border: 1px solid #000;
+            background: url('../assets/pic2.png') no-repeat;
+            background-size: contain;
         }
     }
 }
