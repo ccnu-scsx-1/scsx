@@ -6,7 +6,8 @@ import { formatSalary } from '../../util/format'
 
 const state = {
     searchValue: '',
-    searchResult: []
+    searchResult: [],
+    pageNum: 1
 }
 
 const getters = {
@@ -24,7 +25,8 @@ const getters = {
 }
 
 const actions = {
-    getInfoList({ commit }, data) {
+    getInfoList({ commit, state}, data) {
+        state.pageNum = data.pageNum
         Indicator.open()
         recruit.infoList(data).then(response => {
             Indicator.close()
@@ -58,7 +60,7 @@ const actions = {
 
 const mutations = {
     [types.MARKET_JOB_LIST_SUCCESS](state, { infos }) {
-        state.searchResult = infos
+        state.searchResult.push(...infos)
     },
     [types.MARKET_JOB_LIST_FAIL](state, { errorMsg }) {
         MessageBox.alert(errorMsg)
