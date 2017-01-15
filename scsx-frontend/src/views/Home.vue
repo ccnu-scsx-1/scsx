@@ -1,8 +1,11 @@
 <template>
     <div class="v-container">
-        <mt-header title="PT网"></mt-header>
+        <mt-header title="SELECT"></mt-header>
         <mt-search class="searchBar" v-model="searchValue" placeholder="搜索岗位名" @search.native="searchResult"></mt-search>
-        
+        <mt-swipe :auto="4000" class="swipe-contanier">
+            <mt-swipe-item class="swipe-item-pic"></mt-swipe-item>
+            <mt-swipe-item class="swipe-item-pic"></mt-swipe-item>
+        </mt-swipe>
         <div class="btn-group">
             <div class="btn-line">
                 <mt-button type="primary" class="inline-btn" @click="clickGoMarket">我要求职</mt-button>
@@ -51,11 +54,34 @@ export default {
     overflow: visible;
 }
 
+.mint-header {
+    height: 100px;
+}
+
 .v-container {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+}
+
+.swipe-contanier {
+    margin-top: 30px;
+    .swipe-item-pic {
+        &:first-child {
+            background: url('../assets/pic1.png') no-repeat center;
+            background-size: 100%;
+        }
+        &:last-child {
+            background: url('../assets/pic2.png') no-repeat center;
+            background-size: 100%;
+        }
+    }
+    .mint-swipe-indicators {
+        & > * {
+            border: 1px solid #000;
+        }
+    }
 }
 
 .btn-group {
