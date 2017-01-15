@@ -15,6 +15,7 @@ import voteInfo from './modules/voteInfo'
 import inviteInfo from './modules/inviteInfo'
 import resumeFeedback from './modules/resumeFeedback'
 import settings from './modules/settings'
+import inviteDetail from './modules/inviteDetail'
 
 Vue.use(Vuex)
 
@@ -31,6 +32,7 @@ export default new Vuex.Store({
         voteInfo,
         inviteInfo,
         resumeFeedback,
-        settings
+        settings,
+        inviteDetail
     }
 })

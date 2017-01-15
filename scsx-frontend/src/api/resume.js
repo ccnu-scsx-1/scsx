@@ -20,6 +20,10 @@ export default {
     //用户查看邀约信息列表
     feedbackList: function(data){
         return commonService.post('/api/resume/feedbackList', data || {})
+    },
+    //用户查看邀约信息详情
+    feedbackDetail: function(data){
+        return commonService.post('/api/resume/feedbackDetail', data || {})
     }
 }
 

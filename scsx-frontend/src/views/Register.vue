@@ -11,7 +11,7 @@
             <mt-field label="手机号" placeholder="请输入手机号" v-model="tel" type="tel"></mt-field>
             <mt-field label="年龄" placeholder="请输入年龄" type="number" v-model="age"></mt-field>
             <mt-cell title="性别">
-                <select v-model="gender" style="width: 250px;">
+                <select v-model="gender" style="width: 250px;margin-left:12px;">
                     <option value="0">男</option>
                     <option value="1">女</option>
                 </select>
