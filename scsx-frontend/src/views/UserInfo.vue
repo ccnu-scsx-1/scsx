@@ -8,7 +8,7 @@
         <mt-cell title="邀约信息" to="/inviteinfo" is-link v-show="userShow"></mt-cell>
         <mt-cell title="招聘岗位" to="/employment" is-link v-show="hrShow"></mt-cell>
         <mt-cell title="简历池" to="/resumepool" is-link v-show="hrShow"></mt-cell>
-        <mt-cell title="注册信息" @click.native="clickGoSettings" is-link></mt-cell>
+        <mt-cell title="注册信息" @click.native="clickGoSettings" v-show="userShow" is-link></mt-cell>
         <mt-cell title="密码修改" to="/updatepassword" is-link></mt-cell>
         <div class="logout-btn">
             <mt-button type="danger" size="large" @click="clickLogout">退出登录</mt-button>

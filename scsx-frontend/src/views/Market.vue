@@ -2,7 +2,7 @@
     <div>
         <mt-header title="PT网">
         </mt-header>
-        <mt-search class="searchBar" v-model="searchValue" placeholder="搜索公司或者岗位" @search.native="searchBytitle" :show="true">
+        <mt-search class="searchBar" v-model="searchValue" placeholder="搜索岗位名" @search.native="searchBytitle" :show="true">
             <v-cell v-for="item in searchResult" :title="item.title" :company="item.companyName" :region="item.region" :salary="item.salary" :link="{path: '/jobdetail', query: { infoId: item.infoId, companyId: item.companyId }}" ></v-cell>
         </mt-search>
     </div>

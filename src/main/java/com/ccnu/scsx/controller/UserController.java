@@ -62,7 +62,7 @@ public class UserController {
 
     ScsxUser user = userService.findByNameAndPassword(name, password, role);
     if (user == null) {
-      return WebResultUtils.buildResult(ErrorCode.user_notExist);
+      return WebResultUtils.buildResult(ErrorCode.login_error);
     }
 
     request.getSession().setAttribute("loginAdmin", user);
@@ -163,7 +163,7 @@ public class UserController {
   @RequestMapping(value = "/user/updateUserInfo", method = RequestMethod.POST)
   public WebResultData updateUserInfo(@RequestBody String object) {
     ScsxUser user = JSON.parseObject(object, ScsxUser.class);
-    if (ObjectUtils.isNotEmpty(user.getPassword())){
+    if (ObjectUtils.isNotEmpty(user.getPassword())) {
       user.setPassword(Md5Utils.getMD5(user.getPassword()));
     }
     userService.updateById(user);

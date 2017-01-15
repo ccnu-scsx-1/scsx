@@ -79,7 +79,7 @@ export default {
     methods: {
         clickCancel() {
             MessageBox.confirm('当前修改未保存，是否直接返回？').then(action => {
-                this.$router.push('/userinfo')
+                this.$router.go(-1)
             }, action => {})
         },
         clickSave() {
